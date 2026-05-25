@@ -8,7 +8,7 @@ namespace dominio
 {
     internal class Mesa
     {
-        public int id { get; set; }
+        public int idMesa { get; set; }
         public int numero { get; set; }
         public int capadicad { get; set; }
         public bool estado { get; set; }
