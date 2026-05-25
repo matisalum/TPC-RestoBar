@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="dominio/dominio.csproj" Id="2fb2f4a9-d77d-4ea0-bbfb-c44760b63edf" />
   <Project Path="TPCRestoBar/TPCRestoBar.csproj" Id="ccf113c9-2fa3-4ff9-908f-3dbe72fc3273" />
 </Solution>
