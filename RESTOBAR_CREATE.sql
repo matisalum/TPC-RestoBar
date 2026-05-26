@@ -1,0 +1,53 @@
+CREATE DATABASE RESTOBAR
+GO
+
+USE RESTOBAR
+GO
+
+CREATE TABLE Empleado
+(
+Id_Empleado INT IDENTITY(1,1) NOT NULL,
+Usuario VARCHAR(50) NOT NULL,
+NombreEmpleado VARCHAR(50) NOT NULL,
+ApellidoEmpleado VARCHAR(50) NOT NULL,
+Constraseña VARCHAR(20) NOT NULL,
+RolEmpleado VARCHAR(20) NOT NULL,
+Activo BIT NOT NULL DEFAULT 0,
+CONSTRAINT PK_ID_EMPLEADO PRIMARY KEY (Id_Empleado)
+)
+Go
+
+CREATE TABLE PRODUCTO
+(
+Id_Producto INT IDENTITY(1,1) NOT NULL,
+Nombre_Producto VARCHAR(50) NOT NULL,
+Precio MONEY,
+Stock INT,
+Activo BIT NOT NULL DEFAULT 0,
+CONSTRAINT PK_ID_PRODUCTO PRIMARY KEY (Id_Producto)
+)
+GO
+
+create table Mesa (
+    IdMesa INT PRIMARY KEY IDENTITY(1,1),
+    Numero INT NOT NULL,
+    estado bit NOT NULL DEFAULT 0, -- 0 para pendiente, 1 para completada
+);
+
+create table Pedido (
+ IdPedido INT PRIMARY KEY IDENTITY(1,1),
+ IdMesa INT NOT NULL,
+ IdEmpleado INT NOT NULL,
+ FechaPedido DATETIME DEFAULT GETDATE(),
+ Estado bit NOT NULL DEFAULT 0, -- 0 para pendiente, 1 para completada
+ CONSTRAINT FK_Pedido_Mesa FOREIGN KEY (IdMesa) REFERENCES Mesa (IdMesa)
+ );
+
+ create table DetallePedido (
+ IdDetalle INT PRIMARY KEY IDENTITY(1,1),
+ IdPedido INT NOT NULL,
+ IdProducto INT NOT NULL,
+ Cantidad INT NOT NULL,
+ CONSTRAINT FK_DETALLE_PEDIDO FOREIGN KEY (IdPedido) REFERENCES PEDIDO (IdPedido),
+ CONSTRAINT FK_DETALLE_PRODUCTO FOREIGN KEY (IdProducto) REFERENCES PRODUCTO (Id_Producto)
+ );
