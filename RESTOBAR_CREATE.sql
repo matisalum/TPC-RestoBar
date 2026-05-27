@@ -31,8 +31,12 @@ GO
 create table Mesa (
     IdMesa INT PRIMARY KEY IDENTITY(1,1),
     Numero INT NOT NULL,
+<<<<<<< HEAD
     Capacidad int NOT NULL,
     Estado bit NOT NULL DEFAULT 0, -- 0 para pendiente, 1 para completada
+=======
+    estado bit NOT NULL DEFAULT 0, -- 0 para pendiente, 1 para completada
+>>>>>>> f50fde9ddf87ca3e05eea0afdf02971fd3bc4311
 );
 
 create table Pedido (
