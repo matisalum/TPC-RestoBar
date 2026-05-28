@@ -171,10 +171,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Login.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,6 +213,10 @@
     <ProjectReference Include="..\dominio\dominio.csproj">
       <Project>{2fb2f4a9-d77d-4ea0-bbfb-c44760b63edf}</Project>
       <Name>dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{f26bf113-18fa-4f21-9d01-9c8a060a9693}</Project>
+      <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
