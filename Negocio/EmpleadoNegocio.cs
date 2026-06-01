@@ -15,7 +15,7 @@ namespace Negocio
             List<Empleado> lista = new List<Empleado>();
 
             SqlConnection conexion = new SqlConnection(
-                "server=localhost\\SQLEXPRESS;database=RestoDB;trusted_connection=true"
+                "server=localhost\\SQLEXPRESS;database=RestoBar;trusted_connection=true"
             );
 
             SqlCommand comando = new SqlCommand(
