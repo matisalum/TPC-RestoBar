@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,14 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                MesasNegocio negocio = new MesasNegocio();
+
+                dgvMesa.DataSource = negocio.listar();
+                dgvMesa.DataBind();
+
+            }
 
         }
     }
