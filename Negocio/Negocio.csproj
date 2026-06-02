@@ -150,6 +150,7 @@
     <Compile Include="AccesoADatos.cs" />
     <Compile Include="EmpleadoNegocio.cs" />
     <Compile Include="MesasNegocio.cs" />
+    <Compile Include="ProductoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
