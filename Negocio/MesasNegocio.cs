@@ -42,10 +42,10 @@ namespace Negocio
 
             }
 
-            conexion.Close()
+            conexion.Close();
 
+            return lista;
 
-                return lista;
         }
 
     }
