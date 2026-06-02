@@ -15,7 +15,7 @@ namespace Negocio
             List<Empleado> lista = new List<Empleado>();
 
             SqlConnection conexion = new SqlConnection(
-                "server=localhost\\SQLEXPRESS;database=RestoBar;trusted_connection=true"
+                "server=localhost\\SQLEXPRESS;database=RestoDB;trusted_connection=true"
             );
 
             SqlCommand comando = new SqlCommand(
@@ -29,17 +29,17 @@ namespace Negocio
 
             while (lector.Read())
             {
-                Empleado aux = new Empleado();
+                Empleado empleado = new Empleado();
 
-                aux.idEmpleado = (int)lector["Id_Empleado"];
-                aux.nombre = lector["NombreEmpleado"].ToString();
-                aux.apellido = lector["ApellidoEmpleado"].ToString();
-                aux.usuario = lector["Usuario"].ToString();
-                aux.password = lector["Constrasenia"].ToString();
-                aux.rol = lector["RolEmpleado"].ToString();
-                aux.activo = (bool)lector["Activo"];
+                empleado.idEmpleado = (int)lector["Id_Empleado"];
+                empleado.nombre = lector["NombreEmpleado"].ToString();
+                empleado.apellido = lector["ApellidoEmpleado"].ToString();
+                empleado.usuario = lector["Usuario"].ToString();
+                empleado.password = lector["Constrasenia"].ToString();
+                empleado.rol = lector["RolEmpleado"].ToString();
+                empleado.activo = (bool)lector["Activo"];
 
-                lista.Add(aux);
+                lista.Add(empleado);
             }
 
             conexion.Close();
