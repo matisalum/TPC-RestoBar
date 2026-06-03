@@ -7,6 +7,19 @@
     <div class="container ">
         <h1>Cartilla </h1>
         <div class="row">
+            <div class="col-2"></div>
+            <div class="col">
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+                <asp:TextBox ID="txbBuscar" runat="server"></asp:TextBox>
+            </div>
+            <div class="col">
+                <asp:DropDownList ID="ddlFiltro" runat="server"></asp:DropDownList>
+            </div>
+            <div class="col">
+            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" />
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
                 <div class="card shadow-sm mb-5">
                     <div class="row">

@@ -28,6 +28,15 @@ namespace TPCRestoBar
 
             dvgCartilla.DataSource = lista;
             dvgCartilla.DataBind();
+
+
+            if (!IsPostBack)
+            {
+                ddlFiltro.Items.Add(new ListItem("Categoría", "0"));
+                ddlFiltro.Items.Add(new ListItem("Bebidas", "1"));
+                ddlFiltro.Items.Add(new ListItem("Platos", "2"));
+                ddlFiltro.Items.Add(new ListItem("Postres", "3"));
+            }
         }
     }
 }

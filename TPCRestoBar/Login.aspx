@@ -17,6 +17,7 @@
               </div>
               
               <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" Text="Ingresar" />
+              <asp:Button ID="btnRegistrarse" class="btn btn-primary" runat="server" Text="Registrarse" />
         </div>
         <div class="col-2"></div>
     </div>
