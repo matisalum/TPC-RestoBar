@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class ProductoNegocio
     {
-        List<Producto> listar()
+        public List<Producto> listar()
         {
             List<Producto> lista = new List<Producto>();
             AccesoADatos datos = new AccesoADatos();
@@ -19,25 +19,37 @@ namespace Negocio
                 string consulta = "SELECT Id_Producto, Nombre_Producto, Precio, STOCK FROM PRODUCTO";
 
                 datos.setearConsulta(consulta);
-                datos.ejecutarAccion();
+                datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Producto productos = new Producto();
 
-                    productos.idProducto = (int)datos.Lector["Id_Producto"];
-                    productos.nombre = (string)datos.Lector["Nombre_Producto"];
-                    productos.precio = (decimal)datos.Lector["Precio"];
-                    productos.stock = (int)datos.Lector["STOCK"];
+                    if (!(datos.Lector["Id_Producto"] is DBNull))
+                        productos.idProducto = (int)datos.Lector["Id_Producto"];
+                    else
+                        productos.idProducto = 0;
+                    if (!(datos.Lector["Nombre_Producto"] is DBNull))
+                        productos.nombre = (string)datos.Lector["Nombre_Producto"];
+                    else
+                        productos.nombre = "Sin Nombre";
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        productos.precio = (decimal)datos.Lector["Precio"];
+                    else
+                        productos.precio = 0;
+                    if (!(datos.Lector["STOCK"] is DBNull))
+                        productos.stock = (int)datos.Lector["STOCK"];
+                    else
+                        productos.stock = 0;
 
                     lista.Add(productos);
                 }
 
                 return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
