@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="Carta.aspx" />
     <Content Include="Empleados.aspx" />
+    <Content Include="FormularioEmpleado.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Mesas.aspx" />
     <Content Include="Pedidos.aspx" />
@@ -194,6 +195,13 @@
     </Compile>
     <Compile Include="Empleados.aspx.designer.cs">
       <DependentUpon>Empleados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioEmpleado.aspx.cs">
+      <DependentUpon>FormularioEmpleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioEmpleado.aspx.designer.cs">
+      <DependentUpon>FormularioEmpleado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
