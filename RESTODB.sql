@@ -9,20 +9,21 @@ CREATE TABLE Igmagen (
 );
  
 
-CREATE TABLE Empleado (
+Alter TABLE Empleado (
     id          INT IDENTITY(1,1) NOT NULL,
     Nombre      VARCHAR(255),
     Usuario     VARCHAR(255),
     Apellido    VARCHAR(255),
     Contrasena  VARCHAR(255),
     Activo      BIT,
-    Gerente     BIT,
+    Rol   BIT,
     IdImagen    INT,
     PRIMARY KEY (id),
     CONSTRAINT fk_Igmagen_id_Empleado
         FOREIGN KEY (IdImagen) REFERENCES Igmagen(id)
 );
  
+
 
 CREATE TABLE Mesa (
     id          INT IDENTITY(1,1) NOT NULL,
@@ -86,3 +87,14 @@ CREATE TABLE DetallePedido (
     CONSTRAINT fk_DetallePedido_idEmpleado
         FOREIGN KEY (idEmpleado) REFERENCES Empleado(id)
 );
+
+
+INSERT INTO Empleado (Nombre, Usuario, Apellido, Contrasena, Activo, Gerente, IdImagen)
+VALUES
+    ('Carlos',   'cgomez',    'Gomez',      'pass1234',  1, 1, NULL),  -- Gerente
+    ('Maria',    'mlopez',    'Lopez',      'pass5678',  1, 0, NULL),
+    ('Juan',     'jperez',    'Perez',      'pass9012',  1, 0, NULL),
+    ('Laura',    'lmartinez', 'Martinez',   'pass3456',  1, 0, NULL),
+    ('Diego',    'drodriguez','Rodriguez',  'pass7890',  0, 0, NULL);
+
+    Select * from Empleado;

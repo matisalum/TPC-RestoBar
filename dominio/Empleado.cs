@@ -12,7 +12,7 @@ namespace dominio
         public string apellido { get; set; }
         public string usuario { get; set; }
         public string password { get; set; }
-        public string rol { get; set; }
+        public bool Rol { get; set; }
         public bool activo { get; set; }
         
     }

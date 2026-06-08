@@ -31,12 +31,12 @@ namespace Negocio
             {
                 Empleado empleado = new Empleado();
 
-                empleado.idEmpleado = (int)lector["Id_Empleado"];
-                empleado.nombre = lector["NombreEmpleado"].ToString();
-                empleado.apellido = lector["ApellidoEmpleado"].ToString();
+                empleado.idEmpleado = (int)lector["id"];
+                empleado.nombre = lector["Nombre"].ToString();
+                empleado.apellido = lector["Apellido"].ToString();
                 empleado.usuario = lector["Usuario"].ToString();
-                empleado.password = lector["Contrasenia"].ToString();
-                empleado.rol = lector["RolEmpleado"].ToString();
+                empleado.password = lector["Contrasena"].ToString();
+                empleado.Rol = (bool)lector["Gerente"];
                 empleado.activo = (bool)lector["Activo"];
 
                 lista.Add(empleado);

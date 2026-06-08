@@ -28,8 +28,8 @@
     </div>
 
     <div class="mb-3">
-        <asp:Label ID="lblContrasenia" CssClass="form-label" runat="server" Text="Contraseña"></asp:Label>
-        <asp:TextBox ID="txtContrasenia" CssClass="form-control" TextMode="Password" runat="server"></asp:TextBox>
+        <asp:Label ID="lblContrasena" CssClass="form-label" runat="server" Text="Contraseña"></asp:Label>
+        <asp:TextBox ID="txtContrasena" CssClass="form-control" TextMode="Password" runat="server"></asp:TextBox>
     </div>
 
     <div class="mb-3">

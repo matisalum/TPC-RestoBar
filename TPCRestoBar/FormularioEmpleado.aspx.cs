@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.WebSockets;
 
 namespace TPCRestoBar
 {
@@ -19,13 +20,10 @@ namespace TPCRestoBar
             {
                 if (!IsPostBack)
                 {
-                    EmpleadoNegocio empeldo = new EmpleadoNegocio();
-                    List<Empleado> lista = empeldo.listar();
 
-                    ddlRol.DataSource = lista;
-                    ddlRol.DataValueField = "idEmpleado";
-                    ddlRol.DataTextField = "rol";
-                    ddlRol.DataBind();
+                    ddlRol.Items.Clear();
+                    ddlRol.Items.Add(new ListItem("Gerente", "true"));
+                    ddlRol.Items.Add(new ListItem("Mesero", "false"));
 
                 }
 
@@ -48,7 +46,7 @@ namespace TPCRestoBar
 
                 empleado.nombre = txtNombre.Text;
                 empleado.apellido = txtApellido.Text;
-                empleado.password = txtContrasenia.Text;
+                empleado.password = txtContrasena.Text;
 
 
 
