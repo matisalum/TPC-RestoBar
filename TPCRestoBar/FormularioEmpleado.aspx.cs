@@ -15,24 +15,56 @@ namespace TPCRestoBar
         {
             txtId.Enabled = false;
 
-            if (!IsPostBack)
+            try
             {
-                EmpleadoNegocio empeldo = new EmpleadoNegocio();
-                List<Empleado> lista = empeldo.listar();
+                if (!IsPostBack)
+                {
+                    EmpleadoNegocio empeldo = new EmpleadoNegocio();
+                    List<Empleado> lista = empeldo.listar();
 
-                ddlRol.DataSource = lista;
-                ddlRol.DataValueField = "idEmpleado";
-                ddlRol.DataTextField = "rol";
-                ddlRol.DataBind();
+                    ddlRol.DataSource = lista;
+                    ddlRol.DataValueField = "idEmpleado";
+                    ddlRol.DataTextField = "rol";
+                    ddlRol.DataBind();
 
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex);
+                throw;
             }
 
 
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Empleado empleado = new Empleado();
+
+                empleado.nombre = txtNombre.Text;
+                empleado.apellido = txtApellido.Text;
+                empleado.password = txtContrasenia.Text;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
+        }
+
+
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Empleados.aspx", false);
         }
+
     }
 }
