@@ -9,19 +9,21 @@ CREATE TABLE Igmagen (
 );
  
 
-Alter TABLE Empleado (
+CREATE TABLE Empleado (
     id          INT IDENTITY(1,1) NOT NULL,
     Nombre      VARCHAR(255),
     Usuario     VARCHAR(255),
     Apellido    VARCHAR(255),
     Contrasena  VARCHAR(255),
-    Activo      BIT,
-    Rol   BIT,
+    Estado      BIT,
+    Rol VARCHAR(50),
     IdImagen    INT,
     PRIMARY KEY (id),
     CONSTRAINT fk_Igmagen_id_Empleado
         FOREIGN KEY (IdImagen) REFERENCES Igmagen(id)
 );
+
+
  
 
 
@@ -89,12 +91,15 @@ CREATE TABLE DetallePedido (
 );
 
 
-INSERT INTO Empleado (Nombre, Usuario, Apellido, Contrasena, Activo, Gerente, IdImagen)
+INSERT INTO Empleado (Nombre, Usuario, Apellido, Contrasena, Activo , Rol, IdImagen)
 VALUES
-    ('Carlos',   'cgomez',    'Gomez',      'pass1234',  1, 1, NULL),  -- Gerente
-    ('Maria',    'mlopez',    'Lopez',      'pass5678',  1, 0, NULL),
-    ('Juan',     'jperez',    'Perez',      'pass9012',  1, 0, NULL),
-    ('Laura',    'lmartinez', 'Martinez',   'pass3456',  1, 0, NULL),
-    ('Diego',    'drodriguez','Rodriguez',  'pass7890',  0, 0, NULL);
+    ('Carlos',   'cgomez',    'Gomez',      'pass1234',  1, 'Gerente', NULL),  -- Gerente
+    ('Maria',    'mlopez',    'Lopez',      'pass5678',  1, 'Mesero', NULL),
+    ('Juan',     'jperez',    'Perez',      'pass9012',  1, 'Mesero', NULL),
+    ('Laura',    'lmartinez', 'Martinez',   'pass3456',  1, 'Mesero', NULL),
+    ('Diego',    'drodriguez','Rodriguez',  'pass7890',  0, 'Mesero', NULL);
 
-    Select * from Empleado;
+
+Select * from Empleado
+
+insert into Empleado (Nombre, Usuario, Apellido, Contrasena, e, Rol, IdImagen) values ('Ana', 'alopez', 'Lopez', 'pass1234', 1, 'Mesero', NULL) 

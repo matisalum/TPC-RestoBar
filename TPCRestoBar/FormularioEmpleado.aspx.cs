@@ -22,8 +22,8 @@ namespace TPCRestoBar
                 {
 
                     ddlRol.Items.Clear();
-                    ddlRol.Items.Add(new ListItem("Gerente", "true"));
-                    ddlRol.Items.Add(new ListItem("Mesero", "false"));
+                    ddlRol.Items.Add(new ListItem("Gerente"));
+                    ddlRol.Items.Add(new ListItem("Mesero"));
 
                 }
 
@@ -43,12 +43,17 @@ namespace TPCRestoBar
             try
             {
                 Empleado empleado = new Empleado();
+                EmpleadoNegocio negocio = new EmpleadoNegocio();
 
                 empleado.nombre = txtNombre.Text;
                 empleado.apellido = txtApellido.Text;
+                empleado.usuario = txtUsuario.Text;
                 empleado.password = txtContrasena.Text;
+                empleado.rol = ddlRol.SelectedValue;
+                empleado.estado = chkActivo.Checked;
 
-
+                negocio.agregar(empleado);
+                Response.Redirect("Empleados.aspx", false);
 
             }
             catch (Exception ex)

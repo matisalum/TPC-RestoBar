@@ -36,8 +36,9 @@ namespace Negocio
                 empleado.apellido = lector["Apellido"].ToString();
                 empleado.usuario = lector["Usuario"].ToString();
                 empleado.password = lector["Contrasena"].ToString();
-                empleado.Rol = lector["Rol"].ToString();
-                empleado.activo = (bool)lector["Activo"];
+                empleado.rol = lector["Rol"].ToString();
+                empleado.estado = (bool)lector["Estado"];
+      
 
                 lista.Add(empleado);
             }
@@ -46,5 +47,37 @@ namespace Negocio
 
             return lista;
         }
+
+        public void agregar(Empleado nuevo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into Empleado (Nombre, Usuario, Apellido, Contrasena, Estado, Rol) values ( @Nombre, @User, @Apellido, @Pass, @Estado, @Rol) ");
+                datos.setearParametro("@Nombre", nuevo.nombre);
+                datos.setearParametro("@User", nuevo.usuario);
+                datos.setearParametro("@Apellido", nuevo.apellido);
+                datos.setearParametro("@Pass", nuevo.password);
+                datos.setearParametro("@Estado", nuevo.estado);
+                datos.setearParametro("@Rol", nuevo.rol);
+               
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+            }
+
+        }
+
     }
 }
