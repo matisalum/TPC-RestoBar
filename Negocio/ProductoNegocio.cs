@@ -57,5 +57,75 @@ namespace Negocio
             }
         }
 
+        public void agregar(Producto nuevo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "INSERT INTO Producto (Nombre_Producto, Precio, Stock, Activo) " +
+                    "VALUES (@nombre, @precio, @stock, @activo)");
+
+                datos.setearParametro("@nombre", nuevo.nombre);
+                datos.setearParametro("@precio", nuevo.precio);
+                datos.setearParametro("@stock", nuevo.stock);
+                datos.setearParametro("@activo", nuevo.activo);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Producto producto)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "UPDATE Producto SET " +
+                    "Nombre_Producto=@nombre, " +
+                    "Precio=@precio, " +
+                    "Stock=@stock, " +
+                    "Activo=@activo " +
+                    "WHERE Id_Producto=@id");
+
+                datos.setearParametro("@id", producto.idProducto);
+                datos.setearParametro("@nombre", producto.nombre);
+                datos.setearParametro("@precio", producto.precio);
+                datos.setearParametro("@stock", producto.stock);
+                datos.setearParametro("@activo", producto.activo);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminar(int id)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "UPDATE Producto SET Activo = 0 WHERE Id_Producto = @id");
+
+                datos.setearParametro("@id", id);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

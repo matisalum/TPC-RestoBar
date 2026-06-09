@@ -10,7 +10,7 @@ namespace dominio
     {
         public int idMesa { get; set; }
         public int numero { get; set; }
-        public int capadicad { get; set; }
+        public int capacidad { get; set; }
         public bool estado { get; set; }
 
     }

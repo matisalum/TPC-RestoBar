@@ -1,29 +1,27 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dominio;
-
+using System.Data.SqlClient;
 
 namespace Negocio
 {
-    public class MesasNegocio
+    internal class MesaNegocio
     {
         public List<Mesa> listar()
         {
             List<Mesa> lista = new List<Mesa>();
 
             SqlConnection conexion = new SqlConnection(
-                   "server=localhost\\SQLEXPRESS;database=RestoDB;trusted_connection=true"
-               );
-
-            SqlCommand comando = new SqlCommand(
-                "SELECT * FROM Mesa",
-                conexion
+                "server=localhost\\SQLEXPRESS;database=RestoDB;trusted_connection=true"
             );
 
+            SqlCommand comando = new SqlCommand(
+                "SELECT * FROM Empleado",
+                conexion
+            );
 
             conexion.Open();
 
@@ -31,22 +29,19 @@ namespace Negocio
 
             while (lector.Read())
             {
-                Mesa mesa = new Mesa();
+                Mesa aux = new Mesa();
 
-                mesa.idMesa = (int)lector["IdMesa"];
-                mesa.numero = (int)lector["Numero"];
-                mesa.capacidad = (int)lector["Capacidad"];
-                mesa.estado = (bool)lector["Estado"];
-
-                lista.Add(mesa);
-
+                aux.idMesa = (int)lector["Id_Mesa"];
+                aux.numero = lector["NumeroMesa"].ToString();
+                aux.capacidad = lector["Capacidad"].ToString();
+                aux.estado = (bool)lector["Estado"];
+               
+                lista.Add(aux);
             }
 
             conexion.Close();
 
             return lista;
-
         }
-
     }
 }
