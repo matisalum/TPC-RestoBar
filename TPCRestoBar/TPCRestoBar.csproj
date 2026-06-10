@@ -174,6 +174,7 @@
     <Content Include="Carta.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="FormularioEmpleado.aspx" />
+    <Content Include="FormularioMesa.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Mesas.aspx" />
     <Content Include="Pedidos.aspx" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="FormularioEmpleado.aspx.designer.cs">
       <DependentUpon>FormularioEmpleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioMesa.aspx.cs">
+      <DependentUpon>FormularioMesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioMesa.aspx.designer.cs">
+      <DependentUpon>FormularioMesa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
