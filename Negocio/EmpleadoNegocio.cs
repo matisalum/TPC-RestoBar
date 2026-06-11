@@ -37,7 +37,7 @@ namespace Negocio
                 empleado.usuario = lector["Usuario"].ToString();
                 empleado.password = lector["Contrasena"].ToString();
                 empleado.rol = lector["Rol"].ToString();
-                empleado.estado = (bool)lector["Estado"];
+                empleado.estado = (bool)lector["Activo"];
       
 
                 lista.Add(empleado);

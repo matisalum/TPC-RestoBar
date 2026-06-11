@@ -5,17 +5,19 @@
 
     <h2>Productos</h2>
 
-    <asp:Button ID="btnNuevo"
-        runat="server"
-        Text="Nuevo Producto"
-        CssClass="btn btn-primary mb-3"
-        PostBackUrl="~/ProductoFormulario.aspx"/>
-
+  
     <asp:GridView
         ID="dgvProductos"
         runat="server"
         CssClass="table table-striped">
     </asp:GridView>
+
+      <asp:Button ID="btnNuevo"
+      runat="server"
+      Text="Nuevo Producto"
+      CssClass="btn btn-primary mb-3"
+      PostBackUrl="~/ProductoFormulario.aspx"/>
+
 
 </asp:Content>
 

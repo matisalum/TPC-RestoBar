@@ -16,33 +16,21 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT Id_Producto, Nombre_Producto, Precio, STOCK FROM PRODUCTO";
+                string consulta = @"SELECT id, nombre, Precio, stock FROM Producto";
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Producto productos = new Producto();
+                    Producto producto = new Producto();
 
-                    if (!(datos.Lector["Id_Producto"] is DBNull))
-                        productos.idProducto = (int)datos.Lector["Id_Producto"];
-                    else
-                        productos.idProducto = 0;
-                    if (!(datos.Lector["Nombre_Producto"] is DBNull))
-                        productos.nombre = (string)datos.Lector["Nombre_Producto"];
-                    else
-                        productos.nombre = "Sin Nombre";
-                    if (!(datos.Lector["Precio"] is DBNull))
-                        productos.precio = (decimal)datos.Lector["Precio"];
-                    else
-                        productos.precio = 0;
-                    if (!(datos.Lector["STOCK"] is DBNull))
-                        productos.stock = (int)datos.Lector["STOCK"];
-                    else
-                        productos.stock = 0;
+                    producto.idProducto = Convert.ToInt32(datos.Lector["id"]);
+                    producto.nombre = datos.Lector["nombre"].ToString();
+                    producto.precio = Convert.ToDecimal(datos.Lector["Precio"]);
+                    producto.stock = Convert.ToInt32(datos.Lector["stock"]);
 
-                    lista.Add(productos);
+                    lista.Add(producto);
                 }
 
                 return lista;

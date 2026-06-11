@@ -50,6 +50,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link" href="Producto.aspx">Productos</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="Pedidos.aspx">Pedidos</a>
                         </li>
 
