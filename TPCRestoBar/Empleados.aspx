@@ -29,7 +29,7 @@
                 <asp:BoundField HeaderText="Usuario" DataField="usuario" />
                  <asp:BoundField HeaderText="Contraseña" DataField="password" />
                 <asp:BoundField HeaderText="Rol" DataField="rol" />
-                <asp:CheckBoxField HeaderText="Activo" DataField="estado"/>
+                <asp:CheckBoxField HeaderText="Activo" DataField="Activo"/>
 
                 <asp:CommandField HeaderText="Modificar" 
                     ShowSelectButton="true"

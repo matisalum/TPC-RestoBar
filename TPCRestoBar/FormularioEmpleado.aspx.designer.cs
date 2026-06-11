@@ -123,15 +123,6 @@ namespace TPCRestoBar
         protected global::System.Web.UI.WebControls.DropDownList ddlRol;
 
         /// <summary>
-        /// chkActivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkActivo;
-
-        /// <summary>
         /// btnAgregar control.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,15 @@ namespace TPCRestoBar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregar;
+
+        /// <summary>
+        /// btnBaja control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBaja;
 
         /// <summary>
         /// BtnCancelar control.

@@ -10,14 +10,14 @@ namespace Negocio
 {
     public class EmpleadoNegocio
     {
-        public List<Empleado> listar()
+        public List<Empleado> listarConSp()
         {
             List<Empleado> lista = new List<Empleado>();
             AccesoADatos datos = new AccesoADatos();
 
             try
             {
-                datos.setearConsulta("SELECT * FROM Empleado");
+                datos.setearProcedimiento("storeListarEmpleado");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -30,7 +30,7 @@ namespace Negocio
                     empleado.usuario = datos.Lector["Usuario"].ToString();
                     empleado.password = datos.Lector["Contrasena"].ToString();
                     empleado.rol = datos.Lector["Rol"].ToString();
-                    empleado.estado = (bool)datos.Lector["Estado"];
+                    empleado.Activo = (bool)datos.Lector["Estado"];
 
 
                     lista.Add(empleado);
@@ -67,7 +67,7 @@ namespace Negocio
                 datos.setearParametro("@User", nuevo.usuario);
                 datos.setearParametro("@Apellido", nuevo.apellido);
                 datos.setearParametro("@Pass", nuevo.password);
-                datos.setearParametro("@Estado", nuevo.estado);
+                datos.setearParametro("@Estado", nuevo.Activo);
                 datos.setearParametro("@Rol", nuevo.rol);
                
 
@@ -99,7 +99,7 @@ namespace Negocio
                 datos.setearParametro("@User", nuevo.usuario);
                 datos.setearParametro("@Apellido", nuevo.apellido);
                 datos.setearParametro("@Pass", nuevo.password);
-                datos.setearParametro("@Estado", nuevo.estado);
+                datos.setearParametro("@Estado", nuevo.Activo);
                 datos.setearParametro("@Rol", nuevo.rol);
                 datos.setearParametro("@id", nuevo.idEmpleado);
 
@@ -145,7 +145,7 @@ namespace Negocio
                     empleado.usuario = datos.Lector["Usuario"].ToString();
                     empleado.password = datos.Lector["Contrasena"].ToString();
                     empleado.rol = datos.Lector["Rol"].ToString();
-                    empleado.estado = (bool)datos.Lector["Estado"];
+                    empleado.Activo = (bool)datos.Lector["Estado"];
 
 
 
@@ -167,8 +167,24 @@ namespace Negocio
                 datos.cerrarConexion();
             }
 
+        }
 
+        public void eliminarLogico(int id, bool activo = false)
+        {
+            try
+            {
+                AccesoADatos datos = new AccesoADatos();
+                datos.setearConsulta("update Empleado set Estado = @Activo where id=@id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@Activo", activo);
+                datos.ejecutarAccion();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

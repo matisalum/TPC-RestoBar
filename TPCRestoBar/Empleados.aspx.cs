@@ -16,7 +16,7 @@ namespace TPCRestoBar
             {
                 EmpleadoNegocio negocio = new EmpleadoNegocio();
 
-                dgvEmpleados.DataSource = negocio.listar();
+                dgvEmpleados.DataSource = negocio.listarConSp();
                 dgvEmpleados.DataBind();
             }
         }

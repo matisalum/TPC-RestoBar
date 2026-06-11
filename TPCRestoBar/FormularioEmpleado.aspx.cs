@@ -15,6 +15,7 @@ namespace TPCRestoBar
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
+            btnBaja.Visible = false;
 
             try
             {
@@ -33,16 +34,25 @@ namespace TPCRestoBar
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
                 if (id != "" && !IsPostBack)
                 {
+                    btnBaja.Visible = true;
+                    btnAgregar.Visible = false;
                     EmpleadoNegocio empleado = new EmpleadoNegocio();
                     Empleado selecionado = empleado.obtenerPorId(int.Parse(id));
+                    //guardo empleado seleccionado en session
+                    Session.Add("empleadoSeleccionado", selecionado);
+
+                    // PRE carga de todos los campos.
                     txtId.Text = selecionado.idEmpleado.ToString();
                     txtNombre.Text = selecionado.nombre;
                     txtApellido.Text = selecionado.apellido;
                     txtUsuario.Text = selecionado.usuario;
                     txtContrasena.Text = selecionado.password;
                     ddlRol.SelectedValue = selecionado.rol;
-                    chkActivo.Checked = selecionado.estado;
+             
 
+                    // cofigurar baja logica / alta 
+                    if(!selecionado.Activo)
+                      btnBaja.Text= "ALTA EMPLEDO";
 
                 }
 
@@ -73,7 +83,7 @@ namespace TPCRestoBar
                     empleado.usuario = txtUsuario.Text;
                     empleado.password = txtContrasena.Text;
                     empleado.rol = ddlRol.SelectedValue;
-                    empleado.estado = chkActivo.Checked;
+                    empleado.Activo = true;
 
                 // If para que el btn sepa si estamos agregando o modificando 
 
@@ -102,5 +112,22 @@ namespace TPCRestoBar
             Response.Redirect("Empleados.aspx", false);
         }
 
+        protected void btnBaja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            EmpleadoNegocio negocio = new EmpleadoNegocio();
+            Empleado seleccionado = (Empleado)Session["empleadoSeleccionado"];
+
+            negocio.eliminarLogico(seleccionado.idEmpleado, !seleccionado.Activo);
+            Response.Redirect("Empleados.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

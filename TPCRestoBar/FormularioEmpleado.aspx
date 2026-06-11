@@ -36,14 +36,12 @@
         <asp:Label ID="lblRol" CssClass="form-label" runat="server" Text="Rol"></asp:Label>
         <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-select"></asp:DropDownList>
     </div>
-    <div class="mb-3">
-        <asp:CheckBox ID="chkActivo" runat="server" Text="Activo"></asp:CheckBox>
-    </div>
+    
 
     <div class="mb-3">
 
         <asp:Button ID="btnAgregar" Text="Agregar" OnClick="btnAgregar_Click" CssClass="btn btn-success me-2" runat="server" />
-
+        <asp:Button Text="BAJA EMPLEDO" ID="btnBaja" OnClick="btnBaja_Click" CssClass="btn btn-warning" runat="server" />
         <asp:Button ID="BtnCancelar" Text="Cancelar" OnClick="BtnCancelar_Click" CssClass="btn btn-danger me-2" runat="server" />
 
     </div>
