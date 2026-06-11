@@ -14,39 +14,52 @@ namespace Negocio
         public List<Mesa> listar()
         {
             List<Mesa> lista = new List<Mesa>();
+            AccesoADatos datos = new AccesoADatos();
 
-            SqlConnection conexion = new SqlConnection(
-                   "server=localhost\\SQLEXPRESS;database=RestoDB;trusted_connection=true"
-               );
-
-            SqlCommand comando = new SqlCommand(
-                "SELECT * FROM Mesa",
-                conexion
-            );
-
-
-            conexion.Open();
-
-            SqlDataReader lector = comando.ExecuteReader();
-
-            while (lector.Read())
+            try
             {
-                Mesa mesa = new Mesa();
+                string consulta = "SELECT ID, NUMERO, CAPACIDAD, ESTADO FROM MESA";
 
-                mesa.idMesa = (int)lector["IdMesa"];
-                mesa.numero = (int)lector["Numero"];
-                mesa.capacidad = (int)lector["Capacidad"];
-                mesa.estado = (bool)lector["Estado"];
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
 
-                lista.Add(mesa);
+                while (datos.Lector.Read())
+                {
+                    Mesa mesa = new Mesa();
 
+                    if (!(datos.Lector["ID"] is DBNull))
+                        mesa.idMesa = (int)datos.Lector["ID"];
+                    else
+                        mesa.idMesa = -1;
+                    if (!(datos.Lector["NUMERO"] is DBNull))
+                        mesa.numero = (int)datos.Lector["NUMERO"];
+                    else
+                        mesa.numero = -1;
+                    if (!(datos.Lector["CAPACIDAD"] is DBNull))
+                        mesa.capacidad = (int)datos.Lector["CAPACIDAD"];
+                    else
+                        mesa.capacidad = -1;
+                    if (!(datos.Lector["ESTADO"] is DBNull))
+                        mesa.estado = (bool)datos.Lector["ESTADO"];
+                    else
+                        mesa.estado = false;
+                    lista.Add(mesa);
+
+                }
+
+                return lista;
             }
-
-            conexion.Close();
-
-            return lista;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
 
     }
+
 }

@@ -1,13 +1,19 @@
 
+USE MASTER
+GO
+-- CRACION DE BASE DE DATOS
 CREATE DATABASE RestoDB;
-use RestoDB 
+GO
 
+USE RestoDB 
+GO
+-- CREACION DE TABLAS
 CREATE TABLE Igmagen (
     id      INT IDENTITY(1,1) NOT NULL,
     Url     VARCHAR(255),
     PRIMARY KEY (id)
 );
- 
+GO 
 
 CREATE TABLE Empleado (
     id          INT IDENTITY(1,1) NOT NULL,
@@ -22,21 +28,19 @@ CREATE TABLE Empleado (
     CONSTRAINT fk_Igmagen_id_Empleado
         FOREIGN KEY (IdImagen) REFERENCES Igmagen(id)
 );
-
-
- 
-
+GO
 
 CREATE TABLE Mesa (
     id          INT IDENTITY(1,1) NOT NULL,
-    Numero      SMALLINT,
-    Capacidad   SMALLINT,
-    Estado      BIT,
+    Numero      SMALLINT ,
+    Capacidad   SMALLINT ,
+    Estado      BIT DEFAULT 0,
     idEmpleado  INT,
     PRIMARY KEY (id),
     CONSTRAINT fk_Mesa_idEmpleado
         FOREIGN KEY (idEmpleado) REFERENCES Empleado(id)
 );
+GO
 
 CREATE TABLE Pedido (
     id           INT IDENTITY(1,1) NOT NULL,
@@ -50,14 +54,14 @@ CREATE TABLE Pedido (
     CONSTRAINT fk_Pedido_idEmpleado
         FOREIGN KEY (idEmpleado) REFERENCES Empleado(id)
 );
- 
+GO
 
-CREATE TABLE Categorai (
+CREATE TABLE Categoria (
     id           INT IDENTITY(1,1) NOT NULL,
     descripcion  NVARCHAR(255),
     PRIMARY KEY (id)
 );
- 
+GO
 
 CREATE TABLE Producto (
     id          INT IDENTITY(1,1) NOT NULL,
@@ -73,7 +77,7 @@ CREATE TABLE Producto (
     CONSTRAINT fk_Producto_idImagen_Igmagen
         FOREIGN KEY (idImagen) REFERENCES Igmagen(id)
 );
- 
+GO
 
 CREATE TABLE DetallePedido (
     id          INT IDENTITY(1,1) NOT NULL,
@@ -89,8 +93,10 @@ CREATE TABLE DetallePedido (
     CONSTRAINT fk_DetallePedido_idEmpleado
         FOREIGN KEY (idEmpleado) REFERENCES Empleado(id)
 );
-
-use RestoDB 
+GO
+-- INSERT DE EMPLEADOS
+USE RestoDB
+GO
 INSERT INTO Empleado (Nombre, Usuario, Apellido, Contrasena, Estado , Rol, IdImagen)
 VALUES
     ('Carlos',   'cgomez',    'Gomez',      'pass1234',  1, 'Gerente', NULL),  -- Gerente
@@ -98,8 +104,21 @@ VALUES
     ('Juan',     'jperez',    'Perez',      'pass9012',  1, 'Mesero', NULL),
     ('Laura',    'lmartinez', 'Martinez',   'pass3456',  1, 'Mesero', NULL),
     ('Diego',    'drodriguez','Rodriguez',  'pass7890',  0, 'Mesero', NULL);
-
+GO
 
 Select * from Empleado
+GO
 
-insert into Empleado (Nombre, Usuario, Apellido, Contrasena, Estado, Rol, IdImagen) values ('Ana', 'alopez', 'Lopez', 'pass1234', 1, 'Mesero', NULL) 
+insert into Empleado (Nombre, Usuario, Apellido, Contrasena, estado, Rol, IdImagen) 
+values 
+('Ana', 'alopez', 'Lopez', 'pass1234', 1, 'Mesero', NULL) 
+GO
+USE RestoDB
+GO
+    
+
+-- AJUSTE DE TABLA MESA
+ALTER TABLE MESA
+ALTER COLUMN NUMERO int;
+ALTER TABLE MESA
+ALTER COLUMN CAPACIDAD int;
