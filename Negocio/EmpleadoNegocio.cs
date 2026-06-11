@@ -55,13 +55,14 @@ namespace Negocio
             
         }
 
-        public void agregar(Empleado nuevo)
+        public void agregarConSp(Empleado nuevo)
         {
             AccesoADatos datos = new AccesoADatos();
 
+
             try
             {
-                datos.setearConsulta("Insert into Empleado (Nombre, Usuario, Apellido, Contrasena, Estado, Rol) values ( @Nombre, @User, @Apellido, @Pass, @Estado, @Rol) ");
+                datos.setearProcedimiento("storeAltaEmpleado ");
                 datos.setearParametro("@Nombre", nuevo.nombre);
                 datos.setearParametro("@User", nuevo.usuario);
                 datos.setearParametro("@Apellido", nuevo.apellido);
@@ -85,6 +86,43 @@ namespace Negocio
             }
 
         }
+
+        public void modificarConSp(Empleado nuevo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+
+            try
+            {
+                datos.setearProcedimiento("storeModificarEmpleado ");
+                datos.setearParametro("@Nombre", nuevo.nombre);
+                datos.setearParametro("@User", nuevo.usuario);
+                datos.setearParametro("@Apellido", nuevo.apellido);
+                datos.setearParametro("@Pass", nuevo.password);
+                datos.setearParametro("@Estado", nuevo.estado);
+                datos.setearParametro("@Rol", nuevo.rol);
+                datos.setearParametro("@id", nuevo.idEmpleado);
+
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+            }
+
+        }
+
+
+
+
 
         public Empleado obtenerPorId(int id)
         {

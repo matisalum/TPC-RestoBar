@@ -35,7 +35,7 @@ namespace TPCRestoBar
                 {
                     EmpleadoNegocio empleado = new EmpleadoNegocio();
                     Empleado selecionado = empleado.obtenerPorId(int.Parse(id));
-
+                    txtId.Text = selecionado.idEmpleado.ToString();
                     txtNombre.Text = selecionado.nombre;
                     txtApellido.Text = selecionado.apellido;
                     txtUsuario.Text = selecionado.usuario;
@@ -61,11 +61,11 @@ namespace TPCRestoBar
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
 
-            // COFIGURACION AGREGAR UN NUEVO MESERO O GERENTE 
+            
             try
             {
-                
-                    Empleado empleado = new Empleado();
+                //  AGREGAR UN NUEVO MESERO O GERENTE 
+                Empleado empleado = new Empleado();
                     EmpleadoNegocio negocio = new EmpleadoNegocio();
 
                     empleado.nombre = txtNombre.Text;
@@ -75,7 +75,16 @@ namespace TPCRestoBar
                     empleado.rol = ddlRol.SelectedValue;
                     empleado.estado = chkActivo.Checked;
 
-                    negocio.agregar(empleado);
+                // If para que el btn sepa si estamos agregando o modificando 
+
+                if (Request.QueryString["id"] != null)
+                {
+                    empleado.idEmpleado = int.Parse(txtId.Text);
+                    negocio.modificarConSp(empleado);
+
+                }
+                else { negocio.agregarConSp(empleado); }
+
                     Response.Redirect("Empleados.aspx", false);
                 
 
