@@ -15,7 +15,8 @@
         <asp:GridView
             ID="dgvMesa"
             runat="server"
-            CssClass="table table-striped table-hover">
+            CssClass="table table-striped table-hover"
+            OnRowDataBound="dgvMesa_RowDataBound">
             <HeaderStyle CssClass="table-dark"/>
         </asp:GridView>
     </div>

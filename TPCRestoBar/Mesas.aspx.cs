@@ -18,7 +18,6 @@ namespace TPCRestoBar
 
                 dgvMesa.DataSource = negocio.listar();
                 dgvMesa.DataBind();
-
             }
 
         }
@@ -26,6 +25,21 @@ namespace TPCRestoBar
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("FormularioMesa.aspx");
+        }
+
+        protected void dgvMesa_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            int columnaId = 0;
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[columnaId].Visible = false;
+            }
+
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[columnaId].Visible = false;
+            }
         }
     }
 }

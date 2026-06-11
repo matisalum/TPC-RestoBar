@@ -12,7 +12,7 @@ namespace dominio
         public int numero { get; set; }
         public int capacidad { get; set; }
         public bool estado { get; set; }
-
+        public int idEmpleado { get; set; }
     }
 
 }

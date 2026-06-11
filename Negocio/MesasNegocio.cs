@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "SELECT ID, NUMERO, CAPACIDAD, ESTADO FROM MESA";
+                string consulta = "SELECT ID, NUMERO, CAPACIDAD, ESTADO, IDEMPLEADO FROM MESA";
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -43,6 +43,11 @@ namespace Negocio
                         mesa.estado = (bool)datos.Lector["ESTADO"];
                     else
                         mesa.estado = false;
+                    if (!(datos.Lector["IDEMPLEADO"] is DBNull))
+                        mesa.idEmpleado = (int)datos.Lector["IDEMPLEADO"];
+                    else
+                        mesa.idEmpleado = -1;
+
                     lista.Add(mesa);
 
                 }
@@ -58,6 +63,27 @@ namespace Negocio
                 datos.cerrarConexion();
             }
 
+        }
+        public void agregar(Mesa nuevo)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO MESA (NUMERO, CAPACIDAD) VALUES (@NUMERO, @CAPACIDAD)");
+                datos.setearParametro("@NUMERO", nuevo.numero);
+                datos.setearParametro("@CAPACIDAD", nuevo.capacidad);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
     }
