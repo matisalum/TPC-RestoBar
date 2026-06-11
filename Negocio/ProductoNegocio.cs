@@ -52,13 +52,15 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(
-                    "INSERT INTO Producto (Nombre_Producto, Precio, Stock, Activo) " +
-                    "VALUES (@nombre, @precio, @stock, @activo)");
+                    "INSERT INTO Producto (nombre, Precio, stock, activo, idCategoria, idImagen) " +
+                    "VALUES (@nombre, @precio, @stock, @activo, @idCategoria, @idImagen)");
 
                 datos.setearParametro("@nombre", nuevo.nombre);
                 datos.setearParametro("@precio", nuevo.precio);
                 datos.setearParametro("@stock", nuevo.stock);
                 datos.setearParametro("@activo", nuevo.activo);
+                datos.setearParametro("@idCategoria", 1);
+                datos.setearParametro("@idImagen", 1);
 
                 datos.ejecutarAccion();
             }

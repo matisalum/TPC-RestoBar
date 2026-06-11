@@ -16,7 +16,7 @@
       runat="server"
       Text="Nuevo Producto"
       CssClass="btn btn-primary mb-3"
-      PostBackUrl="~/ProductoFormulario.aspx"/>
+      PostBackUrl="~/FormularioProducto.aspx"/>
 
 
 </asp:Content>

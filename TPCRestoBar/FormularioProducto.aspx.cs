@@ -1,4 +1,6 @@
-﻿using System;
+﻿using dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,8 +17,20 @@ namespace TPCRestoBar
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            
+            Producto nuevo = new Producto();
 
+            nuevo.nombre = txtNombre.Text;
+            nuevo.precio = decimal.Parse(txtPrecio.Text);
+            nuevo.stock = int.Parse(txtStock.Text);
+            nuevo.activo = chkActivo.Checked;
+
+            ProductoNegocio negocio = new ProductoNegocio();
+            negocio.agregar(nuevo);
+
+            Response.Redirect("Producto.aspx");
         }
+        
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
