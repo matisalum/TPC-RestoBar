@@ -90,8 +90,8 @@ CREATE TABLE DetallePedido (
         FOREIGN KEY (idEmpleado) REFERENCES Empleado(id)
 );
 
-
-INSERT INTO Empleado (Nombre, Usuario, Apellido, Contrasena, Activo , Rol, IdImagen)
+use RestoDB 
+INSERT INTO Empleado (Nombre, Usuario, Apellido, Contrasena, Estado , Rol, IdImagen)
 VALUES
     ('Carlos',   'cgomez',    'Gomez',      'pass1234',  1, 'Gerente', NULL),  -- Gerente
     ('Maria',    'mlopez',    'Lopez',      'pass5678',  1, 'Mesero', NULL),
@@ -102,4 +102,4 @@ VALUES
 
 Select * from Empleado
 
-insert into Empleado (Nombre, Usuario, Apellido, Contrasena, e, Rol, IdImagen) values ('Ana', 'alopez', 'Lopez', 'pass1234', 1, 'Mesero', NULL) 
+insert into Empleado (Nombre, Usuario, Apellido, Contrasena, Estado, Rol, IdImagen) values ('Ana', 'alopez', 'Lopez', 'pass1234', 1, 'Mesero', NULL) 

@@ -18,6 +18,8 @@ namespace TPCRestoBar
 
             try
             {
+
+                //Configuracion de los desplegables
                 if (!IsPostBack)
                 {
 
@@ -26,6 +28,24 @@ namespace TPCRestoBar
                     ddlRol.Items.Add(new ListItem("Mesero"));
 
                 }
+
+                //configuracion si estamos modificando el empledo
+                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                if (id != "" && !IsPostBack)
+                {
+                    EmpleadoNegocio empleado = new EmpleadoNegocio();
+                    Empleado selecionado = empleado.obtenerPorId(int.Parse(id));
+
+                    txtNombre.Text = selecionado.nombre;
+                    txtApellido.Text = selecionado.apellido;
+                    txtUsuario.Text = selecionado.usuario;
+                    txtContrasena.Text = selecionado.password;
+                    ddlRol.SelectedValue = selecionado.rol;
+                    chkActivo.Checked = selecionado.estado;
+
+
+                }
+
 
             }
             catch (Exception ex)
@@ -40,20 +60,24 @@ namespace TPCRestoBar
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+
+            // COFIGURACION AGREGAR UN NUEVO MESERO O GERENTE 
             try
             {
-                Empleado empleado = new Empleado();
-                EmpleadoNegocio negocio = new EmpleadoNegocio();
+                
+                    Empleado empleado = new Empleado();
+                    EmpleadoNegocio negocio = new EmpleadoNegocio();
 
-                empleado.nombre = txtNombre.Text;
-                empleado.apellido = txtApellido.Text;
-                empleado.usuario = txtUsuario.Text;
-                empleado.password = txtContrasena.Text;
-                empleado.rol = ddlRol.SelectedValue;
-                empleado.estado = chkActivo.Checked;
+                    empleado.nombre = txtNombre.Text;
+                    empleado.apellido = txtApellido.Text;
+                    empleado.usuario = txtUsuario.Text;
+                    empleado.password = txtContrasena.Text;
+                    empleado.rol = ddlRol.SelectedValue;
+                    empleado.estado = chkActivo.Checked;
 
-                negocio.agregar(empleado);
-                Response.Redirect("Empleados.aspx", false);
+                    negocio.agregar(empleado);
+                    Response.Redirect("Empleados.aspx", false);
+                
 
             }
             catch (Exception ex)

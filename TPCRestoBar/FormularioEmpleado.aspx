@@ -29,7 +29,7 @@
 
     <div class="mb-3">
         <asp:Label ID="lblContrasena" CssClass="form-label" runat="server" Text="Contraseña"></asp:Label>
-        <asp:TextBox ID="txtContrasena" CssClass="form-control" TextMode="Password" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtContrasena" CssClass="form-control" TextMode="SingleLine" runat="server"></asp:TextBox>
     </div>
 
     <div class="mb-3">

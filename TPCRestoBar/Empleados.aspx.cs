@@ -25,5 +25,11 @@ namespace TPCRestoBar
         {
             Response.Redirect("FormularioEmpleado.aspx", false);
         }
+
+        protected void dgvEmpleados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = (int)dgvEmpleados.SelectedDataKey.Value;
+            Response.Redirect("FormularioEmpleado.aspx?id=" + id);
+        }
     }
 }

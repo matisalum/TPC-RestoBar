@@ -13,39 +13,45 @@ namespace Negocio
         public List<Empleado> listar()
         {
             List<Empleado> lista = new List<Empleado>();
+            AccesoADatos datos = new AccesoADatos();
 
-            SqlConnection conexion = new SqlConnection(
-                "server=localhost\\SQLEXPRESS;database=RestoDB;trusted_connection=true"
-            );
-
-            SqlCommand comando = new SqlCommand(
-                "SELECT * FROM Empleado",
-                conexion
-            );
-
-            conexion.Open();
-
-            SqlDataReader lector = comando.ExecuteReader();
-
-            while (lector.Read())
+            try
             {
-                Empleado empleado = new Empleado();
+                datos.setearConsulta("SELECT * FROM Empleado");
+                datos.ejecutarLectura();
 
-                empleado.idEmpleado = (int)lector["id"];
-                empleado.nombre = lector["Nombre"].ToString();
-                empleado.apellido = lector["Apellido"].ToString();
-                empleado.usuario = lector["Usuario"].ToString();
-                empleado.password = lector["Contrasena"].ToString();
-                empleado.rol = lector["Rol"].ToString();
-                empleado.estado = (bool)lector["Estado"];
-      
+                while (datos.Lector.Read())
+                {
+                    Empleado empleado = new Empleado();
 
-                lista.Add(empleado);
+                    empleado.idEmpleado = (int)datos.Lector["id"];
+                    empleado.nombre = datos.Lector["Nombre"].ToString();
+                    empleado.apellido = datos.Lector["Apellido"].ToString();
+                    empleado.usuario = datos.Lector["Usuario"].ToString();
+                    empleado.password = datos.Lector["Contrasena"].ToString();
+                    empleado.rol = datos.Lector["Rol"].ToString();
+                    empleado.estado = (bool)datos.Lector["Estado"];
+
+
+                    lista.Add(empleado);
+                }
+
+
+                return lista;
+
             }
+            catch (Exception ex)
+            {
 
-            conexion.Close();
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            
 
-            return lista;
+            
         }
 
         public void agregar(Empleado nuevo)
@@ -76,6 +82,53 @@ namespace Negocio
 
                 datos.cerrarConexion();
             }
+
+        }
+
+        public Empleado obtenerPorId(int id)
+        {
+
+            AccesoADatos datos = new AccesoADatos();
+
+
+            try
+            {
+                datos.setearConsulta("SELECT * FROM Empleado WHERE id=@id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    Empleado empleado = new Empleado();
+
+                    empleado.idEmpleado = (int)datos.Lector["id"];
+                    empleado.nombre = datos.Lector["Nombre"].ToString();
+                    empleado.apellido = datos.Lector["Apellido"].ToString();
+                    empleado.usuario = datos.Lector["Usuario"].ToString();
+                    empleado.password = datos.Lector["Contrasena"].ToString();
+                    empleado.rol = datos.Lector["Rol"].ToString();
+                    empleado.estado = (bool)datos.Lector["Estado"];
+
+
+
+                    return empleado;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+             finally
+            {
+                datos.cerrarConexion();
+            }
+
+
 
         }
 
