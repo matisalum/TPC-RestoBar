@@ -19,19 +19,28 @@
                 AutoGenerateColumns="false"
                 DataKeyNames="idMesa"
                 OnSelectedIndexChanged ="dgvMesa_SelectedIndexChanged"
-                CssClass="table table-striped table-hover"
-                OnRowDataBound="dgvMesa_RowDataBound">
+                CssClass="table table-striped table-hover">
                 <Columns>
                     <asp:BoundField HeaderText="Numero" DataField="numero" />
                     <asp:BoundField HeaderText="Capacidad" DataField="capacidad" />
                     <%--<asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />--%>
-                    <asp:BoundField HeaderText="Estado" DataField="estado" />
 
-                    <asp:CommandField HeaderText="Modificar"
-                        ShowSelectButton="true"
-                        SelectText="✏️" />
+                    <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <div class="d-flex align-items-center">
+                                <span class='<%# Convert.ToBoolean(Eval("estado")) ? "badge bg-success" : "badge bg-secondary" %>'
+                                    style="width: 12px; height: 12px; display: inline-block; border-radius: 50%;">
+                                </span>
+                                <span class="ms-2">
+                                    <%# Convert.ToBoolean(Eval("estado")) ? "Activo" : "Inactivo" %>
+                                </span>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="✏️" />
                 </Columns>
-                <HeaderStyle CssClass="table-dark" />
+                <HeaderStyle CssClass="table-dark"/>
             </asp:GridView>
         </div>
     </div>

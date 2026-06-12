@@ -4,25 +4,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1>Formulario Mesa</h1>
-    <div class="mb-3"></div>
-    <div class="mb-3">
-        <asp:Label ID="lblNumero" CssClass="form-label" runat="server" Text="Numero"></asp:Label>
-        <asp:TextBox ID="txtNumero" CssClass="form-control" runat="server"></asp:TextBox>
-    </div>
+    <div class="position-relative p-3">
 
-    <div class="mb-3">
-        <asp:Label ID="lblCapacidad" CssClass="form-label" runat="server" Text="Capacidad"></asp:Label>
-        <asp:TextBox ID="txtCapacidad" CssClass="form-control" runat="server"></asp:TextBox>
-    </div>
+        <asp:Button ID="BtnCancelar" Text="✕" CssClass="btn btn-light border position-absolute top-0 end-0 m-2 fw-bold" runat="server" OnClick="BtnCancelar_Click" />
 
-    <div class="mb-3">
+        <h1>Formulario Mesa</h1>
 
-        <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success me-2" OnClick="btnAgregar_Click" runat="server" />
+        <div class="mb-3">
+            <asp:Label ID="lblNumero" CssClass="form-label" runat="server" Text="Numero"></asp:Label>
+            <asp:TextBox ID="txtNumero" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
 
-        <asp:Button ID="BtnCancelar" Text="Cancelar" CssClass="btn btn-danger me-2" runat="server" OnClick="BtnCancelar_Click" />
+        <div class="mb-3">
+            <asp:Label ID="lblCapacidad" CssClass="form-label" runat="server" Text="Capacidad"></asp:Label>
+            <asp:TextBox ID="txtCapacidad" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
 
-        <asp:Button ID="BtnInactivar" Text="Inactivar" CssClass="btn btn-warning me-2" runat="server" OnClick="BtnInactivar_Click" />
+        <div class="mb-3 d-flex gap-2">
+            <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success" OnClick="btnAgregar_Click" runat="server" />
+            <asp:Button ID="BtnInactivar" Text="Inactivar" CssClass="btn btn-warning" runat="server" OnClick="BtnInactivar_Click" />
+        </div>
 
     </div>
 </asp:Content>

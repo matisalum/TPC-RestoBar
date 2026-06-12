@@ -27,7 +27,6 @@ namespace TPCRestoBar
 
                 if (!select.estado)
                     BtnInactivar.Text = "Reactivar";
-
             }
         }
 
