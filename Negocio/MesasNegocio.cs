@@ -42,7 +42,7 @@ namespace Negocio
                     if (!(datos.Lector["ESTADO"] is DBNull))
                         mesa.estado = (bool)datos.Lector["ESTADO"];
                     else
-                        mesa.estado = false;
+                        mesa.estado = true;
                     if (!(datos.Lector["IDEMPLEADO"] is DBNull))
                         mesa.idEmpleado = (int)datos.Lector["IDEMPLEADO"];
                     else
@@ -70,9 +70,10 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO MESA (NUMERO, CAPACIDAD) VALUES (@NUMERO, @CAPACIDAD)");
+                datos.setearConsulta("INSERT INTO MESA (NUMERO, CAPACIDAD, ESTADO) VALUES (@NUMERO, @CAPACIDAD, @ESTADO)");
                 datos.setearParametro("@NUMERO", nuevo.numero);
                 datos.setearParametro("@CAPACIDAD", nuevo.capacidad);
+                datos.setearParametro("@ESTADO", nuevo.estado);
 
                 datos.ejecutarAccion();
             }
@@ -165,5 +166,25 @@ namespace Negocio
 
         }
 
+        public void eliminacionLogica(int id, bool estado = false)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                Mesa aux = new Mesa();
+                datos.setearConsulta("UPDATE MESA SET ESTADO = @estado WHERE ID = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@estado", estado);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion(); 
+            }
+        }
     }
 }

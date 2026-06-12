@@ -9,6 +9,7 @@ using Negocio;
 
 namespace TPCRestoBar
 {
+
     public partial class FormularioMesa : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -19,8 +20,13 @@ namespace TPCRestoBar
                 MesasNegocio mesa = new MesasNegocio();
                 Mesa select = mesa.filtrarId(int.Parse(id));
 
+                Session.Add("mesaS", select);
+
                 txtNumero.Text = select.numero.ToString();
                 txtCapacidad.Text = select.capacidad.ToString();
+
+                if (!select.estado)
+                    BtnInactivar.Text = "Reactivar";
 
             }
         }
@@ -39,6 +45,7 @@ namespace TPCRestoBar
 
                 nueva.numero = int.Parse(txtNumero.Text);
                 nueva.capacidad = int.Parse(txtCapacidad.Text);
+                nueva.estado = true;
 
                 if (Request.QueryString["id"] != null)
                 {
@@ -54,6 +61,22 @@ namespace TPCRestoBar
             {
                 Session.Add("error", ex);
                 throw;
+            }
+        }
+
+        protected void BtnInactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MesasNegocio negocio = new MesasNegocio();
+                Mesa select = (Mesa)Session["mesaS"];
+
+                negocio.eliminacionLogica(select.idMesa, !select.estado);
+                Response.Redirect("Mesas.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
             }
         }
     }

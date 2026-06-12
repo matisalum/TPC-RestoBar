@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1>Formulario Mesa</h1>
-    <div class="mb-3"> </div>
+    <div class="mb-3"></div>
     <div class="mb-3">
         <asp:Label ID="lblNumero" CssClass="form-label" runat="server" Text="Numero"></asp:Label>
         <asp:TextBox ID="txtNumero" CssClass="form-control" runat="server"></asp:TextBox>
@@ -22,6 +22,7 @@
 
         <asp:Button ID="BtnCancelar" Text="Cancelar" CssClass="btn btn-danger me-2" runat="server" OnClick="BtnCancelar_Click" />
 
-    </div>
+        <asp:Button ID="BtnInactivar" Text="Inactivar" CssClass="btn btn-warning me-2" runat="server" OnClick="BtnInactivar_Click" />
 
+    </div>
 </asp:Content>

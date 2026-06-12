@@ -24,7 +24,7 @@
                 <Columns>
                     <asp:BoundField HeaderText="Numero" DataField="numero" />
                     <asp:BoundField HeaderText="Capacidad" DataField="capacidad" />
-                    <asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />
+                    <%--<asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />--%>
                     <asp:BoundField HeaderText="Estado" DataField="estado" />
 
                     <asp:CommandField HeaderText="Modificar"
@@ -38,6 +38,5 @@
 
     <div class="mt-3 mb-3">
         <asp:Button Text="Agregar" ID="btnAgregar" CssClass="btn btn-success me-2" runat="server" OnClick="btnAgregar_Click" />
-        <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger me-2" runat="server" />
     </div>
 </asp:Content>
