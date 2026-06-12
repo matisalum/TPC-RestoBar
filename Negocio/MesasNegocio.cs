@@ -85,7 +85,85 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public Mesa filtrarId(int id)
+        {
+
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT * FROM MESA WHERE id=@id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    Mesa mesa = new Mesa();
+
+                    if (!(datos.Lector["ID"] is DBNull))
+                        mesa.idMesa = (int)datos.Lector["ID"];
+                    else
+                        mesa.idMesa = -1;
+                    if (!(datos.Lector["NUMERO"] is DBNull))
+                        mesa.numero = (int)datos.Lector["NUMERO"];
+                    else
+                        mesa.numero = -1;
+                    if (!(datos.Lector["CAPACIDAD"] is DBNull))
+                        mesa.capacidad = (int)datos.Lector["CAPACIDAD"];
+                    else
+                        mesa.capacidad = -1;
+                    if (!(datos.Lector["ESTADO"] is DBNull))
+                        mesa.estado = (bool)datos.Lector["ESTADO"];
+                    else
+                        mesa.estado = false;
+                    if (!(datos.Lector["IDEMPLEADO"] is DBNull))
+                        mesa.idEmpleado = (int)datos.Lector["IDEMPLEADO"];
+                    else
+                        mesa.idEmpleado = -1;
+
+                    return mesa;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void modificarConSp(Mesa mesa)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                datos.setearProcedimiento("storeModificarMesa");
+                datos.setearParametro("@id", mesa.idMesa);
+                datos.setearParametro("@Numero", mesa.numero);
+                datos.setearParametro("@Capacidad", mesa.capacidad);
+                datos.setearParametro("@idEmpleado", mesa.idEmpleado);
+                datos.setearParametro("@Estado", mesa.estado);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
 
     }
-
 }

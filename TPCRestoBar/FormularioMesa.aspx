@@ -18,7 +18,7 @@
 
     <div class="mb-3">
 
-        <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-success me-2" OnClick="btnAgregar_Click" runat="server" />
+        <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success me-2" OnClick="btnAgregar_Click" runat="server" />
 
         <asp:Button ID="BtnCancelar" Text="Cancelar" CssClass="btn btn-danger me-2" runat="server" OnClick="BtnCancelar_Click" />
 

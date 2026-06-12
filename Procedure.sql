@@ -33,5 +33,20 @@ Select *
 From Empleado
 end
 
-
+-- MESA
+CREATE PROCEDURE storeModificarMesa
+    @id INT,
+    @Numero INT,
+    @Capacidad INT,
+    @IdEmpleado INT,
+    @Estado bit
+AS
+BEGIN
+    UPDATE Mesa  
+    SET Numero = @Numero, 
+        Capacidad = @Capacidad, 
+        Estado = @Estado
+    WHERE id = @id;
+END;
+GO
 

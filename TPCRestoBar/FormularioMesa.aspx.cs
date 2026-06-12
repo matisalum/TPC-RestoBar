@@ -13,7 +13,16 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+            if (id != "" && !IsPostBack)
+            {
+                MesasNegocio mesa = new MesasNegocio();
+                Mesa select = mesa.filtrarId(int.Parse(id));
 
+                txtNumero.Text = select.numero.ToString();
+                txtCapacidad.Text = select.capacidad.ToString();
+
+            }
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
@@ -31,9 +40,15 @@ namespace TPCRestoBar
                 nueva.numero = int.Parse(txtNumero.Text);
                 nueva.capacidad = int.Parse(txtCapacidad.Text);
 
-                negocio.agregar(nueva);
+                if (Request.QueryString["id"] != null)
+                {
+                    nueva.idMesa = int.Parse(Request.QueryString["id"]);
+                    negocio.modificarConSp(nueva);
+                }
+                else
+                    negocio.agregar(nueva);
 
-                Response.Redirect("Mesas.aspx");
+                Response.Redirect("Mesas.aspx");           
             }
             catch (Exception ex)
             {

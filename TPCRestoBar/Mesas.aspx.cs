@@ -29,17 +29,13 @@ namespace TPCRestoBar
 
         protected void dgvMesa_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            int columnaId = 0;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Cells[columnaId].Visible = false;
-            }
+        }
 
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                e.Row.Cells[columnaId].Visible = false;
-            }
+        protected void dgvMesa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = (int)dgvMesa.SelectedDataKey.Value;
+            Response.Redirect("FormularioMesa.aspx?id=" + id);
         }
     }
 }
