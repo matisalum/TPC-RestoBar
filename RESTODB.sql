@@ -58,6 +58,7 @@ GO
 
 CREATE TABLE Categoria (
     id           INT IDENTITY(1,1) NOT NULL,
+    nombre NVARCHAR(100) NOT NULL;
     descripcion  NVARCHAR(255),
     PRIMARY KEY (id)
 );
@@ -122,3 +123,15 @@ ALTER TABLE MESA
 ALTER COLUMN NUMERO int;
 ALTER TABLE MESA
 ALTER COLUMN CAPACIDAD int;
+
+-- AJUSTE DE TABLA CATEGORIA
+EXEC sp_rename 'categorai', 'Categoria';
+GO  
+ALTER TABLE Categoria
+ADD nombre NVARCHAR(100) NOT NULL;
+GO
+
+INSERT INTO Categoria (nombre, descripcion) 
+SELECT 'BEBIDA', 'PARA TOMAS' UNION
+SELECT 'POSTRE', 'PARA COMER'  
+GO

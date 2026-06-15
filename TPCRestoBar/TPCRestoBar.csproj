@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Carta.aspx" />
+    <Content Include="Categoria.aspx" />
     <Content Include="Empleados.aspx" />
     <Content Include="FormularioEmpleado.aspx" />
     <Content Include="FormularioMesa.aspx" />
@@ -191,6 +192,13 @@
     </Compile>
     <Compile Include="Carta.aspx.designer.cs">
       <DependentUpon>Carta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Categoria.aspx.cs">
+      <DependentUpon>Categoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categoria.aspx.designer.cs">
+      <DependentUpon>Categoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleados.aspx.cs">
       <DependentUpon>Empleados.aspx</DependentUpon>

@@ -8,7 +8,7 @@ using dominio;
 
 namespace Negocio
 {
-    internal class CategoriaNegocio
+    public class CategoriaNegocio
     {
         public List<Categoria> listar()
         {
@@ -17,9 +17,9 @@ namespace Negocio
 			
 			try
 			{
-				string consulta = "SELECT ID, DESCRIPCION FROM CATEGORIA ";
+				string consulta = "SELECT ID, NOMBRE ,DESCRIPCION FROM CATEGORIA ";
 				datos.setearConsulta(consulta);
-				datos.ejecutarAccion();
+				datos.ejecutarLectura();
 
 				while(datos.Lector.Read())
 				{
@@ -28,10 +28,14 @@ namespace Negocio
 						cat.Id = (int)datos.Lector["ID"];
 					else
 						cat.Id = -1;
-					if (!(datos.Lector["DESCRIPCION"] is DBNull))
-						cat.Desccripcion = (string)datos.Lector["DESCRIPCION"];
+					if (!(datos.Lector["NOMBRE"] is DBNull))
+						cat.Nombre = (string)datos.Lector["NOMBRE"];
 					else
-						cat.Desccripcion = "";
+						cat.Nombre = "";
+					if (!(datos.Lector["DESCRIPCION"] is DBNull))
+						cat.Descripcion = (string)datos.Lector["DESCRIPCION"];
+					else
+						cat.Descripcion = "";
 
 					lista.Add(cat);
 				}

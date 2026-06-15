@@ -147,6 +147,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categoria.cs" />
     <Compile Include="DetallePedido.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Imagen.cs" />
