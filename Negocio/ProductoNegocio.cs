@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                string consulta = @"SELECT id, nombre, Precio, stock FROM Producto";
+                string consulta = @"SELECT id, nombre, Precio, stock FROM Producto WHERE activo = 1";
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -133,7 +133,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(
-                    "UPDATE Producto SET Activo = 0 WHERE Id_Producto = @id");
+                    "UPDATE Producto SET Activo = 0 WHERE id = @id");
 
                 datos.setearParametro("@id", id);
 

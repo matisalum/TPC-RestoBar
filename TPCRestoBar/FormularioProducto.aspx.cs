@@ -33,11 +33,36 @@ namespace TPCRestoBar
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+
+            lblMensaje.Text = "";
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                lblMensaje.Text = "Debe ingresar un nombre para el producto.";
+                return;
+            }
+
+           
+            decimal precio;
+            if (!decimal.TryParse(txtPrecio.Text, out precio) || precio <= 0)
+            {
+                lblMensaje.Text = "Ingrese un precio válido mayor a 0.";
+                return;
+            }
+
+           
+            int stock;
+            if (!int.TryParse(txtStock.Text, out stock) || stock < 0)
+            {
+                lblMensaje.Text = "Ingrese un stock válido (0 o mayor).";
+                return;
+            }
+
             Producto producto = new Producto();
 
             producto.nombre = txtNombre.Text;
-            producto.precio = decimal.Parse(txtPrecio.Text);
-            producto.stock = int.Parse(txtStock.Text);
+            producto.precio = precio;
+            producto.stock = stock;
             producto.activo = chkActivo.Checked;
 
             ProductoNegocio negocio = new ProductoNegocio();

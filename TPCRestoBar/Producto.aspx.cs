@@ -20,5 +20,19 @@ namespace TPCRestoBar
                 dgvProductos.DataBind();
             }
         }
+
+        protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int id = Convert.ToInt32(dgvProductos.DataKeys[index].Value);
+
+                ProductoNegocio negocio = new ProductoNegocio();
+                negocio.eliminar(id);
+
+                Response.Redirect("Producto.aspx");
+            }
+        }
     }
 }

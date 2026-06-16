@@ -27,7 +27,13 @@
     </div>
 
     <div class="mb-3">
-
+        <asp:Label
+            ID="lblMensaje"
+            runat="server"
+            CssClass="text-danger fw-bold">
+        </asp:Label>
+        </div>
+        <div class="mb-3">
         <asp:Button ID="btnAgregar" Text="Agregar" OnClick="btnAgregar_Click" CssClass="btn btn-success me-2" runat="server" />
         
         <asp:Button ID="BtnCancelar" Text="Cancelar" OnClick="BtnCancelar_Click" CssClass="btn btn-danger me-2" runat="server" />
