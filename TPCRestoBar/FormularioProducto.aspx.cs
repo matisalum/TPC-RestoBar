@@ -13,24 +13,48 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["id"]);
 
+                    ProductoNegocio negocio = new ProductoNegocio();
+                    Producto producto = negocio.buscarPorId(id);
+
+                    txtNombre.Text = producto.nombre;
+                    txtPrecio.Text = producto.precio.ToString();
+                    txtStock.Text = producto.stock.ToString();
+                    chkActivo.Checked = producto.activo;
+
+                    btnAgregar.Text = "Modificar";
+                }
+            }
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            
-            Producto nuevo = new Producto();
+            Producto producto = new Producto();
 
-            nuevo.nombre = txtNombre.Text;
-            nuevo.precio = decimal.Parse(txtPrecio.Text);
-            nuevo.stock = int.Parse(txtStock.Text);
-            nuevo.activo = chkActivo.Checked;
+            producto.nombre = txtNombre.Text;
+            producto.precio = decimal.Parse(txtPrecio.Text);
+            producto.stock = int.Parse(txtStock.Text);
+            producto.activo = chkActivo.Checked;
 
             ProductoNegocio negocio = new ProductoNegocio();
-            negocio.agregar(nuevo);
+
+            if (Request.QueryString["id"] != null)
+            {
+                producto.idProducto = int.Parse(Request.QueryString["id"]);
+                negocio.modificar(producto);
+            }
+            else
+            {
+                negocio.agregar(producto);
+            }
 
             Response.Redirect("Producto.aspx");
         }
-        
+
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {

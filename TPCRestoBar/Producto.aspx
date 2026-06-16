@@ -7,10 +7,25 @@
 
   
     <asp:GridView
-        ID="dgvProductos"
-        runat="server"
-        CssClass="table table-striped">
-    </asp:GridView>
+    ID="dgvProductos"
+    runat="server"
+    CssClass="table table-striped"
+    AutoGenerateColumns="false">
+
+    <Columns>
+        <asp:BoundField DataField="idProducto" HeaderText="ID" />
+        <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+        <asp:BoundField DataField="precio" HeaderText="Precio" />
+        <asp:BoundField DataField="stock" HeaderText="Stock" />
+
+        <asp:HyperLinkField
+            HeaderText="Acción"
+            Text="Modificar"
+            DataNavigateUrlFields="idProducto"
+            DataNavigateUrlFormatString="FormularioProducto.aspx?id={0}" />
+    </Columns>
+
+</asp:GridView>
 
       <asp:Button ID="btnNuevo"
       runat="server"
@@ -18,6 +33,6 @@
       CssClass="btn btn-primary mb-3"
       PostBackUrl="~/FormularioProducto.aspx"/>
 
-
+    
 </asp:Content>
 
