@@ -22,5 +22,8 @@
             </asp:GridView>
         </div>
     </div>
+     <div class="mt-3 mb-3">
+     <asp:Button Text="Agregar" ID="btnAgregar" CssClass="btn btn-success me-2" runat="server" OnClick="btnAgregar_Click" />
+    </div>
 
 </asp:Content>
