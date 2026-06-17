@@ -18,7 +18,10 @@
                 runat="server"
                 AutoGenerateColumns="false"
                 DataKeyNames="idMesa"
-                OnSelectedIndexChanged ="dgvMesa_SelectedIndexChanged"
+                AllowPaging="true"
+                PageSize="10"
+                OnPageIndexChanging="dgvMesa_PageIndexChanging" 
+                OnSelectedIndexChanged="dgvMesa_SelectedIndexChanged"
                 CssClass="table table-striped table-hover">
                 <Columns>
                     <asp:BoundField HeaderText="Numero" DataField="numero" />
@@ -29,8 +32,7 @@
                         <ItemTemplate>
                             <div class="d-flex align-items-center">
                                 <span class='<%# Convert.ToBoolean(Eval("estado")) ? "badge bg-success" : "badge bg-secondary" %>'
-                                    style="width: 12px; height: 12px; display: inline-block; border-radius: 50%;">
-                                </span>
+                                    style="width: 12px; height: 12px; display: inline-block; border-radius: 50%;"></span>
                                 <span class="ms-2">
                                     <%# Convert.ToBoolean(Eval("estado")) ? "Activo" : "Inactivo" %>
                                 </span>
@@ -40,8 +42,19 @@
 
                     <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="✏️" />
                 </Columns>
-                <HeaderStyle CssClass="table-dark"/>
+                <HeaderStyle CssClass="table-dark" />
             </asp:GridView>
+            <%--<nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#" aria-current="page">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>--%>
         </div>
     </div>
 

@@ -10,14 +10,17 @@ namespace TPCRestoBar
 {
     public partial class Mesas : System.Web.UI.Page
     {
+        private void cargarmesa()
+        {
+            MesasNegocio negocio = new MesasNegocio();
+            dgvMesa.DataSource = negocio.listar();
+            dgvMesa.DataBind();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                MesasNegocio negocio = new MesasNegocio();
-
-                dgvMesa.DataSource = negocio.listar();
-                dgvMesa.DataBind();
+                cargarmesa();
             }
 
         }
@@ -36,6 +39,12 @@ namespace TPCRestoBar
         {
             int id = (int)dgvMesa.SelectedDataKey.Value;
             Response.Redirect("FormularioMesa.aspx?id=" + id);
+        }
+
+        protected void dgvMesa_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvMesa.PageIndex = e.NewPageIndex;
+            cargarmesa();
         }
     }
 }
