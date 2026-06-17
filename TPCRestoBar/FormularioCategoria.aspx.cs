@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using Negocio;
 
 namespace TPCRestoBar
 {
@@ -17,6 +19,11 @@ namespace TPCRestoBar
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Categoria.aspx");
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

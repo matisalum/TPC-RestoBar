@@ -50,3 +50,17 @@ BEGIN
 END;
 GO
 
+-- CATEGORIA    
+CREATE PROCEDURE storeModificarCategoria
+    @id INT,
+    @Nombre NVARCHAR(255),
+    @Descripcion NVARCHAR(100)
+AS
+BEGIN
+    UPDATE Categoria  
+    SET nombre = @Nombre, 
+        descripcion = @Descripcion
+    WHERE id = @id;
+END;
+GO
+

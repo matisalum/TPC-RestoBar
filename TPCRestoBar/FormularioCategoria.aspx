@@ -21,7 +21,7 @@
         </div>
 
         <div class="mb-3 d-flex gap-2">
-            <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success" runat="server" />
+            <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success" runat="server" OnClick="btnAgregar_Click"/>
             <asp:Button ID="BtnInactivar" Text="Inactivar" CssClass="btn btn-warning" runat="server"  />
         </div>
 
