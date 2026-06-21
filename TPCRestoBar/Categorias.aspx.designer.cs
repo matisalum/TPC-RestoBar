@@ -11,7 +11,7 @@ namespace TPCRestoBar
 {
 
 
-    public partial class Categoria
+    public partial class Categorias
     {
 
         /// <summary>

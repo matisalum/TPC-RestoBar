@@ -18,12 +18,28 @@ namespace TPCRestoBar
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Categoria.aspx");
+            Response.Redirect("Categorias.aspx");
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Categoria cat = new Categoria();
+                CategoriaNegocio negocio = new CategoriaNegocio();
 
+                cat.Nombre = txtNombre.Text.ToString();
+                cat.Estado = true;
+
+                negocio.agregar(cat);
+
+                Response.Redirect("Categorias.aspx");
+                 
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }

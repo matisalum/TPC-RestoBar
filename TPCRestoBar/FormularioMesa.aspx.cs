@@ -59,7 +59,6 @@ namespace TPCRestoBar
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                throw;
             }
         }
 
