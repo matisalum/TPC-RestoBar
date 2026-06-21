@@ -43,7 +43,7 @@ namespace TPCRestoBar
                 CategoriaNegocio negocio = new CategoriaNegocio();
 
                 cat.Nombre = txtNombre.Text.ToString();
-                cat.Estado = true;
+                //cat.Estado = true;
                 cat.Descripcion = "";
                 if (Request.QueryString["id"] != null)
                 {
@@ -60,6 +60,22 @@ namespace TPCRestoBar
             {
                 //Session.Add("error", ex);
                 throw;
+            }
+        }
+
+        protected void BtnInactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                Categoria select = (Categoria)Session["categoriaS"];
+
+                negocio.eliminacionLogica(select.Id, !select.Estado);
+                Response.Redirect("Categorias.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
             }
         }
     }

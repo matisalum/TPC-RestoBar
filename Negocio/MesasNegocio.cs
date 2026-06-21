@@ -73,7 +73,7 @@ namespace Negocio
                 datos.setearConsulta("INSERT INTO MESA (NUMERO, CAPACIDAD, ESTADO) VALUES (@NUMERO, @CAPACIDAD, @ESTADO)");
                 datos.setearParametro("@NUMERO", nuevo.numero);
                 datos.setearParametro("@CAPACIDAD", nuevo.capacidad);
-                datos.setearParametro("@ESTADO", nuevo.estado);
+                datos.setearParametro("@ESTADO", true);
 
                 datos.ejecutarAccion();
             }
@@ -171,7 +171,7 @@ namespace Negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                Mesa aux = new Mesa();
+                //Mesa aux = new Mesa();
                 datos.setearConsulta("UPDATE MESA SET ESTADO = @estado WHERE ID = @id");
                 datos.setearParametro("@id", id);
                 datos.setearParametro("@estado", estado);

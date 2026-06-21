@@ -63,7 +63,7 @@ namespace Negocio
 			{
 				datos.setearConsulta("INSERT INTO CATEGORIA (NOMBRE, ESTADO) VALUES (@NOMBRE, @ESTADO)");
 				datos.setearParametro("@NOMBRE", (string)cat.Nombre);
-				datos.setearParametro("@ESTADO", (bool)cat.Estado);
+				datos.setearParametro("@ESTADO", true);
 
 				datos.ejecutarAccion();
 			}
@@ -148,6 +148,25 @@ namespace Negocio
                 datos.cerrarConexion();
             }
 
+        }
+        public void eliminacionLogica(int id, bool estado = false)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                datos.setearConsulta("UPDATE CATEGORIA SET ESTADO = @estado WHERE ID = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@estado", estado);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }

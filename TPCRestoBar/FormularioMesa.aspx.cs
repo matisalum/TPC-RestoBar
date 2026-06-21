@@ -46,7 +46,7 @@ namespace TPCRestoBar
 
                 nueva.numero = int.Parse(txtNumero.Text);
                 nueva.capacidad = int.Parse(txtCapacidad.Text);
-                nueva.estado = true;
+                //nueva.estado = true;
 
                 if (Request.QueryString["id"] != null)
                 {
