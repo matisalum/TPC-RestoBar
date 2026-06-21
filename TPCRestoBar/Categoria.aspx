@@ -16,7 +16,8 @@
                 <columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
                     <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                    <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
+                    <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                    <%--<asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />--%>
                 </columns>
 
             </asp:GridView>

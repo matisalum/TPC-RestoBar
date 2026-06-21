@@ -58,7 +58,7 @@ GO
 
 CREATE TABLE Categoria (
     id           INT IDENTITY(1,1) NOT NULL,
-    nombre NVARCHAR(100) NOT NULL;
+    nombre NVARCHAR(100) NOT NULL,
     descripcion  NVARCHAR(255),
     PRIMARY KEY (id)
 );
@@ -130,6 +130,14 @@ GO
 ALTER TABLE Categoria
 ADD nombre NVARCHAR(100) NOT NULL;
 GO
+
+ALTER TABLE Categoria
+ADD estado BIT DEFAULT 1 NOT NULL; 
+
+ALTER TABLE Categoria
+ADD descripcion NVARCHAR(255) ; 
+GO
+
 
 INSERT INTO Categoria (nombre, descripcion) 
 SELECT 'BEBIDA', 'PARA TOMAS' UNION

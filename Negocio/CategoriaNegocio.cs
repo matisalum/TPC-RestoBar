@@ -17,7 +17,7 @@ namespace Negocio
 			
 			try
 			{
-				string consulta = "SELECT ID, NOMBRE ,DESCRIPCION FROM CATEGORIA ";
+				string consulta = "SELECT ID, NOMBRE ,DESCRIPCION, ESTADO FROM CATEGORIA ";
 				datos.setearConsulta(consulta);
 				datos.ejecutarLectura();
 
@@ -36,6 +36,10 @@ namespace Negocio
 						cat.Descripcion = (string)datos.Lector["DESCRIPCION"];
 					else
 						cat.Descripcion = "";
+					if (!(datos.Lector["ESTADO"] is DBNull))
+						cat.Estado = (bool)datos.Lector["ESTADO"];
+					else
+						cat.Estado = true;
 
 					lista.Add(cat);
 				}
@@ -57,9 +61,9 @@ namespace Negocio
 			AccesoADatos datos = new AccesoADatos();
 			try
 			{
-				datos.setearConsulta("INSERT INTO CATEGORIA (NOMBRE, DESCRIPCION) VALUES (@NOMBRE, @DESCRIPCION)");
+				datos.setearConsulta("INSERT INTO CATEGORIA (NOMBRE, ESTADO) VALUES (@NOMBRE, @ESTADO)");
 				datos.setearParametro("@NOMBRE", (string)cat.Nombre);
-				datos.setearParametro("@DESCRIPCION", (string)cat.Descripcion);
+				datos.setearParametro("@ESTADO", (bool)cat.Estado);
 
 				datos.ejecutarAccion();
 			}
@@ -98,6 +102,10 @@ namespace Negocio
                         cat.Descripcion = (string)datos.Lector["DESCRIPCION"];
                     else
                         cat.Descripcion = "";
+                    if (!(datos.Lector["ESTADO"] is DBNull))
+                        cat.Estado = (bool)datos.Lector["ESTADO"];
+                    else
+                        cat.Estado = true;
                    
 
                     return cat;
@@ -126,7 +134,7 @@ namespace Negocio
                 datos.setearProcedimiento("storeModificarCategoria");
                 datos.setearParametro("@id", cat.Id);
                 datos.setearParametro("@Nombre", cat.Nombre);
-                datos.setearParametro("@Descripcion", cat.Descripcion);
+                datos.setearParametro("@Estado", cat.Estado);
 
                 datos.ejecutarAccion();
             }
