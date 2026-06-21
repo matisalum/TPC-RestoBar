@@ -30,17 +30,17 @@ namespace TPCRestoBar
             Response.Redirect("FormularioMesa.aspx");
         }
 
-        protected void dgvMesa_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
 
         protected void dgvMesa_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = (int)dgvMesa.SelectedDataKey.Value;
             Response.Redirect("FormularioMesa.aspx?id=" + id);
         }
+        //protected void dgvMesa_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
 
+        //}
+        //PAGINACION 
         protected void dgvMesa_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvMesa.PageIndex = e.NewPageIndex;

@@ -15,10 +15,10 @@
             <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
 
-        <div class="mb-3">
+        <%--<div class="mb-3">
             <asp:Label ID="lblDescripcion" CssClass="form-label" runat="server" Text="Descripcion"></asp:Label>
             <asp:TextBox ID="txtDescripcion" CssClass="form-control" runat="server"></asp:TextBox>
-        </div>
+        </div>--%>
 
         <div class="mb-3 d-flex gap-2">
             <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success" runat="server" OnClick="btnAgregar_Click"/>

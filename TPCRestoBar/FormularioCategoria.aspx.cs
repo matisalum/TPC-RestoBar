@@ -13,7 +13,21 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+            if (id != "" && !IsPostBack)
+            {
+                CategoriaNegocio cat = new CategoriaNegocio();
+                Categoria select = cat.filtrarId(int.Parse(id));
 
+                Session.Add("categoriaS", select);
+
+                txtNombre.Text = select.Nombre.ToString();
+
+                if (!select.Estado)
+                    BtnInactivar.Text = "Reactivar";
+            }
+            else
+                BtnInactivar.Visible = false;
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
@@ -30,15 +44,22 @@ namespace TPCRestoBar
 
                 cat.Nombre = txtNombre.Text.ToString();
                 cat.Estado = true;
-
-                negocio.agregar(cat);
+                cat.Descripcion = "";
+                if (Request.QueryString["id"] != null)
+                {
+                    cat.Id = int.Parse(Request.QueryString["id"]);
+                    negocio.modificarConSp(cat);
+                }
+                else
+                    negocio.agregar(cat);
 
                 Response.Redirect("Categorias.aspx");
                  
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                //Session.Add("error", ex);
+                throw;
             }
         }
     }

@@ -25,5 +25,11 @@ namespace TPCRestoBar
         {
             Response.Redirect("FormularioCategoria.aspx");
         }
+
+        protected void dvgCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = (int)dvgCategoria.SelectedDataKey.Value;
+            Response.Redirect("FormularioCategoria.aspx?id=" + id);
+        }
     }
 }

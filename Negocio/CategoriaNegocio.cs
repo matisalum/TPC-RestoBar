@@ -134,6 +134,7 @@ namespace Negocio
                 datos.setearProcedimiento("storeModificarCategoria");
                 datos.setearParametro("@id", cat.Id);
                 datos.setearParametro("@Nombre", cat.Nombre);
+                datos.setearParametro("@Descripcion", cat.Descripcion);
                 datos.setearParametro("@Estado", cat.Estado);
 
                 datos.ejecutarAccion();

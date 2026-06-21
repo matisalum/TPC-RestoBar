@@ -28,6 +28,8 @@ namespace TPCRestoBar
                 if (!select.estado)
                     BtnInactivar.Text = "Reactivar";
             }
+            else
+                BtnInactivar.Visible = false;
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)

@@ -18,10 +18,10 @@
                 runat="server"
                 AutoGenerateColumns="false"
                 DataKeyNames="idMesa"
+                OnSelectedIndexChanged="dgvMesa_SelectedIndexChanged"
                 AllowPaging="true"
                 PageSize="10"
                 OnPageIndexChanging="dgvMesa_PageIndexChanging" 
-                OnSelectedIndexChanged="dgvMesa_SelectedIndexChanged"
                 CssClass="table table-striped table-hover">
                 <Columns>
                     <asp:BoundField HeaderText="Numero" DataField="numero" />
@@ -44,17 +44,6 @@
                 </Columns>
                 <HeaderStyle CssClass="table-dark" />
             </asp:GridView>
-            <%--<nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#" aria-current="page">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>--%>
         </div>
     </div>
 
