@@ -7,6 +7,10 @@
     <div class="mb-4">
         <h1>Categorias</h1>
     </div>
+    <div class="mb-4">
+        <label>Filtrar</label>
+        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged"/>
+    </div>
     <div class="card">
         <div class="card-body">
             <asp:GridView
@@ -15,6 +19,9 @@
                 DataKeyNames="Id"
                 OnSelectedIndexChanged="dvgCategoria_SelectedIndexChanged"
                 AutoGenerateColumns="false"
+                AllowPaging="true"
+                PageSize="10"
+                OnPageIndexChanging="dvgCategoria_PageIndexChanging"
                 runat="server">
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />

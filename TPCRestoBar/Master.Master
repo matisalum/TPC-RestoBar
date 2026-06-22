@@ -60,9 +60,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="Login.aspx">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Registro.aspx">Registrarse</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="Categorias.aspx">Categorias</a>
                         </li>

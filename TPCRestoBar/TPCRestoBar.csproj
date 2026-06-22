@@ -182,7 +182,6 @@
     <Content Include="Pedidos.aspx" />
     <Content Include="Producto.aspx" />
     <Content Include="FormularioProducto.aspx" />
-    <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
   </ItemGroup>
@@ -278,13 +277,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Registro.aspx.cs">
-      <DependentUpon>Registro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Registro.aspx.designer.cs">
-      <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

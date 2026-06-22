@@ -171,7 +171,6 @@ namespace Negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                //Mesa aux = new Mesa();
                 datos.setearConsulta("UPDATE MESA SET ESTADO = @estado WHERE ID = @id");
                 datos.setearParametro("@id", id);
                 datos.setearParametro("@estado", estado);
