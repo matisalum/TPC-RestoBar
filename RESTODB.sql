@@ -143,3 +143,5 @@ INSERT INTO Categoria (nombre, descripcion)
 SELECT 'BEBIDA', 'PARA TOMAS' UNION
 SELECT 'POSTRE', 'PARA COMER'  
 GO
+
+select * from Imagen

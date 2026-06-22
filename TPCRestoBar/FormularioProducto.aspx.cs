@@ -27,6 +27,11 @@ namespace TPCRestoBar
                     txtStock.Text = producto.stock.ToString();
                     chkActivo.Checked = producto.activo;
 
+                    if (producto.imagen != null)
+                    {
+                        txtImagen.Text = producto.imagen.Url;
+                    }
+
                     btnAgregar.Text = "Modificar";
                 }
             }
@@ -65,6 +70,8 @@ namespace TPCRestoBar
             producto.stock = stock;
             producto.activo = chkActivo.Checked;
 
+            producto.imagen = new Imagen();
+            producto.imagen.Url = txtImagen.Text;
             ProductoNegocio negocio = new ProductoNegocio();
 
             if (Request.QueryString["id"] != null)

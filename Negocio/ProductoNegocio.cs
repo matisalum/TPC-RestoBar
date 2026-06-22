@@ -45,12 +45,63 @@ namespace Negocio
             }
         }
 
+
+        public List<Producto> listarCarta()
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT p.id, p.nombre, p.Precio, p.stock, p.activo, i.Url " +
+                    "FROM Producto p " +
+                    "INNER JOIN Imagen i ON p.idImagen = i.id " +
+                    "WHERE p.activo = 1");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto producto = new Producto();
+
+                    producto.idProducto = (int)datos.Lector["id"];
+                    producto.nombre = datos.Lector["nombre"].ToString();
+                    producto.precio = (decimal)datos.Lector["Precio"];
+                    producto.stock = (short)datos.Lector["stock"];
+                    producto.activo = (bool)datos.Lector["activo"];
+
+                    producto.imagen = new Imagen();
+                    producto.imagen.Url = datos.Lector["Url"].ToString();
+
+                    lista.Add(producto);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void agregar(Producto nuevo)
         {
             AccesoADatos datos = new AccesoADatos();
 
             try
             {
+                datos.setearConsulta(
+                    "INSERT INTO Imagen (Url) OUTPUT INSERTED.id VALUES (@url)");
+
+                datos.setearParametro("@url", nuevo.imagen.Url);
+
+                int idImagen = datos.ejecutarAccionScalar();
+
+                datos.cerrarConexion();
+
+                datos = new AccesoADatos();
+
                 datos.setearConsulta(
                     "INSERT INTO Producto (nombre, Precio, stock, activo, idCategoria, idImagen) " +
                     "VALUES (@nombre, @precio, @stock, @activo, @idCategoria, @idImagen)");
@@ -59,8 +110,8 @@ namespace Negocio
                 datos.setearParametro("@precio", nuevo.precio);
                 datos.setearParametro("@stock", nuevo.stock);
                 datos.setearParametro("@activo", nuevo.activo);
-                datos.setearParametro("@idCategoria", 1);
-                datos.setearParametro("@idImagen", 1);
+                datos.setearParametro("@idCategoria", 1); 
+                datos.setearParametro("@idImagen", idImagen);
 
                 datos.ejecutarAccion();
             }
@@ -77,7 +128,16 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT id, nombre, Precio, stock, activo FROM Producto WHERE id = @id");
+                datos.setearConsulta(@"
+                                        SELECT p.id,
+                                               p.nombre,
+                                               p.Precio,
+                                               p.stock,
+                                               p.activo,
+                                               i.Url
+                                        FROM Producto p
+                                        LEFT JOIN Imagen i ON p.idImagen = i.id
+                                        WHERE p.id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarLectura();
 
@@ -89,6 +149,10 @@ namespace Negocio
                     producto.stock = Convert.ToInt32(datos.Lector["stock"]);
                     producto.activo = Convert.ToBoolean(datos.Lector["activo"]);
                 }
+                producto.imagen = new Imagen();
+
+                if (!(datos.Lector["Url"] is DBNull))
+                    producto.imagen.Url = datos.Lector["Url"].ToString();
 
                 return producto;
             }
@@ -116,6 +180,23 @@ namespace Negocio
                 datos.setearParametro("@precio", producto.precio);
                 datos.setearParametro("@stock", producto.stock);
                 datos.setearParametro("@activo", producto.activo);
+                datos.setearParametro("@id", producto.idProducto);
+
+                datos.ejecutarAccion();
+                datos.cerrarConexion();
+
+                datos = new AccesoADatos();
+
+                datos.setearConsulta(@"
+                                        UPDATE Imagen
+                                        SET Url = @url
+                                        WHERE id = (
+                                            SELECT idImagen
+                                            FROM Producto
+                                            WHERE id = @id
+                                        )");
+
+                datos.setearParametro("@url", producto.imagen.Url);
                 datos.setearParametro("@id", producto.idProducto);
 
                 datos.ejecutarAccion();

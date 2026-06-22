@@ -15,9 +15,7 @@
             <div class="col">
                 <asp:DropDownList ID="ddlFiltro" runat="server"></asp:DropDownList>
             </div>
-            <div class="col">
-            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" />
-            </div>
+            
         </div>
         <div class="row">
             <div class="col">
@@ -43,12 +41,36 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col">
-                <asp:GridView ID="dvgCartilla" CssClass="table" runat="server"></asp:GridView>
-            </div>
-            <div class="col-2"></div>
-        </div>
     </div>
+
+    <h2 class="mb-4 text-center">🍽️ Nuestra Carta</h2>
+
+    <div class="row">
+       
+        <asp:Repeater ID="repProductos" runat="server">
+    <ItemTemplate>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+
+                <img src='<%# string.IsNullOrEmpty(Eval("imagen.Url")?.ToString())
+                            ? "https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg"
+                            : Eval("imagen.Url") %>'
+                     class="card-img-top"
+                     alt="Imagen del producto"
+                     style="height:250px; object-fit:cover;" />
+
+                <div class="card-body">
+                    <h5 class="card-title"><%# Eval("nombre") %></h5>
+                    <p class="card-text">
+                        <strong>$ <%# Eval("precio") %></strong>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </ItemTemplate>
+</asp:Repeater>
+
+    </div>
+
 </asp:Content>

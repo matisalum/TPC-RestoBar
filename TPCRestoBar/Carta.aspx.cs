@@ -13,29 +13,12 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoNegocio productos = new ProductoNegocio();
-
-            Producto prod = new Producto();
-
-            prod.idProducto = 1;
-            prod.nombre = "COCA COLA";
-            prod.precio = 7500;
-            prod.stock = 20;
-
-            List<Producto> lista = new List<Producto>();
-
-            lista.Add(prod);      
-
-            dvgCartilla.DataSource = lista;
-            dvgCartilla.DataBind();
-
-
             if (!IsPostBack)
             {
-                ddlFiltro.Items.Add(new ListItem("Categoría", "0"));
-                ddlFiltro.Items.Add(new ListItem("Bebidas", "1"));
-                ddlFiltro.Items.Add(new ListItem("Platos", "2"));
-                ddlFiltro.Items.Add(new ListItem("Postres", "3"));
+                ProductoNegocio negocio = new ProductoNegocio();
+
+                repProductos.DataSource = negocio.listarCarta();
+                repProductos.DataBind();
             }
         }
     }

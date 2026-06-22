@@ -23,6 +23,11 @@
     </div>
 
     <div class="mb-3">
+        <asp:Label ID="lblImagen" runat="server" CssClass="form-label" Text="URL de la imagen"></asp:Label>
+        <asp:TextBox ID="txtImagen" runat="server" CssClass="form-control"></asp:TextBox>
+    </div>
+
+    <div class="mb-3">
         <asp:CheckBox ID="chkActivo" runat="server" Text="Activo" />
     </div>
 
