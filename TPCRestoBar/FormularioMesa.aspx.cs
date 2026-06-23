@@ -15,6 +15,7 @@ namespace TPCRestoBar
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+            EmpleadoNegocio empleado = new EmpleadoNegocio();
             if (id != "" && !IsPostBack)
             {
                 MesasNegocio mesa = new MesasNegocio();
@@ -24,6 +25,11 @@ namespace TPCRestoBar
 
                 txtNumero.Text = select.numero.ToString();
                 txtCapacidad.Text = select.capacidad.ToString();
+                ///
+                ddlEmpleados.DataSource = empleado.listarConSp();
+                ddlEmpleados.DataTextField = "nombre";
+                ddlEmpleados.DataValueField = "idEmpleado";
+                ddlEmpleados.DataBind();
 
                 if (!select.estado)
                     BtnInactivar.Text = "Reactivar";
@@ -46,11 +52,13 @@ namespace TPCRestoBar
 
                 nueva.numero = int.Parse(txtNumero.Text);
                 nueva.capacidad = int.Parse(txtCapacidad.Text);
+                int ID = int.Parse(ddlEmpleados.SelectedItem.Value);
                 //nueva.estado = true;
 
                 if (Request.QueryString["id"] != null)
                 {
                     nueva.idMesa = int.Parse(Request.QueryString["id"]);
+                    nueva.idEmpleado = ID;
                     negocio.modificarConSp(nueva);
                 }
                 else
