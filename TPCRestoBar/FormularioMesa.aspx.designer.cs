@@ -60,13 +60,22 @@ namespace TPCRestoBar
         protected global::System.Web.UI.WebControls.TextBox txtCapacidad;
 
         /// <summary>
-        /// btnAgregar control.
+        /// lblEmpleados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar;
+        protected global::System.Web.UI.WebControls.Label lblEmpleados;
+
+        /// <summary>
+        /// ddlEmpleados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmpleados;
 
         /// <summary>
         /// BtnInactivar control.
@@ -76,5 +85,14 @@ namespace TPCRestoBar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnInactivar;
+
+        /// <summary>
+        /// btnAgregar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
     }
 }

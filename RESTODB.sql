@@ -8,7 +8,7 @@ GO
 USE RestoDB 
 GO
 -- CREACION DE TABLAS
-CREATE TABLE Igmagen (
+CREATE TABLE Imagen (
     id      INT IDENTITY(1,1) NOT NULL,
     Url     VARCHAR(255),
     PRIMARY KEY (id)
@@ -26,7 +26,7 @@ CREATE TABLE Empleado (
     IdImagen    INT,
     PRIMARY KEY (id),
     CONSTRAINT fk_Igmagen_id_Empleado
-        FOREIGN KEY (IdImagen) REFERENCES Igmagen(id)
+        FOREIGN KEY (IdImagen) REFERENCES Imagen(id)
 );
 GO
 
@@ -73,10 +73,10 @@ CREATE TABLE Producto (
     idCategoria INT,
     idImagen    INT,
     PRIMARY KEY (id),
-    CONSTRAINT fk_Categorai_id_Producto
-        FOREIGN KEY (idCategoria) REFERENCES Categorai(id),
+    CONSTRAINT fk_Categoria_id_Producto
+        FOREIGN KEY (idCategoria) REFERENCES Categoria(id),
     CONSTRAINT fk_Producto_idImagen_Igmagen
-        FOREIGN KEY (idImagen) REFERENCES Igmagen(id)
+        FOREIGN KEY (idImagen) REFERENCES Imagen(id)
 );
 GO
 
@@ -143,5 +143,7 @@ INSERT INTO Categoria (nombre, descripcion)
 SELECT 'BEBIDA', 'PARA TOMAS' UNION
 SELECT 'POSTRE', 'PARA COMER'  
 GO
-
+--AJUSTE DE TABLA IMAGEN
 select * from Imagen
+
+EXEC sp_rename 'Igmagen', 'Imagen';
