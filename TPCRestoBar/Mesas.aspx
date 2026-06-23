@@ -7,10 +7,10 @@
         <h1 class="fw-bold">ADMINISTRACION DE MESAS</h1>
         <hr />
     </div>
-    <div class="mb-3">
-        <h4 class="text-muted">📋 Listado Mesas</h4>
+    <div class="mb-4">
+        <label>Filtrar</label>
+        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged"/>
     </div>
-
     <div class="card">
         <div class="card-body">
             <asp:GridView
@@ -21,12 +21,13 @@
                 OnSelectedIndexChanged="dgvMesa_SelectedIndexChanged"
                 AllowPaging="true"
                 PageSize="10"
-                OnPageIndexChanging="dgvMesa_PageIndexChanging" 
+                OnPageIndexChanging="dgvMesa_PageIndexChanging"
                 CssClass="table table-striped table-hover">
                 <Columns>
                     <asp:BoundField HeaderText="Numero" DataField="numero" />
                     <asp:BoundField HeaderText="Capacidad" DataField="capacidad" />
-                    <%--<asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />--%>
+                    <asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />
+                    <asp:CommandField HeaderText="Asignar" ShowSelectButton="true" SelectText="🧑‍🍳" />
 
                     <asp:TemplateField HeaderText="Estado">
                         <ItemTemplate>

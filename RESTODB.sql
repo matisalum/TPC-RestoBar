@@ -73,7 +73,7 @@ CREATE TABLE Producto (
     idCategoria INT,
     idImagen    INT,
     PRIMARY KEY (id),
-    CONSTRAINT fk_Categorai_id_Producto
+    CONSTRAINT fk_Categoria_id_Producto
         FOREIGN KEY (idCategoria) REFERENCES Categoria(id),
     CONSTRAINT fk_Producto_idImagen_Igmagen
         FOREIGN KEY (idImagen) REFERENCES Imagen(id)
@@ -143,5 +143,7 @@ INSERT INTO Categoria (nombre, descripcion)
 SELECT 'BEBIDA', 'PARA TOMAS' UNION
 SELECT 'POSTRE', 'PARA COMER'  
 GO
-
+--AJUSTE DE TABLA IMAGEN
 select * from Imagen
+
+EXEC sp_rename 'Igmagen', 'Imagen';
