@@ -26,7 +26,7 @@ Update Empleado  set  Nombre=@Nombre, Usuario = @User, Apellido= @Apellido, Cont
 WHERE id = @id; 
 
 
-alter procedure storeListarEmpleado
+create procedure storeListarEmpleado
 as
 begin
 Select * 
@@ -66,3 +66,5 @@ BEGIN
 END;
 GO
 
+INSERT INTO Imagen (Url)
+VALUES ('https://via.placeholder.com/150');
