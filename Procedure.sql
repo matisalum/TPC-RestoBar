@@ -34,7 +34,7 @@ From Empleado
 end
 
 -- MESA
-CREATE PROCEDURE storeModificarMesa
+CREATE OR ALTER PROCEDURE storeModificarMesa
     @id INT,
     @Numero INT,
     @Capacidad INT,
@@ -45,6 +45,7 @@ BEGIN
     UPDATE Mesa  
     SET Numero = @Numero, 
         Capacidad = @Capacidad, 
+        IdEmpleado = @IdEmpleado,
         Estado = @Estado
     WHERE id = @id;
 END;
