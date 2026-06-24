@@ -15,27 +15,47 @@ namespace TPCRestoBar
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-            EmpleadoNegocio empleado = new EmpleadoNegocio();
-            if (id != "" && !IsPostBack)
+
+            if (!IsPostBack)
             {
-                MesasNegocio mesa = new MesasNegocio();
-                Mesa select = mesa.filtrarId(int.Parse(id));
-
-                Session.Add("mesaS", select);
-
-                txtNumero.Text = select.numero.ToString();
-                txtCapacidad.Text = select.capacidad.ToString();
-                ///
+                EmpleadoNegocio empleado = new EmpleadoNegocio();
                 ddlEmpleados.DataSource = empleado.listarConSp();
                 ddlEmpleados.DataTextField = "nombre";
                 ddlEmpleados.DataValueField = "idEmpleado";
                 ddlEmpleados.DataBind();
+                ddlEmpleados.Items.Insert(0, new ListItem("Sin Asignar / Libre", ""));
 
-                if (!select.estado)
-                    BtnInactivar.Text = "Reactivar";
+                if (id != "")
+                {
+                    MesasNegocio mesa = new MesasNegocio();
+                    Mesa select = mesa.filtrarId(int.Parse(id));
+
+                    Session.Add("mesaS", select);
+
+                    txtNumero.Text = select.numero.ToString();
+                    txtCapacidad.Text = select.capacidad.ToString();
+
+                    if(select.idEmpleado != null)
+                    {
+                        if(ddlEmpleados.Items.FindByValue(select.idEmpleado.ToString()) != null)
+                        {
+                            ddlEmpleados.SelectedValue = select.idEmpleado.ToString();
+                        }
+                    }
+                    else
+                    {
+                        ddlEmpleados.SelectedValue = "";
+                    }
+
+                    if (!select.estado)
+                        BtnInactivar.Text = "Reactivar";
+                }
+                else
+                {
+                    BtnInactivar.Visible = false;
+                    btnLiberar.Visible = false;
+                }
             }
-            else
-                BtnInactivar.Visible = false;
         }
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
@@ -55,20 +75,33 @@ namespace TPCRestoBar
                 int ID = int.Parse(ddlEmpleados.SelectedItem.Value);
                 //nueva.estado = true;
 
+                // Evalua idEmpleado
+                if(string.IsNullOrEmpty(ddlEmpleados.SelectedValue))
+                {
+                    nueva.idEmpleado = null;
+                }
+                else
+                {
+                    nueva.idEmpleado = int.Parse(ddlEmpleados.SelectedValue);
+                }
+                //Evalua idMESA
                 if (Request.QueryString["id"] != null)
                 {
+                    // SE ROMPE, VER DESPUES XD
+                    Mesa aux = (Mesa)Session["mesaS"];
                     nueva.idMesa = int.Parse(Request.QueryString["id"]);
-                    nueva.idEmpleado = ID;
+                    nueva.estado = aux.estado;
                     negocio.modificarConSp(nueva);
                 }
                 else
                     negocio.agregar(nueva);
 
-                Response.Redirect("Mesas.aspx");           
+                Response.Redirect("Mesas.aspx");
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex);
+                //throw ex;
             }
         }
 
@@ -85,6 +118,35 @@ namespace TPCRestoBar
             catch (Exception ex)
             {
                 Session.Add("error", ex);
+            }
+        }
+
+        protected void btnLiberar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Mesa nueva = (Mesa)Session["mesaS"];
+                MesasNegocio negocio = new MesasNegocio();
+
+                nueva.numero = int.Parse(txtNumero.Text);
+                nueva.capacidad = int.Parse(txtCapacidad.Text);
+
+                nueva.idEmpleado = null;
+
+                if (Request.QueryString["id"] != null)
+                {
+                    nueva.idMesa = int.Parse(Request.QueryString["id"]);
+                    negocio.modificarConSp(nueva);
+                }
+                else
+                    negocio.agregar(nueva);
+
+                Response.Redirect("Mesas.aspx");
+            }
+            catch (Exception ex)
+            {
+                //Session.Add("error", ex);
+                throw ex;
             }
         }
     }

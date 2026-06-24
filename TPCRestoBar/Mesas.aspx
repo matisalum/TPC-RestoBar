@@ -9,7 +9,7 @@
     </div>
     <div class="mb-4">
         <label>Filtrar</label>
-        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged"/>
+        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
     </div>
     <div class="card">
         <div class="card-body">
@@ -26,7 +26,13 @@
                 <Columns>
                     <asp:BoundField HeaderText="Numero" DataField="numero" />
                     <asp:BoundField HeaderText="Capacidad" DataField="capacidad" />
-                    <asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />
+                    <%--<asp:BoundField HeaderText="Empleado" DataField="idEmpleado" />--%>
+                    <asp:TemplateField HeaderText="Empleado">
+                        <ItemTemplate>
+                            <asp:Label ID="lblEmpleado" runat="server"
+                                Text='<%# buscarEmpleado(Convert.ToInt32(Eval("idEmpleado"))) %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:CommandField HeaderText="Asignar" ShowSelectButton="true" SelectText="🧑‍🍳" />
 
                     <asp:TemplateField HeaderText="Estado">

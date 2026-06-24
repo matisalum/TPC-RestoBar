@@ -150,7 +150,7 @@ namespace Negocio
                 datos.setearParametro("@id", mesa.idMesa);
                 datos.setearParametro("@Numero", mesa.numero);
                 datos.setearParametro("@Capacidad", mesa.capacidad);
-                datos.setearParametro("@idEmpleado", mesa.idEmpleado);
+                datos.setearParametro("@idEmpleado", (object)mesa.idEmpleado ?? DBNull.Value);
                 datos.setearParametro("@Estado", mesa.estado);
 
                 datos.ejecutarAccion();

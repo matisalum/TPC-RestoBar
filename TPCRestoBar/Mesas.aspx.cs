@@ -38,10 +38,6 @@ namespace TPCRestoBar
             int id = (int)dgvMesa.SelectedDataKey.Value;
             Response.Redirect("FormularioMesa.aspx?id=" + id);
         }
-        //protected void dgvMesa_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-
-        //}
         //PAGINACION 
         protected void dgvMesa_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -73,6 +69,17 @@ namespace TPCRestoBar
             //var listaFiltrada = lista.Where(x => x.numero == numero).ToList();
             //dgvMesa.DataSource = listaFiltrada;
             //dgvMesa.DataBind();
+        }
+        protected string buscarEmpleado(int ide)
+        {
+            EmpleadoNegocio negocio = new EmpleadoNegocio();
+            Empleado empleado = new Empleado();
+
+            if (negocio.obtenerPorId(ide) == null)
+                return "sin asignar";
+        
+            empleado = negocio.obtenerPorId(ide);
+            return empleado.nombre;
         }
     }
 }

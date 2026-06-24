@@ -30,6 +30,7 @@
 
             <div class="col-12 d-flex justify-content-end gap-2">
                 <asp:Button ID="BtnInactivar" Text="Inactivar" CssClass="btn btn-outline-danger" runat="server" OnClick="BtnInactivar_Click" />
+                <asp:Button ID="btnLiberar" Text="Liberar" CssClass="btn btn-warning px-4" OnClick="btnLiberar_Click" runat="server" />
                 <asp:Button ID="btnAgregar" Text="Aceptar" CssClass="btn btn-success px-4" OnClick="btnAgregar_Click" runat="server" />
             </div>
         </div>
