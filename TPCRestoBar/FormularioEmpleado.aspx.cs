@@ -35,7 +35,8 @@ namespace TPCRestoBar
                 if (id != "" && !IsPostBack)
                 {
                     btnBaja.Visible = true;
-                    btnAgregar.Visible = false;
+                    btnAgregar.Visible = true;
+                    btnAgregar.Text = "Modificar";
                     EmpleadoNegocio empleado = new EmpleadoNegocio();
                     Empleado selecionado = empleado.obtenerPorId(int.Parse(id));
                     //guardo empleado seleccionado en session
@@ -52,7 +53,7 @@ namespace TPCRestoBar
 
                     // cofigurar baja logica / alta 
                     if(!selecionado.Activo)
-                      btnBaja.Text= "ALTA EMPLEDO";
+                      btnBaja.Text= "Alta Empleado";
 
                 }
 

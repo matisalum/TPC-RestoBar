@@ -14,9 +14,9 @@ namespace dominio
 
         public Empleado empleadoMesa { get; set; }
 
-        DateTime fechaPedido { get; set; }
+       public DateTime fechaPedido { get; set; }
 
-       public bool estadoPedido { get; set; }
+       public int estadoPedido { get; set; }
 
     }
 }
