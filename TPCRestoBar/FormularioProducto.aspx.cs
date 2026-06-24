@@ -108,5 +108,9 @@ namespace TPCRestoBar
         {
             Response.Redirect("Producto.aspx");
         }
+        protected void txtImagen_TextChanged(object sender, EventArgs e)
+        {
+            imgPreview.ImageUrl = txtImagen.Text;
+        }
     }
 }

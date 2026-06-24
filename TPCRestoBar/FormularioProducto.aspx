@@ -31,22 +31,23 @@
 
     <div class="mb-3">
         <asp:Label ID="lblImagen" runat="server" CssClass="form-label" Text="URL de la imagen"></asp:Label>
-        <asp:TextBox ID="txtImagen" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="txtImagen" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagen_TextChanged">
+
+        </asp:TextBox>
     </div>
 
+
+
+
     <div class="mb-3">
-        <asp:Image ID="imgPreview"
+        <asp:Image
+            ID="imgPreview"
             runat="server"
-            Width="250px"
+            Width="200px"
+            Height="200px"
             CssClass="img-thumbnail" />
     </div>
 
-    <asp:Button
-        ID="btnVistaPrevia"
-        runat="server"
-        Text="Ver imagen"
-        CssClass="btn btn-secondary"
-        OnClick="btnVistaPrevia_Click" />
     <div class="mb-3">
         <asp:CheckBox ID="chkActivo" runat="server" Text="Activo" />
     </div>
