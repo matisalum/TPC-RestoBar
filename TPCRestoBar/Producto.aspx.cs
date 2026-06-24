@@ -34,5 +34,12 @@ namespace TPCRestoBar
                 Response.Redirect("Producto.aspx");
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ProductoNegocio negocio = new ProductoNegocio();
+            dgvProductos.DataSource = negocio.buscarPorNombre(txtBuscar.Text);
+            dgvProductos.DataBind();
+        }
     }
 }

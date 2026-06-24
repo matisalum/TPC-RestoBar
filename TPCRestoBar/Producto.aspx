@@ -5,7 +5,16 @@
 
     <h2>Productos</h2>
 
-    
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <asp:Label ID="lblBuscar" Text="Filtrar Por Nombre: " runat="server"></asp:Label>
+                <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+
+                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary mb-3" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
+    </div>
     <asp:GridView
     ID="dgvProductos"
     runat="server"

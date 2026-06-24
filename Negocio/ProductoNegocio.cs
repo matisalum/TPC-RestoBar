@@ -226,5 +226,40 @@ namespace Negocio
             }
         }
 
+        public List<Producto> buscarPorNombre(string nombre)
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT id, nombre, Precio, stock " +
+                    "FROM Producto " +
+                    "WHERE nombre LIKE @nombre AND activo = 1");
+
+                datos.setearParametro("@nombre", "%" + nombre + "%");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto producto = new Producto();
+
+                    producto.idProducto = Convert.ToInt32(datos.Lector["id"]);
+                    producto.nombre = datos.Lector["nombre"].ToString();
+                    producto.precio = Convert.ToDecimal(datos.Lector["Precio"]);
+                    producto.stock = Convert.ToInt32(datos.Lector["stock"]);
+
+                    lista.Add(producto);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
