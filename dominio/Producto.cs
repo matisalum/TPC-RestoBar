@@ -12,7 +12,7 @@ namespace dominio
         public string nombre { get; set; }
         public decimal precio {  get; set; }
         public int stock { get; set; }
-
+        public int idCategoria { get; set; }
         public Imagen imagen { get; set; }
         public bool activo { get; set; }
     }

@@ -23,10 +23,30 @@
     </div>
 
     <div class="mb-3">
+        <asp:Label ID="lblCategoria" runat="server" Text="Categoría"></asp:Label>
+        <asp:DropDownList
+            ID="ddlCategoria" runat="server"  CssClass="form-select">
+        </asp:DropDownList>
+    </div>
+
+    <div class="mb-3">
         <asp:Label ID="lblImagen" runat="server" CssClass="form-label" Text="URL de la imagen"></asp:Label>
         <asp:TextBox ID="txtImagen" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
 
+    <div class="mb-3">
+        <asp:Image ID="imgPreview"
+            runat="server"
+            Width="250px"
+            CssClass="img-thumbnail" />
+    </div>
+
+    <asp:Button
+        ID="btnVistaPrevia"
+        runat="server"
+        Text="Ver imagen"
+        CssClass="btn btn-secondary"
+        OnClick="btnVistaPrevia_Click" />
     <div class="mb-3">
         <asp:CheckBox ID="chkActivo" runat="server" Text="Activo" />
     </div>

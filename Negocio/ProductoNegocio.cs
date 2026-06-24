@@ -110,7 +110,7 @@ namespace Negocio
                 datos.setearParametro("@precio", nuevo.precio);
                 datos.setearParametro("@stock", nuevo.stock);
                 datos.setearParametro("@activo", nuevo.activo);
-                datos.setearParametro("@idCategoria", 1); 
+                datos.setearParametro("@idCategoria", nuevo.idCategoria);
                 datos.setearParametro("@idImagen", idImagen);
 
                 datos.ejecutarAccion();
@@ -134,7 +134,8 @@ namespace Negocio
                                                p.Precio,
                                                p.stock,
                                                p.activo,
-                                               i.Url
+                                               i.Url,
+                                               p.idCategoria
                                         FROM Producto p
                                         LEFT JOIN Imagen i ON p.idImagen = i.id
                                         WHERE p.id = @id");
@@ -148,11 +149,14 @@ namespace Negocio
                     producto.precio = Convert.ToDecimal(datos.Lector["Precio"]);
                     producto.stock = Convert.ToInt32(datos.Lector["stock"]);
                     producto.activo = Convert.ToBoolean(datos.Lector["activo"]);
-                }
-                producto.imagen = new Imagen();
+                    producto.idCategoria = Convert.ToInt32(datos.Lector["idCategoria"]);
 
-                if (!(datos.Lector["Url"] is DBNull))
-                    producto.imagen.Url = datos.Lector["Url"].ToString();
+                    producto.imagen = new Imagen();
+
+                    if (!(datos.Lector["Url"] is DBNull))
+                        producto.imagen.Url = datos.Lector["Url"].ToString();
+                }
+                
 
                 return producto;
             }
@@ -168,19 +172,21 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(
-                    "UPDATE Producto " +
-                    "SET nombre = @nombre, " +
-                    "    Precio = @precio, " +
-                    "    stock = @stock, " +
-                    "    activo = @activo " +
-                    "WHERE id = @id");
+                          datos.setearConsulta(@"
+                            UPDATE Producto
+                            SET nombre = @nombre,
+                                Precio = @precio,
+                                stock = @stock,
+                                activo = @activo,
+                                idCategoria = @idCategoria
+                            WHERE id = @id");
 
                 datos.setearParametro("@nombre", producto.nombre);
                 datos.setearParametro("@precio", producto.precio);
                 datos.setearParametro("@stock", producto.stock);
                 datos.setearParametro("@activo", producto.activo);
                 datos.setearParametro("@id", producto.idProducto);
+                datos.setearParametro("@idCategoria", producto.idCategoria);
 
                 datos.ejecutarAccion();
                 datos.cerrarConexion();

@@ -15,6 +15,15 @@ namespace TPCRestoBar
         {
             if (!IsPostBack)
             {
+
+                CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+
+                ddlCategoria.DataSource = categoriaNegocio.listar();
+                ddlCategoria.DataTextField = "Nombre";
+                ddlCategoria.DataValueField = "id";
+                ddlCategoria.DataBind();
+                 
+
                 if (Request.QueryString["id"] != null)
                 {
                     int id = int.Parse(Request.QueryString["id"]);
@@ -30,11 +39,18 @@ namespace TPCRestoBar
                     if (producto.imagen != null)
                     {
                         txtImagen.Text = producto.imagen.Url;
+                        imgPreview.ImageUrl = producto.imagen.Url;
                     }
 
+                    ddlCategoria.SelectedValue = producto.idCategoria.ToString();
                     btnAgregar.Text = "Modificar";
                 }
             }
+        }
+
+        protected void btnVistaPrevia_Click(object sender, EventArgs e)
+        {
+            imgPreview.ImageUrl = txtImagen.Text;
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -69,7 +85,7 @@ namespace TPCRestoBar
             producto.precio = precio;
             producto.stock = stock;
             producto.activo = chkActivo.Checked;
-
+            producto.idCategoria = int.Parse(ddlCategoria.SelectedValue);
             producto.imagen = new Imagen();
             producto.imagen.Url = txtImagen.Text;
             ProductoNegocio negocio = new ProductoNegocio();
