@@ -10,9 +10,9 @@ namespace dominio
     {
         public int idPedido { get; set; }
 
-        public Mesa mesaPedido { get; set; }
+        public Mesa mesa { get; set; }
 
-        public Empleado empleadoMesa { get; set; }
+        public Empleado empleado { get; set; }
 
        public DateTime fechaPedido { get; set; }
 
