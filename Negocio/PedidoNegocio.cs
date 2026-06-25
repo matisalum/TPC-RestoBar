@@ -32,7 +32,7 @@ namespace Negocio
                     pedido.empleado.nombre = datos.Lector["NombreEmpleado"].ToString(); 
                     pedido.empleado.apellido = datos.Lector["ApellidoEmpleado"].ToString(); 
                     pedido.fechaPedido = (DateTime)datos.Lector["FechaPedido"];
-                    pedido.estadoPedido = (int)datos.Lector["Estado"];
+                    pedido.estadoPedido = (byte)datos.Lector["Estado"];
 
 
                     lista.Add(pedido);
@@ -55,5 +55,29 @@ namespace Negocio
 
         }
 
+        public void agregarConSp(Pedido nuevo)
+        {
+
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
     }
 }

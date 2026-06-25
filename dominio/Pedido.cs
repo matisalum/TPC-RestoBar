@@ -14,9 +14,41 @@ namespace dominio
 
         public Empleado empleado { get; set; }
 
-       public DateTime fechaPedido { get; set; }
+        public DateTime fechaPedido { get; set; }
 
-       public int estadoPedido { get; set; }
+        public byte estadoPedido { get; set; }
+
+        public string EstadoTexto
+        {
+
+            get
+            {
+
+                switch (estadoPedido)
+                {
+                    case 0:
+                        return "Pendiente";
+
+                    case 1:
+                        return "En preparación";
+
+                    case 2:
+                        return "Listo";
+
+                    case 3:
+                        return "Entregado";
+
+                    case 4:
+                        return "Cancelado";
+
+
+                    default:
+                        return "Desconocido";
+
+                }
+            }
+
+        }
 
     }
 }
