@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
+   
+
     public class Pedido
     {
         public int idPedido { get; set; }
@@ -16,39 +18,17 @@ namespace dominio
 
         public DateTime fechaPedido { get; set; }
 
-        public byte estadoPedido { get; set; }
+        public EstadoPedido estadoPedido { get; set; }
 
-        public string EstadoTexto
+        public enum EstadoPedido
         {
-
-            get
-            {
-
-                switch (estadoPedido)
-                {
-                    case 0:
-                        return "Pendiente";
-
-                    case 1:
-                        return "En preparación";
-
-                    case 2:
-                        return "Listo";
-
-                    case 3:
-                        return "Entregado";
-
-                    case 4:
-                        return "Cancelado";
-
-
-                    default:
-                        return "Desconocido";
-
-                }
-            }
-
+            Pendiente = 0,
+            EnPreparacion = 1,
+            Listo = 2,
+            Entregado = 3,
+            Cancelado = 4
         }
+
 
     }
 }

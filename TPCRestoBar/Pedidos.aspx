@@ -17,7 +17,9 @@
                 ID="dgvPedidos"
                 runat="server"
                 CssClass="table table-hover table-striped"
-                AutoGenerateColumns="false">
+                AutoGenerateColumns="false"
+                OnRowDataBound="dgvPedidos_RowDataBound">
+
 
 
                 <Columns>
@@ -38,8 +40,21 @@
                         </ItemTemplate>
 
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="Estado" DataField="EstadoTexto" />
+              
+                      <asp:TemplateField HeaderText="Estado">
+                          <ItemTemplate>
+                              <asp:Label 
+                                
+                                  ID="lblEstado"
+                                  runat="server"
+                                  Text='<%# Eval("estadoPedido") %>'
+                                  CssClass="badge bg-primary"
+                                  >
+                              </asp:Label>
 
+                          </ItemTemplate>
+
+                           </asp:TemplateField>
 
                 </Columns>
 

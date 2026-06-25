@@ -32,7 +32,7 @@ namespace Negocio
                     pedido.empleado.nombre = datos.Lector["NombreEmpleado"].ToString(); 
                     pedido.empleado.apellido = datos.Lector["ApellidoEmpleado"].ToString(); 
                     pedido.fechaPedido = (DateTime)datos.Lector["FechaPedido"];
-                    pedido.estadoPedido = (byte)datos.Lector["Estado"];
+                    pedido.estadoPedido = (Pedido.EstadoPedido)(byte)datos.Lector["Estado"];
 
 
                     lista.Add(pedido);
