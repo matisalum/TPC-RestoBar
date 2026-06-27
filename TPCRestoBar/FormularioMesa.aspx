@@ -13,12 +13,14 @@
         <div class="row g-3">
             <div class="col-12 col-md-6">
                 <asp:Label ID="lblNumero" CssClass="form-label fw-semibold" runat="server" Text="Número"></asp:Label>
-                <asp:TextBox ID="txtNumero" CssClass="form-control" placeholder="Ej: 5" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNumero" CssClass="form-control" placeholder="Ej: 5" runat="server" ></asp:TextBox>
+                <asp:Label ID="lblMensajeN" runat="server" CssClass="text-danger fw-bold"></asp:Label>
             </div>
 
             <div class="col-12 col-md-6">
                 <asp:Label ID="lblCapacidad" CssClass="form-label fw-semibold" runat="server" Text="Capacidad"></asp:Label>
                 <asp:TextBox ID="txtCapacidad" CssClass="form-control" placeholder="Ej: 4 personas" runat="server"></asp:TextBox>
+                <asp:Label ID="lblMensajeC" runat="server" CssClass="text-danger fw-bold"></asp:Label>
             </div>
 
             <div class="col-12 mb-3">

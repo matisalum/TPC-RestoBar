@@ -69,11 +69,22 @@ namespace TPCRestoBar
             {
                 Mesa nueva = new Mesa();
                 MesasNegocio negocio = new MesasNegocio();
-
+                //Valdidaciones de cantidad y numero positivos 
+                lblMensajeN.Text = "";
+                if (int.Parse(txtNumero.Text) <= 0)
+                {
+                    lblMensajeN.Text = "El numero de mesa debe ser mayor a 0";
+                    return;
+                }
+                lblMensajeC.Text = "";
+                if (int.Parse(txtCapacidad.Text) <= 0)
+                {
+                    lblMensajeC.Text = "La cantidad debe ser mayor a 0";
+                    return;
+                }
+                //Asignacion
                 nueva.numero = int.Parse(txtNumero.Text);
                 nueva.capacidad = int.Parse(txtCapacidad.Text);
-                int ID = int.Parse(ddlEmpleados.SelectedItem.Value);
-                //nueva.estado = true;
 
                 // Evalua idEmpleado
                 if(string.IsNullOrEmpty(ddlEmpleados.SelectedValue))
@@ -87,7 +98,6 @@ namespace TPCRestoBar
                 //Evalua idMESA
                 if (Request.QueryString["id"] != null)
                 {
-                    // SE ROMPE, VER DESPUES XD
                     Mesa aux = (Mesa)Session["mesaS"];
                     nueva.idMesa = int.Parse(Request.QueryString["id"]);
                     nueva.estado = aux.estado;

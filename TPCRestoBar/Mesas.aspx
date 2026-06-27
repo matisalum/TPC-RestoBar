@@ -33,7 +33,7 @@
                                 Text='<%# buscarEmpleado(Convert.ToInt32(Eval("idEmpleado"))) %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField HeaderText="Asignar" ShowSelectButton="true" SelectText="🧑‍🍳" />
+                    <%--<asp:CommandField HeaderText="Asignar" ShowSelectButton="true" SelectText="🧑‍🍳" />--%>
 
                     <asp:TemplateField HeaderText="Estado">
                         <ItemTemplate>
