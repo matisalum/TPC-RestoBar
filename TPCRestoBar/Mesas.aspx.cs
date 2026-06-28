@@ -155,7 +155,6 @@ namespace TPCRestoBar
 
                     if (seleccion == "TODOS" || string.IsNullOrEmpty(seleccion))
                     {
-
                     }
                     else if (seleccion == "LIBRE")
                     {

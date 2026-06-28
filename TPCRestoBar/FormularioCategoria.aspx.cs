@@ -41,13 +41,20 @@ namespace TPCRestoBar
             {
                 Categoria cat = new Categoria();
                 CategoriaNegocio negocio = new CategoriaNegocio();
+                lblMensaje.Text = "";
 
+                if(string.IsNullOrEmpty(txtNombre.Text))
+                {
+                    lblMensaje.Text = "Campo obligatorio...";
+                    return;
+                }
                 cat.Nombre = txtNombre.Text.ToString();
-                //cat.Estado = true;
-                cat.Descripcion = "";
+
                 if (Request.QueryString["id"] != null)
                 {
+                    Categoria aux = (Categoria)Session["categoriaS"];
                     cat.Id = int.Parse(Request.QueryString["id"]);
+                    cat.Estado = aux.Estado;
                     negocio.modificarConSp(cat);
                 }
                 else

@@ -18,7 +18,7 @@ namespace Negocio
 			
 			try
 			{
-				string consulta = "SELECT ID, NOMBRE ,DESCRIPCION, ESTADO FROM CATEGORIA ";
+				string consulta = "SELECT ID, NOMBRE, ESTADO FROM CATEGORIA ";
 				datos.setearConsulta(consulta);
 				datos.ejecutarLectura();
 
@@ -33,10 +33,6 @@ namespace Negocio
 						cat.Nombre = (string)datos.Lector["NOMBRE"];
 					else
 						cat.Nombre = "";
-					if (!(datos.Lector["DESCRIPCION"] is DBNull))
-						cat.Descripcion = (string)datos.Lector["DESCRIPCION"];
-					else
-						cat.Descripcion = "";
 					if (!(datos.Lector["ESTADO"] is DBNull))
 						cat.Estado = (bool)datos.Lector["ESTADO"];
 					else
@@ -99,10 +95,6 @@ namespace Negocio
                         cat.Nombre = (string)datos.Lector["NOMBRE"];
                     else
                         cat.Nombre = "";
-                    if (!(datos.Lector["DESCRIPCION"] is DBNull))
-                        cat.Descripcion = (string)datos.Lector["DESCRIPCION"];
-                    else
-                        cat.Descripcion = "";
                     if (!(datos.Lector["ESTADO"] is DBNull))
                         cat.Estado = (bool)datos.Lector["ESTADO"];
                     else
@@ -135,7 +127,6 @@ namespace Negocio
                 datos.setearProcedimiento("storeModificarCategoria");
                 datos.setearParametro("@id", cat.Id);
                 datos.setearParametro("@Nombre", cat.Nombre);
-                datos.setearParametro("@Descripcion", cat.Descripcion);
                 datos.setearParametro("@Estado", cat.Estado);
 
                 datos.ejecutarAccion();

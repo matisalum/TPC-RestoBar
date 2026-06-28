@@ -55,13 +55,11 @@ GO
 CREATE OR ALTER PROCEDURE storeModificarCategoria
     @id INT,
     @Nombre NVARCHAR(255),
-    @Descripcion NVARCHAR(100),
     @Estado BIT
 AS
 BEGIN
     UPDATE Categoria  
     SET nombre = @Nombre, 
-        descripcion = @Descripcion,
         estado = @Estado
     WHERE id = @id;
 END;

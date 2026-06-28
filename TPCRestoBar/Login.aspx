@@ -8,7 +8,7 @@
         <div class="col-2"></div>
         <div class="col">
             <div class="mb-3">
-                <label for="txtCorreo" class="form-label">Email</label>
+                <label for="txtCorreo" class="form-label">Usuario</label>
                 <asp:TextBox runat="server" cssclass="form-control" id="txtCorreo"/>  
               </div>
               <div class="mb-3">

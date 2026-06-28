@@ -16,6 +16,7 @@
             <div class="col-12 col-md-6">
                 <asp:Label ID="lblNombre" CssClass="form-label fw-semibold" runat="server" Text="Número"></asp:Label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control" placeholder="Ej: Bebida" runat="server"></asp:TextBox>
+                <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger fw-bold"></asp:Label>
             </div>
 
             <hr class="text-mutedmy-2">

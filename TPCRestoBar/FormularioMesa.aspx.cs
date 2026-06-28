@@ -38,9 +38,9 @@ namespace TPCRestoBar
                     txtNumero.Text = select.numero.ToString();
                     txtCapacidad.Text = select.capacidad.ToString();
 
-                    if(select.idEmpleado != null)
+                    if (select.idEmpleado != null)
                     {
-                        if(ddlEmpleados.Items.FindByValue(select.idEmpleado.ToString()) != null)
+                        if (ddlEmpleados.Items.FindByValue(select.idEmpleado.ToString()) != null)
                         {
                             ddlEmpleados.SelectedValue = select.idEmpleado.ToString();
                         }
@@ -90,7 +90,7 @@ namespace TPCRestoBar
                 nueva.capacidad = int.Parse(txtCapacidad.Text);
 
                 // Evalua idEmpleado
-                if(string.IsNullOrEmpty(ddlEmpleados.SelectedValue))
+                if (string.IsNullOrEmpty(ddlEmpleados.SelectedValue))
                 {
                     nueva.idEmpleado = null;
                 }
@@ -124,9 +124,16 @@ namespace TPCRestoBar
             {
                 MesasNegocio negocio = new MesasNegocio();
                 Mesa select = (Mesa)Session["mesaS"];
+                if (select.idEmpleado == null || select.idEmpleado <= 0)
+                {
+                    negocio.eliminacionLogica(select.idMesa, !select.estado);
+                    Response.Redirect("Mesas.aspx");
+                }
+                else
+                {
+                    return;
+                }
 
-                negocio.eliminacionLogica(select.idMesa, !select.estado);
-                Response.Redirect("Mesas.aspx");
             }
             catch (Exception ex)
             {
@@ -158,7 +165,7 @@ namespace TPCRestoBar
             }
             catch (Exception ex)
             {
-                //Session.Add("error", ex);
+                Session.Add("error", ex);
                 throw ex;
             }
         }
