@@ -19,7 +19,10 @@ namespace TPCRestoBar
             if (!IsPostBack)
             {
                 EmpleadoNegocio empleado = new EmpleadoNegocio();
-                ddlEmpleados.DataSource = empleado.listarConSp();
+                List<Empleado> lista = empleado.listarConSp();
+                lista = lista.FindAll(x => x.Activo == true);
+                lista = lista.FindAll(x => x.rol == "Mesero");
+                ddlEmpleados.DataSource = lista;
                 ddlEmpleados.DataTextField = "nombre";
                 ddlEmpleados.DataValueField = "idEmpleado";
                 ddlEmpleados.DataBind();
