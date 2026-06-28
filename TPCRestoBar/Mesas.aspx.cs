@@ -11,6 +11,7 @@ namespace TPCRestoBar
 {
     public partial class Mesas : System.Web.UI.Page
     {
+        public bool filtroAvanzado { get; set; }
         private void cargarmesa()
         {
             MesasNegocio negocio = new MesasNegocio();
@@ -18,8 +19,10 @@ namespace TPCRestoBar
             dgvMesa.DataSource = Session["listarMesas"];
             dgvMesa.DataBind();
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            filtroAvanzado = chbAvanzado.Checked;
             if (!IsPostBack)
             {
                 cargarmesa();
@@ -31,7 +34,6 @@ namespace TPCRestoBar
         {
             Response.Redirect("FormularioMesa.aspx");
         }
-
 
         protected void dgvMesa_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -71,6 +73,7 @@ namespace TPCRestoBar
                 dgvMesa.DataBind();
             }
         }
+
         protected string buscarEmpleado(int ide)
         {
             EmpleadoNegocio negocio = new EmpleadoNegocio();
@@ -81,6 +84,30 @@ namespace TPCRestoBar
 
             empleado = negocio.obtenerPorId(ide);
             return empleado.nombre;
+        }
+
+        protected void chbAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            filtroAvanzado = chbAvanzado.Checked;
+            txtFiltro.Enabled = !filtroAvanzado;
+        }
+
+        protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw ex;
+            }
         }
     }
 }

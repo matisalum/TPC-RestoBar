@@ -7,12 +7,45 @@
         <h1 class="fw-bold">ADMINISTRACION DE MESAS</h1>
         <hr />
     </div>
-    <div class="mb-4">
-        <label>Filtrar x Nro Mesa</label>
-        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+    <div class="row">
+        <div class="col mb-4">
+            <label>Filtrar x Nro Mesa</label>
+            <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+        </div>
+        <div class="col">
+            <label>Flitro avanzado </label>
+            <asp:CheckBox ID="chbAvanzado" AutoPostBack="true" OnCheckedChanged="chbAvanzado_CheckedChanged" runat="server" />
+        </div>
     </div>
-    <div class="card">
-        <div class="card-body">
+    <%if (chbAvanzado.Checked)
+        { %>
+            <div class="row mb-3">
+                <div class="col">
+                    <label>Campo :</label>
+                    <asp:DropDownList ID="ddlCampo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" CssClass="btn btn-primary dropdown-toggle">
+                        <asp:ListItem Text="Numero" />
+                        <asp:ListItem Text="Capacidad" />
+                        <asp:ListItem Text="Empleado" />
+                    </asp:DropDownList>
+                </div>
+                <div class="col">
+                    <label>Estado :</label>
+                    <asp:DropDownList ID="ddlEstado" runat="server" class="btn btn-secondary dropdown-toggle">
+                        <asp:ListItem Text="Todos" />
+                        <asp:ListItem Text="Activos" />
+                        <asp:ListItem Text="Inactivos" />
+                    </asp:DropDownList>
+                </div>
+                <div class="col">
+                    <asp:TextBox ID="txbFiltroA" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+                <div class="col">
+                    <asp:Button ID="btnBuscar" CssClass="btn btn-primary" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
+                </div>
+            </div>
+    <%  } %>
+    <div class="row">
+        <div class="col">
             <asp:GridView
                 ID="dgvMesa"
                 runat="server"

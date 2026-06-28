@@ -7,12 +7,25 @@
     <div class="mb-4">
         <h1>Categorias</h1>
     </div>
-    <div class="mb-4">
-        <label>Filtrar x Nombre</label>
-        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged"/>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Nombre:</label>
+            <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+        </div>
+        <div class="col">
+            <label>Estado:</label>
+            <asp:DropDownList ID="ddlEstado" AutoPostBack="true" CssClass="btn btn-primary dropdown-toggle" runat="server">
+                <asp:ListItem Text="Todos" />
+                <asp:ListItem Text="Activos" />
+                <asp:ListItem Text="Inactivos" />
+            </asp:DropDownList>
+        </div>
+        <div class="col">
+            <asp:Button Text="Buscar" ID="btnBuscar" CssClass="btn btn-primary" runat="server" OnClick="btnBuscar_Click" />
+        </div>
     </div>
-    <div class="card">
-        <div class="card-body">
+    <div class="row">
+        <div class="col">
             <asp:GridView
                 ID="dvgCategoria"
                 CssClass="table table-striped table-hover"

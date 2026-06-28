@@ -66,5 +66,10 @@ namespace TPCRestoBar
                 dvgCategoria.DataBind();
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
