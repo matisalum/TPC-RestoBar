@@ -1,10 +1,11 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dominio;
+using System.Xml.Linq;
 
 namespace Negocio
 {
@@ -168,5 +169,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+       
     }
 }

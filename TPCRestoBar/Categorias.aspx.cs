@@ -45,7 +45,32 @@ namespace TPCRestoBar
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
+            //List<Categoria> lista = (List<Categoria>)Session["listarCategorias"];
+            //if (lista == null)
+            //{
+            //    dvgCategoria.DataSource = null;
+            //    dvgCategoria.DataBind();
+            //    return;
+            //}
+
+            //if (string.IsNullOrEmpty(txtFiltro.Text))
+            //{
+            //    cargarTabla();
+            //    return;
+            //}
+
+            //else
+            //{
+            //    List<Categoria> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            //    dvgCategoria.DataSource = listaFiltrada;
+            //    dvgCategoria.DataBind();
+            //}
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
             List<Categoria> lista = (List<Categoria>)Session["listarCategorias"];
+
             if (lista == null)
             {
                 dvgCategoria.DataSource = null;
@@ -53,23 +78,25 @@ namespace TPCRestoBar
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtFiltro.Text))
+            List<Categoria> listaFiltrada = lista;
+
+            if (ddlEstado.Text == "Activos")
             {
-                cargarTabla();
-                return;
+                listaFiltrada = listaFiltrada.FindAll(x => x.Estado == true);
+            }
+            else if (ddlEstado.Text == "Inactivos")
+            {
+                listaFiltrada = listaFiltrada.FindAll(x => x.Estado == false);
             }
 
-            else
+            if (!string.IsNullOrEmpty(txtFiltro.Text))
             {
-                List<Categoria> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
-                dvgCategoria.DataSource = listaFiltrada;
-                dvgCategoria.DataBind();
+                string textoBusqueda = txtFiltro.Text.ToUpper();
+                listaFiltrada = listaFiltrada.FindAll(x => x.Nombre.ToUpper().Contains(textoBusqueda));
             }
-        }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-
+            dvgCategoria.DataSource = listaFiltrada;
+            dvgCategoria.DataBind();
         }
     }
 }

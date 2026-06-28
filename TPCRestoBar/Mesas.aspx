@@ -19,30 +19,40 @@
     </div>
     <%if (chbAvanzado.Checked)
         { %>
-            <div class="row mb-3">
-                <div class="col">
-                    <label>Campo :</label>
-                    <asp:DropDownList ID="ddlCampo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" CssClass="btn btn-primary dropdown-toggle">
-                        <asp:ListItem Text="Numero" />
-                        <asp:ListItem Text="Capacidad" />
-                        <asp:ListItem Text="Empleado" />
-                    </asp:DropDownList>
-                </div>
-                <div class="col">
-                    <label>Estado :</label>
-                    <asp:DropDownList ID="ddlEstado" runat="server" class="btn btn-secondary dropdown-toggle">
-                        <asp:ListItem Text="Todos" />
-                        <asp:ListItem Text="Activos" />
-                        <asp:ListItem Text="Inactivos" />
-                    </asp:DropDownList>
-                </div>
-                <div class="col">
-                    <asp:TextBox ID="txbFiltroA" CssClass="form-control" runat="server"></asp:TextBox>
-                </div>
-                <div class="col">
-                    <asp:Button ID="btnBuscar" CssClass="btn btn-primary" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
-                </div>
-            </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Campo :</label>
+            <asp:DropDownList ID="ddlCampo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" CssClass="btn btn-primary dropdown-toggle">
+                <asp:ListItem Text="Numero" />
+                <asp:ListItem Text="Capacidad" />
+                <asp:ListItem Text="Empleado" />
+            </asp:DropDownList>
+        </div>
+        <div class="col">
+            <label>Estado :</label>
+            <asp:DropDownList ID="ddlEstado" runat="server" class="btn btn-secondary dropdown-toggle">
+                <asp:ListItem Text="Todos" />
+                <asp:ListItem Text="Activos" />
+                <asp:ListItem Text="Inactivos" />
+            </asp:DropDownList>
+        </div>
+        <div class="col">
+            <asp:TextBox ID="txbFiltroA" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+        <div class="col">
+            <asp:Button ID="btnBuscar" CssClass="btn btn-primary" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Mosos :</label>
+            <asp:DropDownList ID="ddlMosos" runat="server"
+                AutoPostBack="true"
+                OnSelectedIndexChanged="ddlMosos_SelectedIndexChanged"
+                CssClass="btn btn-primary dropdown-toggle">
+            </asp:DropDownList>
+        </div>
+    </div>
     <%  } %>
     <div class="row">
         <div class="col">
