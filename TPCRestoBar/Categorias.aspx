@@ -8,7 +8,7 @@
         <h1>Categorias</h1>
     </div>
     <div class="mb-4">
-        <label>Filtrar</label>
+        <label>Filtrar x Nombre</label>
         <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control w-25" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged"/>
     </div>
     <div class="card">

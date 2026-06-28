@@ -79,7 +79,7 @@ namespace TPCRestoBar
                 lblMensajeC.Text = "";
                 if (int.Parse(txtCapacidad.Text) <= 0)
                 {
-                    lblMensajeC.Text = "La cantidad debe ser mayor a 0";
+                    lblMensajeC.Text = "La capacidad debe ser mayor a 0";
                     return;
                 }
                 //Asignacion
@@ -111,7 +111,7 @@ namespace TPCRestoBar
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                //throw ex;
+                throw ex;
             }
         }
 

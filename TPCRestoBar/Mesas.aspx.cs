@@ -47,28 +47,29 @@ namespace TPCRestoBar
         // FILTRO RAPIDO
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
-            //List<Mesa> lista = (List<Mesa>)Session["listarCategorias"];
-            //List<Mesa> listaFiltrada = lista.FindAll(x => x.numero == int.Parse(txtFiltro.Text));
-            //dgvMesa.DataSource = listaFiltrada;
 
-            //dgvMesa.DataBind();
+            List<Mesa> lista = (List<Mesa>)Session["listarMesas"];
+            if (lista == null)
+            {
+                dgvMesa.DataSource = null;
+                dgvMesa.DataBind();
+                return;
+            }
 
-            //var lista = Session["listarCategorias"] as List<Mesa>;
-            //if (lista == null)
-            //{
-            //    dgvMesa.DataSource = null;
-            //    dgvMesa.DataBind();
-            //    return;
-            //}
+            if (!int.TryParse(txtFiltro.Text, out int numero))
+            {
+                if(string.IsNullOrEmpty(txtFiltro.Text))
+                    cargarmesa();
 
-            //if (!int.TryParse(txtFiltro.Text, out int numero))
-            //{
-            //    return;
-            //}
+                return;
+            }
 
-            //var listaFiltrada = lista.Where(x => x.numero == numero).ToList();
-            //dgvMesa.DataSource = listaFiltrada;
-            //dgvMesa.DataBind();
+            else
+            {
+                List<Mesa> listaFiltrada = lista.FindAll(x => x.numero == numero);
+                dgvMesa.DataSource = listaFiltrada;
+                dgvMesa.DataBind();
+            }
         }
         protected string buscarEmpleado(int ide)
         {
@@ -77,7 +78,7 @@ namespace TPCRestoBar
 
             if (negocio.obtenerPorId(ide) == null)
                 return "sin asignar";
-        
+
             empleado = negocio.obtenerPorId(ide);
             return empleado.nombre;
         }
