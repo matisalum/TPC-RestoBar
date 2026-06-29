@@ -56,5 +56,10 @@ namespace TPCRestoBar
                 }
             }
         }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioPedido.aspx", false);
+        }
     }
 }

@@ -100,7 +100,6 @@
 
     <div class="mt-3 mb-3">
         <asp:Button Text="Agregar" ID="btnAgregar" CssClass="btn btn-success me-2" OnClick="btnAgregar_Click" runat="server" />
-        <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger me-2" runat="server" />
     </div>
 
 </asp:Content>

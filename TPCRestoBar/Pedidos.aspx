@@ -20,10 +20,7 @@
                 AutoGenerateColumns="false"
                 OnRowDataBound="dgvPedidos_RowDataBound">
 
-
-
                 <Columns>
-
                     <asp:BoundField HeaderText="Pedido" DataField="idPedido" />
                     <asp:BoundField HeaderText="Fecha" DataField="fechaPedido" />
 
@@ -31,16 +28,14 @@
                         <ItemTemplate>
                             <%# Eval("mesa.numero") %>
                         </ItemTemplate>
-
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Mesero">
                         <ItemTemplate>
                             <%# Eval("Empleado.nombre") %>
                             <%# Eval("Empleado.apellido") %>
                         </ItemTemplate>
-
                     </asp:TemplateField>
-              
+            
                       <asp:TemplateField HeaderText="Estado">
                           <ItemTemplate>
                               <asp:Label 
@@ -62,4 +57,8 @@
 
         </div>
     </div>
+
+    <div class="mt-3 mb-3">
+    <asp:Button Text="Agregar" ID="btnAgregar" CssClass="btn btn-success me-2" OnClick="btnAgregar_Click" runat="server" />
+</div>
 </asp:Content>
