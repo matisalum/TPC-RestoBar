@@ -178,6 +178,7 @@
     <Content Include="FormularioEmpleado.aspx" />
     <Content Include="FormularioMesa.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MasasMeseros.aspx" />
     <Content Include="Mesas.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="Producto.aspx" />
@@ -235,6 +236,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasasMeseros.aspx.cs">
+      <DependentUpon>MasasMeseros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasasMeseros.aspx.designer.cs">
+      <DependentUpon>MasasMeseros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>

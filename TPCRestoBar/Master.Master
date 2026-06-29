@@ -82,6 +82,13 @@
             </li>
 
             <li>
+                <a href="MasasMeseros.aspx">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                    Mis Mesas
+                </a>
+            </li>
+
+            <li>
                 <a href="Producto.aspx">
                     <i class="bi bi-box-seam"></i>
                     Productos
