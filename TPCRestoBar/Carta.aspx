@@ -7,15 +7,6 @@
     <div class="container ">
         <h1>Cartilla </h1>
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col">
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
-                <asp:TextBox ID="txbBuscar" runat="server"></asp:TextBox>
-            </div>
-            <div class="col">
-                <asp:DropDownList ID="ddlFiltro" runat="server"></asp:DropDownList>
-            </div>
-            
         </div>
         <div class="row">
             <div class="col">
@@ -41,36 +32,94 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+        <div class="text-center mb-5">
 
-    <h2 class="mb-4 text-center">🍽️ Nuestra Carta</h2>
+            <h1 class="titulo-carta">🍽 Nuestra Carta
 
-    <div class="row">
-       
-        <asp:Repeater ID="repProductos" runat="server">
-    <ItemTemplate>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
+            </h1>
 
-                <img src='<%# string.IsNullOrEmpty(Eval("imagen.Url")?.ToString())
-                            ? "https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg"
-                            : Eval("imagen.Url") %>'
-                     class="card-img-top"
-                     alt="Imagen del producto"
-                     style="height:250px; object-fit:cover;" />
+            <p class="subtitulo-carta">
+                Descubrí nuestros platos destacados
 
-                <div class="card-body">
-                    <h5 class="card-title"><%# Eval("nombre") %></h5>
-                    <p class="card-text">
-                        <strong>$ <%# Eval("precio") %></strong>
-                    </p>
+            </p>
+
+        </div>
+
+
+        <div class="row mb-4">
+
+            <div class="col-md-6 mx-auto">
+
+                <asp:TextBox
+                    ID="txtBuscar"
+                    runat="server"
+                    CssClass="form-control form-control-lg"
+                    placeholder="🔎 Buscar producto..."
+                    AutoPostBack="true"
+                    OnTextChanged="txtBuscar_TextChanged" />
+
+            </div>
+
+        </div>
+        <div class="row mb-4">
+
+            <div class="col-md-4 mx-auto">
+
+                <asp:DropDownList
+                    ID="ddlCategoria"
+                    runat="server"
+                    CssClass="form-select"
+                    AutoPostBack="true"
+                    OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
+                </asp:DropDownList>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+    <asp:Repeater ID="repProductos" runat="server">
+
+        <ItemTemplate>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card carta-card h-100">
+
+                    <img src='<%# string.IsNullOrEmpty(Eval("imagen.Url")?.ToString())
+                        ? "https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg"
+                        : Eval("imagen.Url") %>'
+
+                        class="card-img-top"
+                        alt="Producto" />
+
+                    <div class="card-body d-flex flex-column">
+
+                        <h5 class="fw-bold">
+                            <%# Eval("nombre") %>
+                        </h5>
+
+                        <p class="categoria">
+                            <%# Eval("categoria.Nombre") %>
+                        </p>
+
+                        <h4 class="precio">
+                            $ <%# Eval("precio") %>
+                        </h4>
+
+                       
+
+                    </div>
+
                 </div>
 
             </div>
-        </div>
-    </ItemTemplate>
-</asp:Repeater>
 
-    </div>
+        </ItemTemplate>
+
+    </asp:Repeater>
+
+</div>
 
 </asp:Content>

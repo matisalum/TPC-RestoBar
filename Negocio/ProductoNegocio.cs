@@ -16,35 +16,51 @@ namespace Negocio
 
             try
             {
-                string consulta = @"SELECT id, nombre, Precio, stock FROM Producto WHERE activo = 1";
+                datos.setearConsulta(@"
+            SELECT
+                id,
+                nombre,
+                Precio,
+                stock,
+                activo,
+                idCategoria
+            FROM Producto");
 
-                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Producto producto = new Producto();
 
-                    producto.idProducto = Convert.ToInt32(datos.Lector["id"]);
-                    producto.nombre = datos.Lector["nombre"].ToString();
-                    producto.precio = Convert.ToDecimal(datos.Lector["Precio"]);
-                    producto.stock = Convert.ToInt32(datos.Lector["stock"]);
+                    producto.idProducto =
+                        Convert.ToInt32(datos.Lector["id"]);
+
+                    producto.nombre =
+                        datos.Lector["nombre"].ToString();
+
+                    producto.precio =
+                        Convert.ToDecimal(datos.Lector["Precio"]);
+
+                    producto.stock =
+                        Convert.ToInt32(datos.Lector["stock"]);
+
+                    producto.activo =
+                        Convert.ToBoolean(datos.Lector["activo"]);
+
+                    if (!(datos.Lector["idCategoria"] is DBNull))
+                        producto.idCategoria =
+                            Convert.ToInt32(datos.Lector["idCategoria"]);
 
                     lista.Add(producto);
                 }
 
                 return lista;
             }
-            catch (Exception)
-            {
-                throw;
-            }
             finally
             {
                 datos.cerrarConexion();
             }
         }
-
 
         public List<Producto> listarCarta()
         {
@@ -53,11 +69,23 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(
-                    "SELECT p.id, p.nombre, p.Precio, p.stock, p.activo, i.Url " +
-                    "FROM Producto p " +
-                    "INNER JOIN Imagen i ON p.idImagen = i.id " +
-                    "WHERE p.activo = 1");
+                datos.setearConsulta(@"
+            SELECT
+                p.id,
+                p.nombre,
+                p.Precio,
+                p.stock,
+                p.activo,
+                p.idCategoria,
+                c.Nombre AS Categoria,
+                i.Url
+            FROM Producto p
+            LEFT JOIN Categoria c
+                ON c.ID = p.idCategoria
+            LEFT JOIN Imagen i
+                ON i.id = p.idImagen
+            WHERE p.activo = 1
+        ");
 
                 datos.ejecutarLectura();
 
@@ -65,14 +93,36 @@ namespace Negocio
                 {
                     Producto producto = new Producto();
 
-                    producto.idProducto = (int)datos.Lector["id"];
-                    producto.nombre = datos.Lector["nombre"].ToString();
-                    producto.precio = (decimal)datos.Lector["Precio"];
-                    producto.stock = (short)datos.Lector["stock"];
-                    producto.activo = (bool)datos.Lector["activo"];
+                    producto.idProducto =
+                        Convert.ToInt32(datos.Lector["id"]);
+
+                    producto.nombre =
+                        datos.Lector["nombre"].ToString();
+
+                    producto.precio =
+                        Convert.ToDecimal(datos.Lector["Precio"]);
+
+                    producto.stock =
+                        Convert.ToInt32(datos.Lector["stock"]);
+
+                    producto.activo =
+                        Convert.ToBoolean(datos.Lector["activo"]);
+
+                    if (!(datos.Lector["idCategoria"] is DBNull))
+                        producto.idCategoria =
+                            Convert.ToInt32(datos.Lector["idCategoria"]);
+
+                    producto.categoria = new Categoria();
+
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                        producto.categoria.Nombre =
+                            datos.Lector["Categoria"].ToString();
 
                     producto.imagen = new Imagen();
-                    producto.imagen.Url = datos.Lector["Url"].ToString();
+
+                    if (!(datos.Lector["Url"] is DBNull))
+                        producto.imagen.Url =
+                            datos.Lector["Url"].ToString();
 
                     lista.Add(producto);
                 }
@@ -260,6 +310,30 @@ namespace Negocio
                 }
 
                 return lista;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public bool existeProducto(string nombre)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    "SELECT COUNT(*) cantidad FROM Producto WHERE nombre = @nombre");
+
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                    return Convert.ToInt32(datos.Lector["cantidad"]) > 0;
+
+                return false;
             }
             finally
             {

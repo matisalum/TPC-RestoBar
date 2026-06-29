@@ -1,0 +1,41 @@
+﻿.carta-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+    .carta-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .carta-card img {
+        height: 220px;
+        object-fit: cover;
+    }
+
+.precio {
+    color: #E67E22;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.categoria {
+    font-size: .85rem;
+    color: #888;
+}
+
+.btn-resto {
+    background: #E67E22;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+    .btn-resto:hover {
+        background: #D35400;
+        color: white;
+    }

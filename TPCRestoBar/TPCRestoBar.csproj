@@ -183,6 +183,9 @@
     <Content Include="Pedidos.aspx" />
     <Content Include="Producto.aspx" />
     <Content Include="FormularioProducto.aspx" />
+    <Content Include="Styles\carta.css" />
+    <Content Include="Styles\dashboard.css" />
+    <Content Include="Styles\producto.css" />
     <Content Include="Styles\site.css" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />

@@ -54,7 +54,7 @@ namespace TPCRestoBar
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-
+            ProductoNegocio negocio = new ProductoNegocio();
             lblMensaje.Text = "";
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
@@ -62,12 +62,16 @@ namespace TPCRestoBar
                 lblMensaje.Text = "Debe ingresar un nombre para el producto.";
                 return;
             }
+            if (negocio.existeProducto(txtNombre.Text))
+            {
+                lblMensaje.Text = "Ya existe un producto con ese nombre.";
+                return;
+            }
 
-           
             decimal precio;
             if (!decimal.TryParse(txtPrecio.Text, out precio) || precio <= 0)
             {
-                lblMensaje.Text = "Ingrese un precio válido mayor a 0.";
+                lblMensaje.Text = "Ingrese un precio numérico válido mayor a 0.";
                 return;
             }
 
@@ -88,7 +92,7 @@ namespace TPCRestoBar
             producto.idCategoria = int.Parse(ddlCategoria.SelectedValue);
             producto.imagen = new Imagen();
             producto.imagen.Url = txtImagen.Text;
-            ProductoNegocio negocio = new ProductoNegocio();
+            
 
             if (Request.QueryString["id"] != null)
             {

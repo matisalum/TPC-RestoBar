@@ -15,11 +15,61 @@ namespace TPCRestoBar
         {
             if (!IsPostBack)
             {
-                ProductoNegocio negocio = new ProductoNegocio();
+                CategoriaNegocio negocio = new CategoriaNegocio();
 
-                repProductos.DataSource = negocio.listarCarta();
+                ddlCategoria.DataSource = negocio.listar();
+
+                ddlCategoria.DataTextField = "Nombre";
+
+                ddlCategoria.DataValueField = "Id";
+
+                ddlCategoria.DataBind();
+
+                ddlCategoria.Items.Insert( 0,  new ListItem( "Todas las categorías", "0"));
+
+
+                ProductoNegocio prod = new ProductoNegocio();
+
+                repProductos.DataSource = prod.listarCarta();
+
                 repProductos.DataBind();
             }
+        }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+            ProductoNegocio negocio = new ProductoNegocio();
+
+            List<Producto> lista = negocio.listarCarta();
+
+            lista = lista.FindAll(x => x.nombre.ToUpper().Contains( txtBuscar.Text.ToUpper()));
+
+            repProductos.DataSource = lista;
+
+            repProductos.DataBind();
+
+        }
+
+        protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProductoNegocio negocio =
+                new ProductoNegocio();
+
+            List<Producto> lista =
+                negocio.listarCarta();
+
+            int id =
+                int.Parse(ddlCategoria.SelectedValue);
+
+            if (id != 0)
+            {
+                lista = lista.FindAll(
+                    x => x.idCategoria == id);
+            }
+
+            repProductos.DataSource = lista;
+            repProductos.DataBind();
         }
     }
 }

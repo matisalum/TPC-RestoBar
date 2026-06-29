@@ -1,12 +1,15 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+﻿*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background: #ecf0f1;
-    font-family: 'Segoe UI',sans-serif;
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#EEF2F5;
+
 }
 
 .wrapper {
@@ -14,7 +17,9 @@ body {
     min-height: 100vh;
 }
 
-/* SIDEBAR */
+
+
+
 
 .sidebar {
     width: 260px;
@@ -71,7 +76,7 @@ body {
             transform: translateX(5px);
         }
 
-/* CONTENIDO */
+
 
 .main {
     flex: 1;
@@ -109,20 +114,20 @@ footer {
     border-top: 1px solid #ddd;
 }
 
-/* BOTONES */
+
 
 .btn {
     border-radius: 12px;
 }
 
-/* INPUTS */
+
 
 .form-control,
 .form-select {
     border-radius: 10px;
 }
 
-/* CARDS */
+
 
 .card {
     border: none;
@@ -133,4 +138,90 @@ footer {
     .card:hover {
         transform: translateY(-6px);
         box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+/* =====================================
+            DASHBOARD
+===================================== */
+
+.dashboard-card {
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    transition: .3s;
+    cursor: pointer;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .dashboard-card i {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-card h2 {
+        font-size: 38px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .dashboard-card h5 {
+        margin-top: 10px;
+    }
+
+.mesas {
+    background: #3498db;
+}
+
+.productos {
+    background: #f39c12;
+}
+
+.pedidos {
+    background: #c0392b;
+}
+
+.empleados {
+    background: #27ae60;
+}
+.carta-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+
+    .carta-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .carta-card img {
+        height: 220px;
+        object-fit: cover;
+    }
+
+.categoria {
+    color: #c78b35;
+    font-weight: 600;
+}
+
+.precio {
+    color: #a63d2f;
+    font-weight: 700;
+}
+
+.btn-resto {
+    background: #a63d2f;
+    color: white;
+    border-radius: 10px;
+}
+
+    .btn-resto:hover {
+        background: #8d3024;
+        color: white;
     }
