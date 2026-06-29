@@ -23,10 +23,9 @@ namespace dominio
         public enum EstadoPedido
         {
             Pendiente = 0,
-            EnPreparacion = 1,
-            Listo = 2,
-            Entregado = 3,
-            Cancelado = 4
+            EnProceso = 1,
+            Entregado = 2,
+            Cancelado = 3
         }
 
 

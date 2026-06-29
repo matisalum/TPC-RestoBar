@@ -37,12 +37,8 @@ namespace TPCRestoBar
                         lblEstado.CssClass = "badge bg-warning";
                         break;
 
-                    case EstadoPedido.EnPreparacion:
+                    case EstadoPedido.EnProceso:
                         lblEstado.CssClass = "badge bg-info";
-                        break;
-
-                    case EstadoPedido.Listo:
-                        lblEstado.CssClass = "badge bg-success";
                         break;
 
                     case EstadoPedido.Entregado:

@@ -82,6 +82,18 @@ END
 
 GO
 
+CREATE OR ALTER PROCEDURE storeAgregarPedido
+    @FechaPedido    DATE,
+    @Estado         TINYINT,
+    @idMesa         INT,
+    @idEmpleado     INT
+AS
+BEGIN
+    INSERT INTO Pedido (FechaPedido, Estado, idMesa, idEmpleado)
+    VALUES (@FechaPedido, @Estado, @idMesa, @idEmpleado)
+END
+
+GO
 INSERT INTO Mesa (Numero, Capacidad, Estado, idEmpleado)
 VALUES
 (1, 4, 1, 1),

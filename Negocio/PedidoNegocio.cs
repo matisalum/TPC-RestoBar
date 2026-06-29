@@ -60,16 +60,20 @@ namespace Negocio
 
             AccesoADatos datos = new AccesoADatos();
 
+
             try
             {
+                datos.setearProcedimiento("storeAgregarPedido");
 
-
+                datos.setearParametro("@FechaPedido", nuevo.fechaPedido);
+                datos.setearParametro("@Estado", (byte)nuevo.estadoPedido);
+                datos.setearParametro("@idMesa", nuevo.mesa.idMesa);
+                datos.setearParametro("@idEmpleado", nuevo.empleado.idEmpleado);
 
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
