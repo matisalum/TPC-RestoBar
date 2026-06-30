@@ -35,6 +35,7 @@
         </div>--%>
     </div>
     <%-- CARRITO--%>
+    <%-- GRID PARA CARGAR EL LISTADO DE PRODUCTOS DEL PEIDO--%>
     <div class="row">
         <div class="col">
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">🛒 Pedido</button>
@@ -50,8 +51,8 @@
                         runat="server"
                         CssClass="table table-striped-columns">
                         <Columns>
-                            <asp:BoundField HeaderText="Nombre" DataField="nombre" />
-                            <asp:BoundField HeaderText="Sub Total" DataField="precio" />
+                            <asp:BoundField HeaderText="producto" DataField="producto" />
+                            <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
                             <asp:BoundField HeaderText="Cantidad" />
                         </Columns>
                     </asp:GridView>
@@ -149,7 +150,11 @@
                                         OnClick="btnAgregar_Click" />
                                 </div>
                                 <div class="col-2">
-                                    <asp:Button ID="btnRestar" CssClass="btn btn-danger" runat="server" Text="-" />
+                                    <asp:Button ID="btnRestar" 
+                                        CssClass="btn btn-danger" 
+                                        runat="server" Text="-" 
+                                        CommandArgument='<%# Eval("idProducto") %>'
+                                        OnClick="btnRestar_Click"/>
                                 </div>
                                 <div class="col"></div>
                                 <div class="col-4">

@@ -66,13 +66,14 @@ namespace TPCRestoBar
 
             Pedido pedido = new Pedido
             {
+                //Datos provisorios / actualizar cuando tegamos login
                 mesa = mesa,
                 empleado = negocio2.obtenerPorId(12),
                 fechaPedido = DateTime.Now,
                 estadoPedido = Pedido.EstadoPedido.Pendiente,
                 Detalles = new List<DetallePedido>()
             };
-
+            //Guarda el pedido con los datos de la mesa seleccionada
             Session["PedidoActual"] = pedido;
 
             Response.Redirect("Carta.aspx");
