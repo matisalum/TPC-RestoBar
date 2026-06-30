@@ -57,16 +57,14 @@ namespace TPCRestoBar
             ProductoNegocio negocio = new ProductoNegocio();
             lblMensaje.Text = "";
 
+
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 lblMensaje.Text = "Debe ingresar un nombre para el producto.";
                 return;
             }
-            if (negocio.existeProducto(txtNombre.Text))
-            {
-                lblMensaje.Text = "Ya existe un producto con ese nombre.";
-                return;
-            }
+
+
 
             decimal precio;
             if (!decimal.TryParse(txtPrecio.Text, out precio) || precio <= 0)
@@ -82,6 +80,26 @@ namespace TPCRestoBar
                 lblMensaje.Text = "Ingrese un stock válido (0 o mayor).";
                 return;
             }
+            if (Request.QueryString["id"] == null)
+            {
+                int idInactivo = negocio.obtenerIdProductoInactivo(txtNombre.Text);
+
+                if (idInactivo > 0)
+                {
+                    negocio.activarProducto(idInactivo);
+
+                    lblMensaje.Text = "El producto ya existía y fue reactivado.";
+
+                    return;
+                }
+
+                if (negocio.existeProducto(txtNombre.Text))
+                {
+                    lblMensaje.Text = "Ya existe un producto con ese nombre.";
+
+                    return;
+                }
+            }
 
             Producto producto = new Producto();
 
@@ -93,6 +111,7 @@ namespace TPCRestoBar
             producto.imagen = new Imagen();
             producto.imagen.Url = txtImagen.Text;
             
+
 
             if (Request.QueryString["id"] != null)
             {

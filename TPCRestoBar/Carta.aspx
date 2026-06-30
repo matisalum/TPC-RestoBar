@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <h3>Plato del Día</h3>
                                 <p>Descripción del plato destacado.</p>
-                                <asp:Button ID="btnOrdenar" CssClass="btn btn-danger me-2" runat="server" Text="Ordenar" />
+                                
                             </div>
                         </div>
                         <div class="col-3"></div>

@@ -290,7 +290,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(
-                    "SELECT id, nombre, Precio, stock " +
+                    "SELECT id, nombre, Precio, stock, activo " +
                     "FROM Producto " +
                     "WHERE nombre LIKE @nombre AND activo = 1");
 
@@ -305,6 +305,7 @@ namespace Negocio
                     producto.nombre = datos.Lector["nombre"].ToString();
                     producto.precio = Convert.ToDecimal(datos.Lector["Precio"]);
                     producto.stock = Convert.ToInt32(datos.Lector["stock"]);
+                    producto.activo = Convert.ToBoolean(datos.Lector["activo"]);
 
                     lista.Add(producto);
                 }
@@ -334,6 +335,54 @@ namespace Negocio
                     return Convert.ToInt32(datos.Lector["cantidad"]) > 0;
 
                 return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public int obtenerIdProductoInactivo(string nombre)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    @"SELECT id
+              FROM Producto
+              WHERE nombre = @nombre
+              AND activo = 0");
+
+                datos.setearParametro("@nombre", nombre);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                    return (int)datos.Lector["id"];
+
+                return -1;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void activarProducto(int id)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(
+                    @"UPDATE Producto
+              SET activo = 1,
+                    stock = @stock,
+                    Precio = @presio
+                WHERE id = @id");
+
+                datos.setearParametro("@id", id);
+
+                datos.ejecutarAccion();
             }
             finally
             {

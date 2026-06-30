@@ -29,6 +29,5 @@ namespace dominio
             Cancelado = 3
         }
 
-
     }
 }
