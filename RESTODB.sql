@@ -146,3 +146,9 @@ GO
 select * from Imagen
 
 EXEC sp_rename 'Igmagen', 'Imagen';
+ 
+ DELETE FROM MESA
+
+ DELETE FROM Empleado
+
+ DELETE FROM Pedido

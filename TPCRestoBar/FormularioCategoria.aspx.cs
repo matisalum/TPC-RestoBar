@@ -11,6 +11,13 @@ namespace TPCRestoBar
 {
     public partial class FormularioCategoria : System.Web.UI.Page
     {
+        private bool existeNombre(string nom, int id)
+        {
+            CategoriaNegocio aux = new CategoriaNegocio();
+            List<Categoria> lista = aux.listar();
+
+            return lista.Any(x => x.Nombre.ToUpper() == nom.ToUpper() && x.Id != id);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
@@ -43,17 +50,30 @@ namespace TPCRestoBar
                 CategoriaNegocio negocio = new CategoriaNegocio();
                 lblMensaje.Text = "";
 
-                if(string.IsNullOrEmpty(txtNombre.Text))
+                if (string.IsNullOrEmpty(txtNombre.Text))
                 {
                     lblMensaje.Text = "Campo obligatorio...";
                     return;
                 }
+
+                int idAux = 0;
+                if (Request.QueryString["id"] != null)
+                {
+                    idAux = int.Parse(Request.QueryString["id"]);
+                }
+
+                if (existeNombre(txtNombre.Text.ToString(), idAux))
+                {
+                    lblMensaje.Text = "El nombre ya existe...";
+                    return;
+                }
+
                 cat.Nombre = txtNombre.Text.ToString();
 
                 if (Request.QueryString["id"] != null)
                 {
                     Categoria aux = (Categoria)Session["categoriaS"];
-                    cat.Id = int.Parse(Request.QueryString["id"]);
+                    cat.Id = idAux;
                     cat.Estado = aux.Estado;
                     negocio.modificarConSp(cat);
                 }

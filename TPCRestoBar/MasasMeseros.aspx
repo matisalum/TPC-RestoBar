@@ -10,20 +10,6 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <%--<%
-            foreach (dominio.Mesa item in listaMesas)
-            {  %>
-        <div class="col"> 
-
-                <div class="card text-bg-secondary mb-3" style="width: 18rem;">
-                    <div class="card-header">Nro:  <%: item.numero %> </div>
-                    <div class="card-body">
-                        <p class="card-text">Capacidad: <%: item.capacidad %></p>
-                        <a href="#" class="btn btn-warning">Liberar</a>
-                    </div>
-                </div>
-        </div>
-        <%  } %>--%>
         <asp:Repeater ID="repRepetidor" runat="server">
             <ItemTemplate>
                 <div class="col">
@@ -38,6 +24,13 @@
                                 CommandArgument='<%#Eval("idMesa")%>'
                                 CommandName="IDMesa"
                                 OnClick="btnLiberar_Click" />
+                            <asp:Button ID="btnNPedido"
+                                Text="Nuevo Pedido"
+                                CssClass="btn btn-warning"
+                                runat="server"
+                                CommandArgument='<%#Eval("idMesa")%>'
+                                CommandName="IDMesa"
+                                OnClick="btnNPedido_Click" />
                         </div>
                     </div>
                 </div>

@@ -145,21 +145,21 @@ namespace TPCRestoBar
         {
             try
             {
-                Mesa nueva = (Mesa)Session["mesaS"];
+                Mesa asignada = (Mesa)Session["mesaS"];
                 MesasNegocio negocio = new MesasNegocio();
 
-                nueva.numero = int.Parse(txtNumero.Text);
-                nueva.capacidad = int.Parse(txtCapacidad.Text);
+                asignada.numero = int.Parse(txtNumero.Text);
+                asignada.capacidad = int.Parse(txtCapacidad.Text);
 
-                nueva.idEmpleado = null;
+                asignada.idEmpleado = null;
 
                 if (Request.QueryString["id"] != null)
                 {
-                    nueva.idMesa = int.Parse(Request.QueryString["id"]);
-                    negocio.modificarConSp(nueva);
+                    asignada.idMesa = int.Parse(Request.QueryString["id"]);
+                    negocio.modificarConSp(asignada);
                 }
                 else
-                    negocio.agregar(nueva);
+                    return;
 
                 Response.Redirect("Mesas.aspx");
             }
