@@ -36,7 +36,7 @@
         <asp:Label ID="lblRol" CssClass="form-label" runat="server" Text="Rol"></asp:Label>
         <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-select"></asp:DropDownList>
     </div>
-    
+
 
     <div class="mb-3">
 
@@ -44,5 +44,10 @@
         <asp:Button Text="BAJA EMPLEDO" ID="btnBaja" OnClick="btnBaja_Click" CssClass="btn btn-warning" runat="server" />
         <asp:Button ID="BtnCancelar" Text="Cancelar" OnClick="BtnCancelar_Click" CssClass="btn btn-danger me-2" runat="server" />
 
+        <asp:Label
+            ID="lblError"
+            runat="server"
+            CssClass="text-danger fw-bold">
+         </asp:Label>
     </div>
 </asp:Content>

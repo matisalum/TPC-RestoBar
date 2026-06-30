@@ -186,8 +186,32 @@ namespace Negocio
                 throw ex;
             }
         }
+        public bool ExisteUsuario(string usuario)
+        {
+            AccesoADatos datos = new AccesoADatos();
 
-       
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Empleado WHERE Usuario = @Usuario");
+                datos.setearParametro("@Usuario", usuario);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                    return (int)datos.Lector[0] > 0;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }

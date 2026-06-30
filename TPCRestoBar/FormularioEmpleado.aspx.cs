@@ -69,10 +69,88 @@ namespace TPCRestoBar
 
         }
 
+        private bool validarNombre(String texto)
+        {
+            foreach(char letra in texto)
+            {
+                if (!char.IsLetter(letra) && letra != ' ')
+                    return true;
+            }
+
+            return false;
+        }
+        private bool PasswordValida(string password)
+        {
+            return password.Length >= 6;
+        }
+
+        private bool ValidarFormulario()
+        {
+            lblError.Text = "";
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                lblError.Text = "Debe ingresar un nombre.";
+                return false;
+            }
+            if (validarNombre(txtNombre.Text))
+            {
+                lblError.Text = "El nombre solo puede conter letras.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                lblError.Text = "Debe ingresar un apellido.";
+                return false;
+            }
+            if (validarNombre(txtApellido.Text))
+            {
+                lblError.Text = "El Apellido solo puede conter letras.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtUsuario.Text))
+            {
+                lblError.Text = "Debe ingresar un usuario.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                lblError.Text = "Debe ingresar una contraseña.";
+                return false;
+            }
+            if (!PasswordValida(txtContrasena.Text))
+            {
+                lblError.Text = "La contraseña debe tener al menos 6 caracteres.";
+                return false;
+            }
+
+            if (Request.QueryString["id"] == null)
+            {
+            EmpleadoNegocio negocio = new EmpleadoNegocio();
+
+            if (negocio.ExisteUsuario(txtUsuario.Text))
+            {
+                lblError.Text = "Ese usuario ya existe.";
+                return false;
+            }
+
+            }
+
+            return true;
+        }
+
+
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (!ValidarFormulario())
+            {
+                return;
+            }
 
-            
+
             try
             {
                 //  AGREGAR UN NUEVO MESERO O GERENTE 
