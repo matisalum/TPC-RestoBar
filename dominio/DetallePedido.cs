@@ -8,10 +8,18 @@ namespace dominio
 {
     public class DetallePedido
     {
-        public int IdDetalle {  get; set; }
-        public Producto producto { get; set; }
-        public Pedido pedido { get; set; }
-        public int cantidad { get; set; }
 
+        public int IdDetalle { get; set; }
+        public Producto Producto { get; set; }
+        public Pedido Pedido { get; set; }
+        public int Cantidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Subtotal
+        {
+            get
+            {
+                return Cantidad *  PrecioUnitario;
+            }
+        }
     }
 }

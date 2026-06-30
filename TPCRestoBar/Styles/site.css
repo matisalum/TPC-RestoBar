@@ -225,3 +225,16 @@ footer {
         background: #8d3024;
         color: white;
     }
+
+    /*mesas*/
+
+.mesa-card {
+    border: none;
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.mesa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}

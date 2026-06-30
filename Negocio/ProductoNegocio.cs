@@ -390,5 +390,10 @@ namespace Negocio
             }
         }
 
+        public Producto obtenerPorId(  int id)
+        { 
+            return listar() .Find( x => x.idProducto  == id );
+
+        } 
     }
 }

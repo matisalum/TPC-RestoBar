@@ -8,7 +8,7 @@
         <h1>Cartilla </h1>
         <div class="row">
         </div>
-        <asp:Label ID="lblPrueba" runat="server"></asp:Label>
+       <%-- %><asp:Label ID="lblPrueba" runat="server"></asp:Label>--%>
         <%--<div class="row">
             <div class="col">
                 <div class="card shadow-sm mb-5">
@@ -45,15 +45,31 @@
                     <h5 class="offcanvas-title" id="offcanvasRightLabel">Pedido mesa...</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
+                <asp:Label
+                    ID="lblMesa"
+                    runat="server"
+                    CssClass="fw-bold fs-5" />
+
                 <div class="offcanvas-body">
                     <asp:GridView ID="dgvPedido"
                         AutoGenerateColumns="False"
                         runat="server"
                         CssClass="table table-striped-columns">
                         <Columns>
-                            <asp:BoundField HeaderText="producto" DataField="producto" />
-                            <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
-                            <asp:BoundField HeaderText="Cantidad" />
+                            <asp:TemplateField HeaderText="Producto">
+                                <ItemTemplate>
+                                    <%# Eval("Producto.nombre") %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField
+                                HeaderText="Cantidad"
+                                DataField="Cantidad" />
+                            <asp:TemplateField
+                                HeaderText="Subtotal">
+                                <ItemTemplate>
+                                    $ <%# Eval("Subtotal") %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
