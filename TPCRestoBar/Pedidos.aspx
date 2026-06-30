@@ -35,21 +35,41 @@
                             <%# Eval("Empleado.apellido") %>
                         </ItemTemplate>
                     </asp:TemplateField>
-            
-                      <asp:TemplateField HeaderText="Estado">
-                          <ItemTemplate>
-                              <asp:Label 
-                                
-                                  ID="lblEstado"
-                                  runat="server"
-                                  Text='<%# Eval("estadoPedido") %>'
-                                  CssClass="badge bg-primary"
-                                  >
-                              </asp:Label>
 
-                          </ItemTemplate>
+                    <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <asp:Label
+                                ID="lblEstado"
+                                runat="server"
+                                Text='<%# Eval("estadoPedido") %>'
+                                CssClass="badge bg-primary">
+                            </asp:Label>
 
-                           </asp:TemplateField>
+                        </ItemTemplate>
+
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Acciones">
+                        <ItemTemplate>
+
+                            <asp:Button
+                                ID="btnAvanzar"
+                                runat="server"
+                                Text="Avanzar"
+                                CssClass="btn btn-success btn-sm"
+                                CommandArgument='<%# Eval("idPedido") %>'
+                                OnClick="btnAvanzar_Click" />
+
+                            <asp:Button
+                                ID="btnCancelar"
+                                runat="server"
+                                Text="Cancelar"
+                                CssClass="btn btn-danger btn-sm"
+                                CommandArgument='<%# Eval("idPedido") %>'
+                                OnClick="btnCancelar_Click" />
+
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                 </Columns>
 
@@ -58,7 +78,5 @@
         </div>
     </div>
 
-    <div class="mt-3 mb-3">
-    <asp:Button Text="Agregar" ID="btnAgregar" CssClass="btn btn-success me-2" OnClick="btnAgregar_Click" runat="server" />
-</div>
+
 </asp:Content>

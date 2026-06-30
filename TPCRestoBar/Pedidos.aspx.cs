@@ -16,9 +16,9 @@ namespace TPCRestoBar
         {
             if (!IsPostBack)
             {
-            PedidoNegocio negocio = new PedidoNegocio();
-            dgvPedidos.DataSource = negocio.listar();
-            dgvPedidos.DataBind();
+                PedidoNegocio negocio = new PedidoNegocio();
+                dgvPedidos.DataSource = negocio.listar();
+                dgvPedidos.DataBind();
 
             }
         }
@@ -31,31 +31,65 @@ namespace TPCRestoBar
 
                 Label lblEstado = (Label)e.Row.FindControl("lblEstado");
 
+                Button btnAvanzar = (Button)e.Row.FindControl("btnAvanzar");
+                Button btnCancelar = (Button)e.Row.FindControl("btnCancelar");
+
                 switch (pedido.estadoPedido)
                 {
                     case Pedido.EstadoPedido.Pendiente:
                         lblEstado.CssClass = "badge bg-warning";
                         break;
 
-                    case EstadoPedido.EnProceso:
+                    case Pedido.EstadoPedido.EnProceso:
                         lblEstado.CssClass = "badge bg-info";
                         break;
 
-                    case EstadoPedido.Entregado:
+                    case Pedido.EstadoPedido.Entregado:
                         lblEstado.CssClass = "badge bg-secondary";
                         break;
 
-                    case EstadoPedido.Cancelado:
+                    case Pedido.EstadoPedido.Cancelado:
                         lblEstado.CssClass = "badge bg-danger";
                         break;
 
                 }
+
+                if (pedido.estadoPedido == Pedido.EstadoPedido.Entregado ||
+                    pedido.estadoPedido == Pedido.EstadoPedido.Cancelado)
+                {
+                    btnAvanzar.Visible = false;
+                    btnCancelar.Visible = false;
+                }
             }
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
+        protected void btnAvanzar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("FormularioPedido.aspx", false);
+            Button btn = (Button)sender;
+
+            int idPedido = int.Parse(btn.CommandArgument);
+
+            PedidoNegocio negocio = new PedidoNegocio();
+
+            negocio.AvanzarEstado(idPedido);
+
+            dgvPedidos.DataSource = negocio.listar();
+            dgvPedidos.DataBind();
+
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            int idPedido = int.Parse(btn.CommandArgument);
+
+            PedidoNegocio negocio = new PedidoNegocio();
+
+            negocio.CancelarPedido(idPedido);
+
+            dgvPedidos.DataSource = negocio.listar();
+            dgvPedidos.DataBind();
         }
     }
 }

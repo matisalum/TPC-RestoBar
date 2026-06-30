@@ -83,5 +83,91 @@ namespace Negocio
 
 
         }
+
+
+        public Pedido ObtenerPorId(int idPedido)
+        {
+            Pedido pedido = null;
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT id, Estado FROM Pedido WHERE Id = @IdPedido");
+
+                datos.setearParametro("@idPedido", idPedido);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    pedido = new Pedido();
+
+                    pedido.idPedido = (int)datos.Lector["id"];
+                    pedido.estadoPedido = (Pedido.EstadoPedido)(byte)datos.Lector["Estado"];
+                }
+
+                return pedido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void AvanzarEstado(int idPedido)
+        {
+            Pedido pedido = ObtenerPorId(idPedido);
+
+            if (pedido == null)
+                return;
+
+            if (pedido.estadoPedido == Pedido.EstadoPedido.Pendiente)
+                pedido.estadoPedido = Pedido.EstadoPedido.EnProceso;
+
+            else if (pedido.estadoPedido == Pedido.EstadoPedido.EnProceso)
+                pedido.estadoPedido = Pedido.EstadoPedido.Entregado;
+
+            else
+                return;
+
+            ActualizarEstado(idPedido, pedido.estadoPedido);
+        }
+
+        public void CancelarPedido(int idPedido)
+        {
+            Pedido pedido = ObtenerPorId(idPedido);
+
+            if (pedido == null)
+                return;
+
+            if (pedido.estadoPedido == Pedido.EstadoPedido.Entregado)
+                return;
+
+            pedido.estadoPedido = Pedido.EstadoPedido.Cancelado;
+
+            ActualizarEstado(idPedido, pedido.estadoPedido);
+        }
+        private void ActualizarEstado(int idPedido, Pedido.EstadoPedido estado)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Pedido SET Estado = @Estado WHERE id = @IdPedido");
+
+                datos.setearParametro("@Estado", (byte)estado);
+                datos.setearParametro("@IdPedido", idPedido);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
