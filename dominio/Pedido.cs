@@ -19,6 +19,7 @@ namespace dominio
         public DateTime fechaPedido { get; set; }
 
         public EstadoPedido estadoPedido { get; set; }
+        public List<DetallePedido> Detalles { get; set; }
 
         public enum EstadoPedido
         {

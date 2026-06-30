@@ -13,6 +13,11 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Pedido pedido = (Pedido)Session["PedidoActual"];
+            if (pedido != null)
+            {
+                lblPrueba.Text = "Mesa: " + pedido.mesa.numero;
+            }
             if (!IsPostBack)
             {
                 CategoriaNegocio negocio = new CategoriaNegocio();
@@ -70,6 +75,13 @@ namespace TPCRestoBar
 
             repProductos.DataSource = lista;
             repProductos.DataBind();
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            int idProducto = int.Parse(btn.CommandArgument);
         }
     }
 }

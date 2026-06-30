@@ -57,6 +57,23 @@ namespace TPCRestoBar
         protected void btnNPedido_Click(object sender, EventArgs e)
         {
             string valor = ((Button)sender).CommandArgument;
+            MesasNegocio negocio = new MesasNegocio();
+            EmpleadoNegocio negocio2 = new EmpleadoNegocio();
+            if (string.IsNullOrEmpty(valor))
+                return;
+
+            Mesa mesa = negocio.filtrarId(int.Parse(valor));
+
+            Pedido pedido = new Pedido
+            {
+                mesa = mesa,
+                empleado = negocio2.obtenerPorId(12),
+                fechaPedido = DateTime.Now,
+                estadoPedido = Pedido.EstadoPedido.Pendiente,
+                Detalles = new List<DetallePedido>()
+            };
+
+            Session["PedidoActual"] = pedido;
 
             Response.Redirect("Carta.aspx");
         }

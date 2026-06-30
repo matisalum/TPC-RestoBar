@@ -8,7 +8,8 @@
         <h1>Cartilla </h1>
         <div class="row">
         </div>
-        <div class="row">
+        <asp:Label ID="lblPrueba" runat="server"></asp:Label>
+        <%--<div class="row">
             <div class="col">
                 <div class="card shadow-sm mb-5">
                     <div class="row">
@@ -31,95 +32,142 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="text-center mb-5">
+        </div>--%>
+    </div>
+    <%-- CARRITO--%>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">🛒 Pedido</button>
 
-            <h1 class="titulo-carta">🍽 Nuestra Carta
-
-            </h1>
-
-            <p class="subtitulo-carta">
-                Descubrí nuestros platos destacados
-
-            </p>
-
-        </div>
-
-
-        <div class="row mb-4">
-
-            <div class="col-md-6 mx-auto">
-
-                <asp:TextBox
-                    ID="txtBuscar"
-                    runat="server"
-                    CssClass="form-control form-control-lg"
-                    placeholder="🔎 Buscar producto..."
-                    AutoPostBack="true"
-                    OnTextChanged="txtBuscar_TextChanged" />
-
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Pedido mesa...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <asp:GridView ID="dgvPedido"
+                        AutoGenerateColumns="False"
+                        runat="server"
+                        CssClass="table table-striped-columns">
+                        <Columns>
+                            <asp:BoundField HeaderText="Nombre" DataField="nombre" />
+                            <asp:BoundField HeaderText="Sub Total" DataField="precio" />
+                            <asp:BoundField HeaderText="Cantidad" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
+                <div class="offcanavas-end">
+                    <asp:Button ID="btnConfirmar" CssClass="btn btn-primary" runat="server" Text="Confirmar" />
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="text-center mb-5">
+
+        <h1 class="titulo-carta">🍽 Nuestra Carta
+
+        </h1>
+
+        <p class="subtitulo-carta">
+            Descubrí nuestros platos destacados
+
+        </p>
+
+    </div>
+
+
+    <div class="row mb-4">
+
+        <div class="col-md-6 mx-auto">
+
+            <asp:TextBox
+                ID="txtBuscar"
+                runat="server"
+                CssClass="form-control form-control-lg"
+                placeholder="🔎 Buscar producto..."
+                AutoPostBack="true"
+                OnTextChanged="txtBuscar_TextChanged" />
 
         </div>
-        <div class="row mb-4">
 
-            <div class="col-md-4 mx-auto">
+    </div>
+    <div class="row mb-4">
 
-                <asp:DropDownList
-                    ID="ddlCategoria"
-                    runat="server"
-                    CssClass="form-select"
-                    AutoPostBack="true"
-                    OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
-                </asp:DropDownList>
+        <div class="col-md-4 mx-auto">
 
-            </div>
+            <asp:DropDownList
+                ID="ddlCategoria"
+                runat="server"
+                CssClass="form-select"
+                AutoPostBack="true"
+                OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
+            </asp:DropDownList>
 
         </div>
-        <div class="row">
 
-    <asp:Repeater ID="repProductos" runat="server">
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
 
-        <ItemTemplate>
+        <asp:Repeater ID="repProductos" runat="server">
 
-            <div class="col-lg-4 col-md-6 mb-4">
+            <ItemTemplate>
 
-                <div class="card carta-card h-100">
+                <div class="col-lg-4 col-md-6 mb-4">
 
-                    <img src='<%# string.IsNullOrEmpty(Eval("imagen.Url")?.ToString())
+                    <div class="card carta-card h-100">
+
+                        <img src='<%# string.IsNullOrEmpty(Eval("imagen.Url")?.ToString())
                         ? "https://static.vecteezy.com/system/resources/previews/022/059/000/non_2x/no-image-available-icon-vector.jpg"
                         : Eval("imagen.Url") %>'
+                            class="card-img-top"
+                            alt="Producto" />
 
-                        class="card-img-top"
-                        alt="Producto" />
+                        <div class="card-body d-flex flex-column">
 
-                    <div class="card-body d-flex flex-column">
+                            <h5 class="fw-bold">
+                                <%# Eval("nombre") %>
+                            </h5>
 
-                        <h5 class="fw-bold">
-                            <%# Eval("nombre") %>
-                        </h5>
+                            <p class="categoria">
+                                <%# Eval("categoria.Nombre") %>
+                            </p>
 
-                        <p class="categoria">
-                            <%# Eval("categoria.Nombre") %>
-                        </p>
+                            <p class="stok">
+                                Stock: <%# Eval("stock") %>
+                            </p>
 
-                        <h4 class="precio">
-                            $ <%# Eval("precio") %>
-                        </h4>
+                            <h4 class="precio">$ <%# Eval("precio") %>
+                            </h4>
+                            <div class="row">
+                                <div class="col-2">
+                                    <asp:Button ID="btnAgregar"
+                                        CssClass="btn btn-primary"
+                                        runat="server" Text="+"
+                                        CommandArgument='<%# Eval("idProducto") %>'
+                                        OnClick="btnAgregar_Click" />
+                                </div>
+                                <div class="col-2">
+                                    <asp:Button ID="btnRestar" CssClass="btn btn-danger" runat="server" Text="-" />
+                                </div>
+                                <div class="col"></div>
+                                <div class="col-4">
+                                    <asp:TextBox ID="txbCantidad" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col"></div>
+                            </div>
 
-                       
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+            </ItemTemplate>
 
-        </ItemTemplate>
+        </asp:Repeater>
 
-    </asp:Repeater>
-
-</div>
+    </div>
 
 </asp:Content>
