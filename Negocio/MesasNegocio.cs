@@ -74,7 +74,7 @@ namespace Negocio
                 datos.setearParametro("@NUMERO", nuevo.numero);
                 datos.setearParametro("@CAPACIDAD", nuevo.capacidad);
                 datos.setearParametro("@IDEMPLEADO", nuevo.idEmpleado);
-                datos.setearParametro("@ESTADO", true);
+                datos.setearParametro("@ESTADO", false);
 
                 datos.ejecutarAccion();
             }

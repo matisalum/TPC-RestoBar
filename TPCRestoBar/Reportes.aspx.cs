@@ -14,10 +14,7 @@ namespace TPORestobar
         {
             if (!IsPostBack)
             {
-                // Podrías poner una validación acá para que solo entren administradores:
-                // if (Session["EmpleadoLogueado"] == null || ((Empleado)Session["EmpleadoLogueado"]).Perfil != "Admin") 
-                //     Response.Redirect("Default.aspx");
-
+                
                 CargarReporteProductos();
                 CargarReporteRecaudacion();
                 CargarReporteMozos();
@@ -29,7 +26,7 @@ namespace TPORestobar
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                // Query que agrupa los detalles de pedidos cobrados/cerrados y suma las cantidades
+               
                 string query = @"SELECT ROW_NUMBER() OVER (ORDER BY SUM(dp.cantidad) DESC) AS Ranking,
                                         pr.nombre AS Producto, 
                                         SUM(dp.cantidad) AS CantidadVendida
@@ -42,13 +39,14 @@ namespace TPORestobar
                 datos.setearConsulta(query);
                 datos.ejecutarLectura();
 
-                // Cargamos el GridView usando el Lector directamente
+                
                 dgvProductosMasVendidos.DataSource = datos.Lector;
                 dgvProductosMasVendidos.DataBind();
             }
             catch (Exception ex)
             {
-                // Manejo de error si falla
+                
+                System.Diagnostics.Debug.WriteLine("ERROR: " + ex.Message);
             }
             finally
             {
@@ -61,7 +59,7 @@ namespace TPORestobar
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                // Ajustado: Usamos idPedido en lugar de id para enlazar las tablas
+                
                  string query = @"SELECT CAST(p.fechaPedido AS DATE) AS Fecha,
                                        SUM(dp.cantidad * pr.precio) AS TotalRecaudado
                                 FROM Pedido p
@@ -79,7 +77,7 @@ namespace TPORestobar
             }
             catch (Exception ex)
             {
-                // Si falla, te va a escribir el error exacto de SQL en la consola de Visual Studio
+                
                 System.Diagnostics.Debug.WriteLine("ERROR RECAUDACION: " + ex.Message);
             }
             finally
@@ -93,7 +91,7 @@ namespace TPORestobar
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                // Ajustado: Enlazamos por idPedido y idEmpleado según tus clases originales
+                
                 string query = @"SELECT (e.nombre + ' ' + e.apellido) AS Mozo,
                                    SUM(dp.cantidad * pr.precio) AS TotalFacturado
                             FROM Pedido p

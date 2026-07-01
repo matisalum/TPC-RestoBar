@@ -147,10 +147,65 @@ select * from Imagen
 
 EXEC sp_rename 'Igmagen', 'Imagen';
  
- DELETE FROM MESA
+DELETE FROM Mesa;
+DELETE FROM Producto;
+DELETE FROM Imagen;
 
- DELETE FROM Empleado
 
- DELETE FROM Pedido
 
- SELECT * FROM MESA
+DELETE FROM DetallePedido;
+DBCC CHECKIDENT ('DetallePedido', RESEED, 0);
+
+DELETE FROM Pedido;
+DBCC CHECKIDENT ('Pedido', RESEED, 0);
+
+DELETE FROM Producto;
+DBCC CHECKIDENT ('Producto', RESEED, 0);
+
+DELETE FROM Mesa;
+DBCC CHECKIDENT ('Mesa', RESEED, 0);
+
+DELETE FROM Imagen;
+DBCC CHECKIDENT ('Imagen', RESEED, 0);
+
+ SELECT * FROM Mesa
+ SELECT * FROM Producto
+ select * from Imagen
+
+ INSERT INTO Imagen (Url) VALUES
+('https://images.unsplash.com/photo-1568901346375-23c9450c58cd'), -- Hamburguesa clásica
+('https://images.unsplash.com/photo-1550547660-d9450f859349'), -- Hamburguesa doble
+('https://images.unsplash.com/photo-1513104890138-7c749659a591'), -- Pizza muzzarella
+('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38'), -- Pizza especial
+('https://images.unsplash.com/photo-1544025162-d76694265947'), -- Milanesa con papas
+('https://images.unsplash.com/photo-1626200419199-391ae4be7a41'), -- Empanadas
+('https://images.unsplash.com/photo-1559847844-5315695dadae'), -- Lomo completo
+('https://images.unsplash.com/photo-1564419320461-6870880221ad'), -- Agua mineral
+('https://images.unsplash.com/photo-1622484212850-eb596d769edc'), -- Sprite
+('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b'), -- Fernet
+('https://images.unsplash.com/photo-1436076863939-06870fe779c2'), -- Cerveza artesanal
+('https://images.unsplash.com/photo-1570197788417-0e82375c9371'), -- Helado
+('https://images.unsplash.com/photo-1551024506-0bccd828d307'), -- Flan
+('https://images.unsplash.com/photo-1533134242443-d4fd215305ad'), -- Cheesecake
+('https://images.unsplash.com/photo-1546793665-c74683f339c1'); -- Ensalada César
+
+INSERT INTO Producto
+(nombre,precio,stock,activo,idCategoria,idImagen)
+VALUES
+('Hamburguesa Clasica',12000,50,1,1,1),
+('Hamburguesa Doble',15500,40,1,1,2),
+('Pizza Muzarella',18000,30,1,3,3),
+('Pizza Especial',22000,25,1,3,4),
+('Milanesa con Papas',17000,35,1,3,5),
+('Empanadas x6',9000,40,1,1,6),
+('Lomo Completo',19000,20,1,3,7),
+('Agua Mineral',2500,80,1,1,8),
+('Sprite 2L',4200,40,1,1,9),
+('Fernet 750ml',16000,25,1,2,10),
+('Cerveza Artesanal',7000,50,1,2,11),
+('Helado 1kg',11000,15,1,4,12),
+('Flan Casero',5500,25,1,4,13),
+('Cheesecake',6500,20,1,4,14),
+('Ensalada Cesar',9500,30,1,3,15);
+
+

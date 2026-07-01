@@ -16,7 +16,7 @@ namespace TPCRestoBar
         {
             MesasNegocio negocio = new MesasNegocio();
             listaMesas = negocio.listar();
-            listaMesas = listaMesas.FindAll(x => x.estado == true);
+            //listaMesas = listaMesas.FindAll(x => x.estado == true);
             listaMesas = listaMesas.FindAll(x => x.idEmpleado != -1);
 
             repRepetidor.DataSource = listaMesas;

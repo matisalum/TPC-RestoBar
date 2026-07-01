@@ -24,7 +24,7 @@ namespace TPCRestoBar
             }
             if (Page is Categorias || Page is Empleados || Page is Producto1 || Page is FormularioCategoria
                 || Page is FormularioEmpleado || Page is FormularioMesa || Page is FormularioPedido ||
-                Page is ProductoFormulario || Page is Pedidos || Page is Mesas)
+                Page is ProductoFormulario || Page is Pedidos || Page is Mesas )
             {
                 if ((Seguridad.sesionActiva(Session["usuario"])))
                 {
