@@ -13,6 +13,7 @@ namespace dominio
         public string usuario { get; set; }
         public string password { get; set; }
         public string rol { get; set; }
+        public int idImagen { get; set; }
         public bool Activo { get; set; }
       
     }

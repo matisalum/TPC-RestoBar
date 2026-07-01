@@ -25,10 +25,19 @@ namespace TPCRestoBar
                 usuario.usuario = txtUsuario.Text;
                 usuario.password = txtContrasenia.Text;
 
-                if(negocio.Loguear(usuario))
+                if (negocio.Loguear(usuario))
                 {
-                    Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+                    if (!usuario.Activo)
+                    {
+                        Session.Add("error", "El usuario se encuentra inactivo");
+                        Response.Redirect("Error.aspx", false);
+
+                    }
+                    else
+                    {
+                        Session.Add("usuario", usuario);
+                        Response.Redirect("Default.aspx", false);
+                    }
                 }
                 else
                 {

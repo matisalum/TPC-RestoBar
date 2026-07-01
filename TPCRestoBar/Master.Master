@@ -120,6 +120,15 @@
                     </a>
                 </li>
             <%} %>
+             <%if (Session["usuario"] != null)
+            { %>
+                <li>
+                    <a href="MiPerfil.aspx">
+                        <i class="bi bi-person-circle"></i>
+                        Cuenta
+                    </a>
+                </li>
+            <%} %>
             <%if (Session["usuario"] != null)
               { %>
 

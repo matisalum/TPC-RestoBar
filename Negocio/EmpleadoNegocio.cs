@@ -217,7 +217,7 @@ namespace Negocio
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("SELECT ID, ROL FROM EMPLEADO WHERE @USUARIO = USUARIO AND @CONTRASENA = CONTRASENA");
+                datos.setearConsulta("SELECT ID, NOMBRE, APELLIDO, IDIMAGEN, ROL, ESTADO FROM EMPLEADO WHERE @USUARIO = USUARIO AND @CONTRASENA = CONTRASENA");
                 datos.setearParametro("@USUARIO", empleado.usuario);
                 datos.setearParametro("@CONTRASENA", empleado.password);
 
@@ -225,7 +225,14 @@ namespace Negocio
                 while(datos.Lector.Read())
                 {
                     empleado.idEmpleado = (int)datos.Lector["ID"];
+                    empleado.nombre = (string)datos.Lector["NOMBRE"];
+                    empleado.apellido = (string)datos.Lector["APELLIDO"];
+                    if (!(datos.Lector["IDIMAGEN"] is DBNull))
+                        empleado.idImagen = (int)datos.Lector["IDIMAGEN"];
+                    else
+                        empleado.idImagen = 0;
                     empleado.rol = (string)datos.Lector["ROL"];
+                    empleado.Activo = (bool)datos.Lector["ESTADO"];
                     return true;
                 }
                 return false;
