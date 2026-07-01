@@ -62,12 +62,14 @@ namespace TPORestobar
             try
             {
                 // Ajustado: Usamos idPedido en lugar de id para enlazar las tablas
-                string query = @"SELECT CAST(p.fechaPedido AS DATE) AS Fecha,
-                                SUM(dp.cantidad * dp.precioUnitario) AS TotalRecaudado
-                         FROM Pedido p
-                         INNER JOIN DetallePedido dp ON p.idPedido = dp.idPedido
-                         GROUP BY CAST(p.fechaPedido AS DATE)
-                         ORDER BY Fecha DESC";
+                 string query = @"SELECT CAST(p.fechaPedido AS DATE) AS Fecha,
+                                       SUM(dp.cantidad * pr.precio) AS TotalRecaudado
+                                FROM Pedido p
+                                INNER JOIN DetallePedido dp ON p.id = dp.idPedido
+                                INNER JOIN Producto pr ON pr.id = dp.idProducto
+                                WHERE p.estado = 2
+                                GROUP BY CAST(p.fechaPedido AS DATE)
+                                ORDER BY Fecha DESC";
 
                 datos.setearConsulta(query);
                 datos.ejecutarLectura();
@@ -93,12 +95,14 @@ namespace TPORestobar
             {
                 // Ajustado: Enlazamos por idPedido y idEmpleado según tus clases originales
                 string query = @"SELECT (e.nombre + ' ' + e.apellido) AS Mozo,
-                                SUM(dp.cantidad * dp.precioUnitario) AS TotalFacturado
-                         FROM Pedido p
-                         INNER JOIN DetallePedido dp ON p.idPedido = dp.idPedido
-                         INNER JOIN Empleado e ON p.idEmpleado = e.idEmpleado
-                         GROUP BY e.nombre, e.apellido
-                         ORDER BY TotalFacturado DESC";
+                                   SUM(dp.cantidad * pr.precio) AS TotalFacturado
+                            FROM Pedido p
+                            INNER JOIN DetallePedido dp ON p.id = dp.idPedido
+                            INNER JOIN Producto pr ON pr.id = dp.idProducto
+                            INNER JOIN Empleado e ON e.id = p.idEmpleado
+                            WHERE p.estado = 2
+                            GROUP BY e.nombre, e.apellido
+                            ORDER BY TotalFacturado DESC";
 
                 datos.setearConsulta(query);
                 datos.ejecutarLectura();
