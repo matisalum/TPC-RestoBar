@@ -11,7 +11,16 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void btnCerrar_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] != null)
+            {
+                Session.Remove("usuario");
+                Response.Redirect("Login.aspx", false);
+            }
         }
     }
 }

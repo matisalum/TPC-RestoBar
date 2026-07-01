@@ -212,6 +212,33 @@ namespace Negocio
             }
         }
 
+        public bool Loguear(Empleado empleado)
+        {
+            AccesoADatos datos = new AccesoADatos();
+            try
+            {
+                datos.setearConsulta("SELECT ID, ROL FROM EMPLEADO WHERE @USUARIO = USUARIO AND @CONTRASENA = CONTRASENA");
+                datos.setearParametro("@USUARIO", empleado.usuario);
+                datos.setearParametro("@CONTRASENA", empleado.password);
 
+                datos.ejecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    empleado.idEmpleado = (int)datos.Lector["ID"];
+                    empleado.rol = (string)datos.Lector["ROL"];
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

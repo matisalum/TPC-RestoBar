@@ -44,6 +44,7 @@ namespace TPCRestoBar
 
                 // 3. Continuamos con la carga normal usando el empleado (ya sea el real o el de prueba)
                 cargarMesasDelMozo(empleadoActual.idEmpleado);
+                cargarCartas();
             }
         }
 

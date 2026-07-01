@@ -4,18 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using dominio;
 
 namespace TPCRestoBar
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Error : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+            if (Session["error"] != null)
             {
-                Session.Add("error", "Inicia sesión para continuar...");
-                Response.Redirect("Error.aspx", false);
+                lblMensaje.Text = Session["error"].ToString();
             }
         }
     }

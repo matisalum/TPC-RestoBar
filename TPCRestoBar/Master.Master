@@ -111,13 +111,23 @@
                     Empleados
                 </a>
             </li>
+             <%if (Session["usuario"] == null)
+            { %>
+                <li>
+                    <a href="Login.aspx">
+                        <i class="bi bi-person-circle"></i>
+                        Login
+                    </a>
+                </li>
+            <%} %>
+            <%if (Session["usuario"] != null)
+              { %>
 
             <li>
-                <a href="Login.aspx">
-                    <i class="bi bi-person-circle"></i>
-                    Login
-                </a>
+                <asp:Button ID="btnCerrar" CssClass="btn btn-resto" runat="server" Text="Cerrar Sesion" OnClick="btnCerrar_Click"/>
             </li>
+
+            <%} %>
 
         </ul>
 

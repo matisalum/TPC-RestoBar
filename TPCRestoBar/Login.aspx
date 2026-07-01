@@ -8,16 +8,16 @@
         <div class="col-2"></div>
         <div class="col">
             <div class="mb-3">
-                <label for="txtCorreo" class="form-label">Usuario</label>
-                <asp:TextBox runat="server" cssclass="form-control" id="txtCorreo"/>  
+                <label for="lblUsuario" class="form-label">Usuario</label>
+                <asp:TextBox runat="server" cssclass="form-control" id="txtUsuario"/>  
               </div>
               <div class="mb-3">
                 <label for="txtContrasenia" class="form-label">Contraseña</label>
                 <asp:TextBox runat="server" cssclass="form-control" type="password" id="txtContrasenia"/>    
               </div>
               
-              <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" Text="Ingresar" />
-              <asp:Button ID="btnRegistrarse" class="btn btn-primary" runat="server" Text="Registrarse" />
+              <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" Text="Ingresar" OnClick="btnIngresar_Click"/>
+              <%--<asp:Button ID="btnRegistrarse" class="btn btn-primary" runat="server" Text="Registrarse" />--%>
         </div>
         <div class="col-2"></div>
     </div>
