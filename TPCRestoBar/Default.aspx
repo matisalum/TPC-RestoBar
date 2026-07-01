@@ -25,7 +25,7 @@
 
             <h5>Mesas</h5>
 
-            <h2>12</h2>
+            <h2><asp:Label ID="lblMesas" runat="server" /></h2>
 
         </div>
 
@@ -39,7 +39,7 @@
 
             <h5>Productos</h5>
 
-            <h2>48</h2>
+            <h2><asp:Label ID="lblProductos" runat="server" /></h2>
 
         </div>
 
@@ -53,7 +53,7 @@
 
             <h5>Pedidos</h5>
 
-            <h2>5</h2>
+            <h2><asp:Label ID="lblPedidos" runat="server" /></h2>
 
         </div>
 
@@ -67,7 +67,7 @@
 
             <h5>Empleados</h5>
 
-            <h2>8</h2>
+            <h2><asp:Label ID="lblEmpleados" runat="server" /></h2>
 
         </div>
 
