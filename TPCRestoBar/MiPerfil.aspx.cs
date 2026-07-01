@@ -13,7 +13,7 @@ namespace TPCRestoBar
     {
         private void cargar()
         {
-            if (Session["usuario"] != null)
+            if (Seguridad.sesionActiva(Session["usuario"]))
             {
                 Empleado empleado = (Empleado)Session["usuario"];
                 Image imagen = new Image();
@@ -39,11 +39,11 @@ namespace TPCRestoBar
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
-            {
-                Session.Add("error", "Inicia sesión para continuar...");
-                Response.Redirect("Error.aspx", false);
-            }
+            //if (!(Seguridad.sesionActiva(Session["usuario"])))
+            //{
+            //    Session.Add("error", "Inicia sesión para continuar...");
+            //    Response.Redirect("Error.aspx", false);
+            //}
             if(!IsPostBack)
                 cargar();
         }

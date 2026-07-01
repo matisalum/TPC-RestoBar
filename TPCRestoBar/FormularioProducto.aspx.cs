@@ -13,6 +13,11 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (!(Seguridad.esAdmin(Session["usuario"])))
+            //{
+            //    Session.Add("error", "Debes tener permisos de Gerente para acceder...");
+            //    Response.Redirect("Error.aspx");
+            //}
             if (!IsPostBack)
             {
 

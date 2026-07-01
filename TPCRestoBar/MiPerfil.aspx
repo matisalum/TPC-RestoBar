@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h2 class="mb-4">👤 Mi Perfil</h2>
-  
+
     <div class="row">
 
         <div class="col-md-4 text-center">
@@ -18,6 +18,11 @@
                 CssClass="img-thumbnail rounded-circle mb-3" />
 
             <asp:TextBox ID="txtImagen" OnTextChanged="txtImagen_TextChanged" CssClass="form-control" placeholder="Ej: https: // IMAGEN .jpg" runat="server"></asp:TextBox>
+            <asp:Button
+                ID="btnFoto"
+                runat="server"
+                CssClass="btn btn-outline-secondary btn-sm"
+                Text="Cambiar imagen" />
         </div>
 
         <div class="col-md-8">
@@ -85,7 +90,7 @@
                     ID="btnGuardar"
                     runat="server"
                     CssClass="btn btn-success"
-                    Text="Guardar cambios"/>
+                    Text="Guardar cambios" />
             </div>
         </div>
 

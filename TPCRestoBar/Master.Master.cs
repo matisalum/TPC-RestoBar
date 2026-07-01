@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace TPCRestoBar
 {
@@ -11,7 +12,15 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //Sesion activa ?
+            //if (!(Page is Login))
+            //{
+            //    if (!(Seguridad.sesionActiva(Session["usuario"])))
+            //    {
+            //        Session.Add("error", "Inicia sesión para continuar...");
+            //        Response.Redirect("Login.aspx", false);
+            //    }
+            //}
         }
 
         protected void btnCerrar_Click(object sender, EventArgs e)
