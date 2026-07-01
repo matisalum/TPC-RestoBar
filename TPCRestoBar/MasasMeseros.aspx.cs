@@ -12,12 +12,13 @@ namespace TPCRestoBar
     public partial class MasasMeseros : System.Web.UI.Page
     {
         public List<Mesa> listaMesas { get; set; }
-        private void cargarCartas()
+        private void cargarCartas(int id)
         {
             MesasNegocio negocio = new MesasNegocio();
             listaMesas = negocio.listar();
             //listaMesas = listaMesas.FindAll(x => x.estado == true);
             listaMesas = listaMesas.FindAll(x => x.idEmpleado != -1);
+            listaMesas = listaMesas.FindAll(x => x.idEmpleado == id);
 
             repRepetidor.DataSource = listaMesas;
             repRepetidor.DataBind();
@@ -28,7 +29,7 @@ namespace TPCRestoBar
             if (!IsPostBack)
             {
                 // 1. Intentamos traer el empleado de la sesión
-                Empleado empleadoActual = (Empleado)Session["EmpleadoLogueado"];
+                Empleado empleadoActual = (Empleado)Session["ususario"];
 
                 // 2. DESACTIVACIÓN TEMPORAL DEL LOGIN:
                 // Si es nulo, creamos un empleado de prueba para poder testear todo el flujo
@@ -39,12 +40,12 @@ namespace TPCRestoBar
                                                    // empleadoActual.nombre = "Mozo de Prueba"; // Por si usás el nombre en algún lado
 
                     // Lo guardamos en la sesión para que el resto de las pantallas (como la Cartilla) también lo usen
-                    Session["EmpleadoLogueado"] = empleadoActual;
+                    Session["ususario"] = empleadoActual;
                 }
 
                 // 3. Continuamos con la carga normal usando el empleado (ya sea el real o el de prueba)
                 cargarMesasDelMozo(empleadoActual.idEmpleado);
-                cargarCartas();
+                cargarCartas(empleadoActual.idEmpleado);
             }
         }
 
@@ -189,7 +190,7 @@ namespace TPCRestoBar
 
                 mesa.idEmpleado = null;
                 negocio.modificarConSp(mesa);
-                cargarCartas();
+                //cargarCartas();
 
             }
             catch (Exception ex)

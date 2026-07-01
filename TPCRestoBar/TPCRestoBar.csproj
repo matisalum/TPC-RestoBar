@@ -179,6 +179,7 @@
     <Content Include="FormularioEmpleado.aspx" />
     <Content Include="FormularioMesa.aspx" />
     <Content Include="FormularioPedido.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="MasasMeseros.aspx" />
     <Content Include="Mesas.aspx" />
@@ -251,6 +252,9 @@
     </Compile>
     <Compile Include="FormularioPedido.aspx.designer.cs">
       <DependentUpon>FormularioPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

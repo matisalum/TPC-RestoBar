@@ -13,6 +13,7 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 cargarDashboard();
@@ -37,6 +38,7 @@ namespace TPCRestoBar
 
             lblEmpleados.Text =
                 empleadoNegocio.listarConSp().Count.ToString();
+
         }
     }
 }
