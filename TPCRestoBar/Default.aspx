@@ -135,4 +135,18 @@
 
 </div>
 
+
+    <div class="col-md-4 mb-4" id="divCardReportes" runat="server">
+    <div class="card h-100 shadow-sm border-danger">
+        <div class="card-body text-center">
+            <h5 class="card-title text-danger">
+                <i class="fas fa-chart-line fa-2x mb-2"></i><br />
+                Panel de Reportes
+            </h5>
+            <p class="card-text text-muted">Estadísticas de facturación, mozos y platos más vendidos del negocio.</p>
+            <a href="Reportes.aspx" class="btn btn-outline-danger w-100">Ver Estadísticas</a>
+        </div>
+    </div>
+</div>
+
 </asp:Content>
