@@ -188,6 +188,7 @@
     <Content Include="Styles\dashboard.css" />
     <Content Include="Styles\producto.css" />
     <Content Include="Styles\site.css" />
+    <Content Include="VerPedido.aspx" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
   </ItemGroup>
@@ -297,6 +298,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerPedido.aspx.cs">
+      <DependentUpon>VerPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerPedido.aspx.designer.cs">
+      <DependentUpon>VerPedido.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

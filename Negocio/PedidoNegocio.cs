@@ -169,5 +169,104 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        private void insertarDetalle( int idPedido, int idProducto, int cantidad)
+        {
+            AccesoADatos datos =  new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+                                        INSERT INTO DetallePedido
+                                        (
+                                        idPedido,
+                                        idProducto,
+                                        Cantidad
+                                        )
+
+                                        VALUES
+                                        (
+                                        @idPedido,
+                                        @idProducto,
+                                        @cantidad
+                                        )
+
+                                        ");
+
+                datos.setearParametro(
+                    "@idPedido",
+                    idPedido);
+
+                datos.setearParametro(
+                    "@idProducto",
+                    idProducto);
+
+                datos.setearParametro(
+                    "@cantidad",
+                    cantidad);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        private int insertarPedido(Pedido pedido)
+        {
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta(@"
+        INSERT INTO Pedido
+        (
+            FechaPedido,
+            Estado,
+            idMesa,
+            idEmpleado
+        )
+
+        OUTPUT INSERTED.id
+
+        VALUES
+        (
+            @fecha,
+            @estado,
+            @mesa,
+            @empleado
+        )");
+
+                datos.setearParametro("@fecha", pedido.fechaPedido);
+
+                datos.setearParametro(
+                    "@estado",
+                    (byte)pedido.estadoPedido);
+
+                datos.setearParametro(
+                    "@mesa",
+                    pedido.mesa.idMesa);
+
+                datos.setearParametro(
+                    "@empleado",
+                    pedido.empleado.idEmpleado);
+
+                return datos.ejecutarAccionScalar();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void GuardarPedido(Pedido pedido)
+        {
+            int idPedido = insertarPedido(pedido);
+
+            foreach (var item in pedido.Detalles)
+            {
+                insertarDetalle( idPedido, item.Producto.idProducto, item.Cantidad);
+            }
+        }
     }
 }

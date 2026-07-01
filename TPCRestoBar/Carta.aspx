@@ -74,7 +74,8 @@
                     </asp:GridView>
                 </div>
                 <div class="offcanavas-end">
-                    <asp:Button ID="btnConfirmar" CssClass="btn btn-primary" runat="server" Text="Confirmar" />
+                    <asp:Label ID="lblErrorBD" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>
+                    <asp:Button ID="btnConfirmar" CssClass="btn btn-primary" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click"/>
                 </div>
             </div>
         </div>

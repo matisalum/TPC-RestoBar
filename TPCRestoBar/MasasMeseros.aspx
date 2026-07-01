@@ -13,20 +13,17 @@
         <asp:Repeater ID="repRepetidor" runat="server">
             <ItemTemplate>
                 <div class="col">
-                    <div class="card mesa-card shadow-sm">
+                    <div class='<%# (bool)Eval("estado") ? "card mesa-card shadow-sm border-danger" : "card mesa-card shadow-sm border-success" %>'>
 
                         <div class="card-header">
                             🍽 Mesa <%# Eval("numero") %>
                         </div>
 
                         <div class="card-body">
+                            <h6>Capacidad: <%# Eval("capacidad") %></h6>
 
-                            <h6>Capacidad: <%# Eval("capacidad") %>
-
-                            </h6>
-
-                            <span class="badge bg-success">Libre
-
+                            <span class='<%# (bool)Eval("estado") ? "badge bg-danger" : "badge bg-success" %>'>
+                                <%# (bool)Eval("estado") ? "Ocupada" : "Libre" %>
                             </span>
 
                             <br />
@@ -35,18 +32,15 @@
                             <asp:Button
                                 ID="btnNPedido"
                                 runat="server"
-                                Text="Abrir Mesa"
-                                CssClass="btn btn-warning"
+                                Text='<%# (bool)Eval("estado") ? "Ver Pedido Abierto" : "Abrir Mesa" %>'
+                                CssClass='<%# (bool)Eval("estado") ? "btn btn-info" : "btn btn-warning" %>'
                                 CommandArgument='<%# Eval("idMesa") %>'
                                 OnClick="btnNPedido_Click" />
 
                         </div>
-
-                      </div>
+                    </div>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>
-
-
 </asp:Content>
