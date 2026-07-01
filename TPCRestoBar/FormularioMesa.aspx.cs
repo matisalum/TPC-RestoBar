@@ -12,6 +12,13 @@ namespace TPCRestoBar
 
     public partial class FormularioMesa : System.Web.UI.Page
     {
+        private bool existeNombre(int num, int id)
+        {
+            MesasNegocio aux = new MesasNegocio();
+            List<Mesa> lista = aux.listar();
+
+            return lista.Any(x => x.numero == num && x.idMesa != id);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
@@ -74,6 +81,12 @@ namespace TPCRestoBar
                 MesasNegocio negocio = new MesasNegocio();
                 //Valdidaciones de cantidad y numero positivos 
                 lblMensajeN.Text = "";
+                if (!int.TryParse(txtCapacidad.Text, out int capacidad) || !int.TryParse(txtNumero.Text, out int numero))
+                {
+                    lblMensajeN.Text = "Ingrese solo numeros enteros";
+                    return;
+                }
+
                 if (int.Parse(txtNumero.Text) <= 0)
                 {
                     lblMensajeN.Text = "El numero de mesa debe ser mayor a 0";
@@ -83,6 +96,17 @@ namespace TPCRestoBar
                 if (int.Parse(txtCapacidad.Text) <= 0)
                 {
                     lblMensajeC.Text = "La capacidad debe ser mayor a 0";
+                    return;
+                }
+                int idAux = 0;
+                if (Request.QueryString["id"] != null)
+                {
+                    idAux = int.Parse(Request.QueryString["id"]);
+                }
+
+                if (existeNombre(int.Parse(txtNumero.Text), idAux))
+                {
+                    lblMensajeN.Text = "El numero de mesa ya existe...";
                     return;
                 }
                 //Asignacion
@@ -131,6 +155,7 @@ namespace TPCRestoBar
                 }
                 else
                 {
+                    lblMensajeD.Text = "No puedes inactivar una mesa que este asignada...";
                     return;
                 }
 
@@ -145,11 +170,9 @@ namespace TPCRestoBar
         {
             try
             {
+                lblMensajeD.Text = "";
                 Mesa asignada = (Mesa)Session["mesaS"];
                 MesasNegocio negocio = new MesasNegocio();
-
-                asignada.numero = int.Parse(txtNumero.Text);
-                asignada.capacidad = int.Parse(txtCapacidad.Text);
 
                 asignada.idEmpleado = null;
 
@@ -159,7 +182,9 @@ namespace TPCRestoBar
                     negocio.modificarConSp(asignada);
                 }
                 else
+                {
                     return;
+                }
 
                 Response.Redirect("Mesas.aspx");
             }

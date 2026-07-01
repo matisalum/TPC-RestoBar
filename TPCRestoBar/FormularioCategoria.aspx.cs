@@ -96,14 +96,25 @@ namespace TPCRestoBar
             {
                 CategoriaNegocio negocio = new CategoriaNegocio();
                 Categoria select = (Categoria)Session["categoriaS"];
+                ProductoNegocio negocio2 = new ProductoNegocio();
+                List<Producto> lista = negocio2.listar();
 
-                negocio.eliminacionLogica(select.Id, !select.Estado);
-                Response.Redirect("Categorias.aspx");
+                if (lista.Any(x => x.idCategoria == select.Id))
+                {
+                    lblMensaje.Text = "No puedes inactivar una categoria que este asignada...";
+                    return;
+                }   
+                else
+                {
+                    negocio.eliminacionLogica(select.Id, !select.Estado);
+                    Response.Redirect("Categorias.aspx");
+                }
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex);
             }
+          
         }
     }
 }

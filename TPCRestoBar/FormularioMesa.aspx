@@ -25,6 +25,7 @@
 
             <div class="col-12 mb-3">
                 <asp:Label ID="lblEmpleados" CssClass="form-label fw-semibold" Text="Empleados asignados" runat="server" />
+                <asp:Label ID="lblMensajeD" runat="server" CssClass="text-danger fw-bold"></asp:Label>
                 <asp:DropDownList ID="ddlEmpleados" CssClass="form-select" runat="server"></asp:DropDownList>
             </div>
 

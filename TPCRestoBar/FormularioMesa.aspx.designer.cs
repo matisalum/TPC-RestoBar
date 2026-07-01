@@ -87,6 +87,15 @@ namespace TPCRestoBar
         protected global::System.Web.UI.WebControls.Label lblEmpleados;
 
         /// <summary>
+        /// lblMensajeD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeD;
+
+        /// <summary>
         /// ddlEmpleados control.
         /// </summary>
         /// <remarks>
