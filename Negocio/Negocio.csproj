@@ -150,6 +150,7 @@
     <Compile Include="AccesoADatos.cs" />
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="EmpleadoNegocio.cs" />
+    <Compile Include="ImagenNegocio.cs" />
     <Compile Include="MesasNegocio.cs" />
     <Compile Include="PedidoNegocio.cs" />
     <Compile Include="ProductoNegocio.cs" />

@@ -17,7 +17,7 @@
                 Height="220"
                 CssClass="img-thumbnail rounded-circle mb-3" />
 
-            <asp:TextBox ID="txtImagen" CssClass="form-control" placeholder="Ej: https: // IMAGEN .jpg" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtImagen" OnTextChanged="txtImagen_TextChanged" CssClass="form-control" placeholder="Ej: https: // IMAGEN .jpg" runat="server"></asp:TextBox>
         </div>
 
         <div class="col-md-8">
