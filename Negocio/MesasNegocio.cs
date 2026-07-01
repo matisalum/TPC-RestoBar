@@ -70,9 +70,10 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO MESA (NUMERO, CAPACIDAD, ESTADO) VALUES (@NUMERO, @CAPACIDAD, @ESTADO)");
+                datos.setearConsulta("INSERT INTO MESA (NUMERO, CAPACIDAD,IDEMPLEADO, ESTADO) VALUES (@NUMERO, @CAPACIDAD,@IDEMPLEADO, @ESTADO)");
                 datos.setearParametro("@NUMERO", nuevo.numero);
                 datos.setearParametro("@CAPACIDAD", nuevo.capacidad);
+                datos.setearParametro("@IDEMPLEADO", nuevo.idEmpleado);
                 datos.setearParametro("@ESTADO", true);
 
                 datos.ejecutarAccion();
