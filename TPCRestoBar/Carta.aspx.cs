@@ -13,8 +13,6 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            Pedido pedido = (Pedido)Session["PedidoActual"];
             if (!IsPostBack)
             {
 
@@ -84,8 +82,10 @@ namespace TPCRestoBar
         }
 
         protected void btnAgregar_Click( object sender, EventArgs e)
-        { 
-            Button btn =  (Button)sender;
+        {
+            if (Session["MesaActual"] != null)
+            {
+                Button btn =  (Button)sender;
 
             int idProducto = Convert.ToInt32( btn.CommandArgument );
              
@@ -97,24 +97,25 @@ namespace TPCRestoBar
             DetallePedido item = Carrito.Find( x => x.Producto.idProducto ==  idProducto );
 
 
-            if (item == null)
-            {
+                if (item == null)
+                {
 
-                item =  new DetallePedido();
+                    item = new DetallePedido();
 
-                item.Producto = prod;
+                    item.Producto = prod;
 
-                item.Cantidad = 1;
+                    item.Cantidad = 1;
 
-                item.PrecioUnitario = prod.precio;
+                    item.PrecioUnitario = prod.precio;
 
-                Carrito.Add(item);
+                    Carrito.Add(item);
 
-            }
+                }
 
-            else
-            { 
-                item.Cantidad++; 
+                else
+                {
+                    item.Cantidad++;
+                }
             }
              
             CargarGrid();
@@ -173,8 +174,8 @@ namespace TPCRestoBar
 
         protected void btnConfirmar_Click( object sender, EventArgs e)
         {
-
-            Pedido pedido = new Pedido();
+            if (Session["MesaActual"] != null)
+           { Pedido pedido = new Pedido();
 
             pedido.fechaPedido =
                 DateTime.Now;
@@ -198,8 +199,9 @@ namespace TPCRestoBar
 
             Session.Remove("Carrito");
 
-            Response.Redirect(
-                "MasasMeseros.aspx");
+                Response.Redirect(
+                    "MasasMeseros.aspx");
+            }
         }
 
 
