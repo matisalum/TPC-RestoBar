@@ -13,7 +13,32 @@ namespace TPCRestoBar
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
+            if (!IsPostBack)
+            {
+                cargarDashboard();
+            }
+        }
+
+        private void cargarDashboard()
+        {
+            MesasNegocio mesaNegocio = new MesasNegocio();
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+            PedidoNegocio pedidoNegocio = new PedidoNegocio();
+            EmpleadoNegocio empleadoNegocio = new EmpleadoNegocio();
+
+            lblMesas.Text =
+                mesaNegocio.listar().Count.ToString();
+
+            lblProductos.Text =
+                productoNegocio.listar().Count.ToString();
+
+            lblPedidos.Text =
+                pedidoNegocio.listar().Count.ToString();
+
+            lblEmpleados.Text =
+                empleadoNegocio.listarConSp().Count.ToString();
+
         }
     }
 }

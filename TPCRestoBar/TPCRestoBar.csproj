@@ -187,6 +187,7 @@
     <Content Include="Pedidos.aspx" />
     <Content Include="Producto.aspx" />
     <Content Include="FormularioProducto.aspx" />
+    <Content Include="Reportes.aspx" />
     <Content Include="Styles\carta.css" />
     <Content Include="Styles\dashboard.css" />
     <Content Include="Styles\producto.css" />
@@ -318,6 +319,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.aspx.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes.aspx.designer.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="VerPedido.aspx.cs">
       <DependentUpon>VerPedido.aspx</DependentUpon>

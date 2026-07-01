@@ -25,7 +25,7 @@
 
             <h5>Mesas</h5>
 
-            <h2>12</h2>
+            <h2><asp:Label ID="lblMesas" runat="server" /></h2>
 
         </div>
 
@@ -39,7 +39,7 @@
 
             <h5>Productos</h5>
 
-            <h2>48</h2>
+            <h2><asp:Label ID="lblProductos" runat="server" /></h2>
 
         </div>
 
@@ -53,7 +53,7 @@
 
             <h5>Pedidos</h5>
 
-            <h2>5</h2>
+            <h2><asp:Label ID="lblPedidos" runat="server" /></h2>
 
         </div>
 
@@ -67,7 +67,7 @@
 
             <h5>Empleados</h5>
 
-            <h2>8</h2>
+            <h2><asp:Label ID="lblEmpleados" runat="server" /></h2>
 
         </div>
 
@@ -133,6 +133,20 @@
 
     </div>
 
+</div>
+
+
+    <div class="col-md-4 mb-4" id="divCardReportes" runat="server">
+    <div class="card h-100 shadow-sm border-danger">
+        <div class="card-body text-center">
+            <h5 class="card-title text-danger">
+                <i class="fas fa-chart-line fa-2x mb-2"></i><br />
+                Panel de Reportes
+            </h5>
+            <p class="card-text text-muted">Estadísticas de facturación, mozos y platos más vendidos del negocio.</p>
+            <a href="Reportes.aspx" class="btn btn-outline-danger w-100">Ver Estadísticas</a>
+        </div>
+    </div>
 </div>
 
 </asp:Content>
